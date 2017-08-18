@@ -1,0 +1,6 @@
+framework module Pods_Stylist_tvOS {
+  umbrella header "Pods-Stylist-tvOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -9,70 +9,94 @@
 import Foundation
 import UIKit
 
-public enum StyleAttribute {
-    case backgroundColor(StylistColor)
+public struct StyleAttribute {
+
+    public let controlState: UIControlState
+    public let attribute: Attribute
+
+    public enum Attribute {
+    case backgroundColor(Color)
+    case borderColor(Color)
+    case textColor(Color)
+    case font(Font)
     case cornerRadius(Int)
-    case borderColor(StylistColor)
     case borderWidth(Int)
     case alpha(Double)
     case shadowAlpha(Double)
     case backgroundImage(UIImage)
-    case textColor(StylistColor)
-    case font(UIFont)
+    }
 }
 
 extension StyleAttribute {
 
     init?(name: String, value: Any) throws {
 
-        func parseColor(_ value: Any) throws -> StylistColor {
-
-            if let string = value as? String {
-            switch string {
-                case "red": return .red
-                case "blue": return .blue
-                case "green": return .green
-                case "purple": return .purple
-                case "yellow": return .yellow
-                case "orange": return .orange
-                case "gray", "grey": return .gray
-                case "brown": return .brown
-                case "cyan": return .cyan
-                case "magenta": return .magenta
-                case "darkGray", "darkGrey": return .darkGray
-                case "lightGray", "lightGrey": return .lightGray
-                case "white": return .white
-                case "black": return .black
-                case "none", "transparent", "clear": return .clear
-                default:
-                    if let color = StylistColor(hexString: string) {
-                        return color
-                }
+        func parse<T: Parseable>(_ value: Any) throws -> T {
+            guard let parsedValue = T.parse(value: value) else {
+                throw StyleAttributeError.parsingError(T.self, value)
             }
-            } else if let int = value as? Int, let color = StylistColor(hex: int) {
-                return color
-            } 
-            throw StyleAttributeError.parsingError(UIColor.self, value)
+            return parsedValue as! T
         }
 
-        switch name {
+        func cast<T>(_ value: Any) throws -> T {
+            guard let parsedValue = value as? T else {
+                throw StyleAttributeError.parsingError(T.self, value)
+            }
+            return parsedValue
+        }
+
+        let nameParts = name.components(separatedBy: ":")
+        let attributeName = nameParts[0]
+        let controlState: UIControlState
+        if nameParts.count == 2 {
+            let controlStateString = nameParts[1]
+            switch controlStateString {
+                case "normal": controlState = .normal
+                case "application": controlState = .application
+                case "disabled": controlState = .disabled
+                case "focused": controlState = .focused
+                case "highlighted": controlState = .highlighted
+                case "reserved": controlState = .reserved
+                case "selected": controlState = .selected
+                default: throw StyleAttributeError.incorrectControlState(controlStateString)
+            }
+        } else {
+            controlState = .normal
+        }
+
+        let attribute: StyleAttribute.Attribute
+        switch attributeName {
         case "backgroundColor":
-            self = try .backgroundColor(parseColor(value))
+            attribute = try .backgroundColor(parse(value))
         case "borderColor":
-            self = try .borderColor(parseColor(value))
+            attribute = try .borderColor(parse(value))
         case "textColor":
-            self = try .textColor(parseColor(value))
+            attribute = try .textColor(parse(value))
+        case "font":
+            attribute = try .font(parse(value))
+        case "cornerRadius":
+            attribute = try .cornerRadius(cast(value))
+        case "borderWidth":
+            attribute = try .borderWidth(cast(value))
+        case "alpha", "opacity":
+            attribute = try .alpha(cast(value))
+        case "shadowAlpha", "shadowOpacity":
+            attribute = try .shadowAlpha(cast(value))
+        case "backgroundImage":
+            attribute = try .backgroundImage(parse(value))
         default:
             return nil
         }
+        self.init(controlState: controlState, attribute: attribute)
     }
+}
+
+protocol Parseable {
+    associatedtype ParsedType
+    static func parse(value: Any) -> ParsedType?
 }
 
 enum StyleAttributeError: Error {
     case parsingError(Any.Type, Any)
-
-    enum ParsingType {
-        case color
-        case font
-    }
+    case incorrectControlState(String)
 }

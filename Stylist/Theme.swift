@@ -11,10 +11,17 @@ import Yams
 
 public struct Theme {
 
-    public var styles: [String: [StyleAttribute]]
+    public var styles: [Style]
 
-    public init(styles: [String: [StyleAttribute]]) {
+    public init(styles: [Style]) {
         self.styles = styles
+    }
+
+    func getAttributes(_ name: String) -> [StyleAttribute]? {
+        guard let style = styles.first(where: { $0.name == name}) else {
+            return nil
+        }
+        return style.attributes
     }
 }
 
@@ -35,7 +42,7 @@ extension Theme {
     }
 
     public init(dictionary: [String: Any]) throws {
-        var styles: [String: [StyleAttribute]] = [:]
+        var styles: [Style] = []
         for (key, value) in dictionary {
             if let styleDictionary = value as? [String: Any] {
                 var attributes: [StyleAttribute] = []
@@ -45,7 +52,8 @@ extension Theme {
                     }
                 }
                 if !attributes.isEmpty {
-                    styles[key] = attributes
+                    let style = Style(name: key, attributes: attributes)
+                    styles.append(style)
                 }
             }
         }

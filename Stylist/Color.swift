@@ -8,16 +8,50 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(watchOS)
     import UIKit
-    public typealias StylistColor = UIColor
+    public typealias Color = UIColor
 #else
     import Cocoa
-    public typealias StylistColor = NSColor
+    public typealias Color = NSColor
 #endif
 
+extension Color: Parseable {
+
+    typealias ParsedType = Color
+
+    public static func parse(value: Any) -> Color? {
+        if let string = value as? String {
+            switch string {
+            case "red": return .red
+            case "blue": return .blue
+            case "green": return .green
+            case "purple": return .purple
+            case "yellow": return .yellow
+            case "orange": return .orange
+            case "gray", "grey": return .gray
+            case "brown": return .brown
+            case "cyan": return .cyan
+            case "magenta": return .magenta
+            case "darkGray", "darkGrey": return .darkGray
+            case "lightGray", "lightGrey": return .lightGray
+            case "white": return .white
+            case "black": return .black
+            case "none", "transparent", "clear": return .clear
+            default:
+                if let color = Color(hexString: string) {
+                    return color
+                }
+            }
+        } else if let int = value as? Int, let color = Color(hex: int) {
+            return color
+        }
+        return nil
+    }
+}
+
 /// An extension of UIColor (on iOS) or NSColor (on OSX) providing HEX color handling.
-public extension StylistColor {
+extension Color {
 
     /**
      Create non-autoreleased color with in the given hex string. Alpha will be set as 1 by default.

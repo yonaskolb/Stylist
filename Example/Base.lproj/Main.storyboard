@@ -41,12 +41,21 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="style" value="customView"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0A-Hg-F2N">
+                                <rect key="frame" x="16" y="193" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="style" value="myButton"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Y0A-Hg-F2N" firstAttribute="top" secondItem="NGZ-sm-8kS" secondAttribute="bottom" constant="8" id="BAb-zH-Dcz"/>
                             <constraint firstItem="8Ex-1A-Hkd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="LkI-Tf-JBy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NGZ-sm-8kS" secondAttribute="trailing" id="MVN-xL-C1V"/>
                             <constraint firstAttribute="leadingMargin" secondItem="NGZ-sm-8kS" secondAttribute="leading" id="Voe-BP-DkQ"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Y0A-Hg-F2N" secondAttribute="leading" id="l3Y-gr-gYB"/>
                             <constraint firstAttribute="leadingMargin" secondItem="8Ex-1A-Hkd" secondAttribute="leading" id="mva-IE-kYe"/>
                             <constraint firstItem="NGZ-sm-8kS" firstAttribute="top" secondItem="8Ex-1A-Hkd" secondAttribute="bottom" constant="8" id="qpn-QJ-Eil"/>
                         </constraints>

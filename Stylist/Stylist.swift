@@ -42,7 +42,7 @@ public class Stylist {
 
         if let theme = theme {
             for style in styles {
-                if let attributes = theme.styles[style] {
+                if let attributes = theme.getAttributes(style) {
                     for attribute in attributes {
                         apply(attribute: attribute, view: view)
                     }
@@ -65,10 +65,10 @@ public class Stylist {
 
     public func apply(theme: Theme) {
         self.theme = theme
-        for (style, attributes) in theme.styles {
-            if let views = viewStyles[style] {
+        for style in theme.styles {
+            if let views = viewStyles[style.name] {
                 for view in views.flatMap({$0.value}) {
-                    for attribute in attributes {
+                    for attribute in style.attributes {
                         apply(attribute: attribute, view: view)
                     }
                 }
@@ -77,7 +77,7 @@ public class Stylist {
     }
 
     func apply(attribute: StyleAttribute, view: UIView) {
-        switch attribute {
+        switch attribute.attribute {
         case .backgroundColor(let color): view.backgroundColor = color
         case .cornerRadius(let radius): view.layer.cornerRadius = CGFloat(radius)
         case .borderColor(let color): view.layer.borderColor = color.cgColor
@@ -86,7 +86,7 @@ public class Stylist {
         case .shadowAlpha(let alpha): view.layer.shadowOpacity = Float(alpha)
         case .backgroundImage(let image):
             if let view = view as? UIButton {
-                view.setBackgroundImage(image, for: .normal)
+                view.setBackgroundImage(image, for: attribute.controlState)
             }
         case .textColor(let color):
             if let view = view as? UILabel {
@@ -95,6 +95,8 @@ public class Stylist {
                 view.textColor = color
             } else if let view = view as? UITextField {
                 view.textColor = color
+            } else if let view = view as? UIButton {
+                view.setTitleColor(color, for: attribute.controlState)
             }
         case .font(let font):
             if let view = view as? UILabel {

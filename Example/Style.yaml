@@ -1,4 +1,8 @@
 header:
-    textColor: red
+  textColor: red
+  font: Zapfino:20
 customView:
-    backgroundColor: AAAAFF55
+  backgroundColor: AAAAFF55
+myButton:
+  textColor: green
+  textColor:highlighted: purple

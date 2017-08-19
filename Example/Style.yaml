@@ -1,11 +1,19 @@
 variables:
-  primaryFont: Zapfino:20
+  primaryFont: Zapfino:30
 styles:
   header:
     textColor: red
     font: $primaryFont
   customView:
-    backgroundColor: AAAAFF55
+    backgroundColor: blue
+    cornerRadius: 20
+    borderColor: blue
+    borderWidth: 2
+    backgroundImage: buttonBack
   myButton:
-    textColor: green
-    textColor:highlighted: purple
+    textColor: white
+    backgroundColor: clear
+    cornerRadius: 5
+    font: "systemThin:30"
+    contentEdgeInsets: 20,10
+    backgroundImage: buttonBack

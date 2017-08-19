@@ -8,23 +8,38 @@
 
 import UIKit
 import Stylist
+import KZFileWatchers
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var fileWatcher: FileWatcherProtocol?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        let path =  #file.replacingOccurrences(of: "AppDelegate.swift", with: "Style.yaml")
+        fileWatcher = FileWatcher.Local(path: path)
         do {
-            let theme = try Theme(path: Bundle.main.path(forResource: "Style", ofType: "yaml")!)
-            Stylist.shared.apply(theme: theme)
-        }catch {
-            print("Error loading theme:\n\(error)")
+            try fileWatcher?.start() { result in
+                switch result {
+                case .noChanges:
+                    break
+                case .updated(let data):
+                    do {
+                        let theme = try Theme(data: data)
+                        Stylist.shared.apply(theme: theme)
+                    } catch {
+                        print("Error loading theme:\n\(error)")
+                    }
+                }
+            }
+        } catch {
+            print("Error watching file:\n\(error)")
         }
+
         return true
     }
-
+    
 }
 

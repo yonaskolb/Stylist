@@ -19,6 +19,9 @@ import Foundation
 extension Font: Parseable {
 
     static func parse(value: Any) -> Font? {
+        if let int = value as? Int {
+            return UIFont.systemFont(ofSize: CGFloat(int))
+        }
         if let double = value as? Double {
             return UIFont.systemFont(ofSize: CGFloat(double))
         } else if let string = value as? String {

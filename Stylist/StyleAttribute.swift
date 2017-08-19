@@ -21,11 +21,15 @@ public struct StyleAttribute {
         case textColor(Color)
         case tintColor(Color)
         case font(Font)
-        case cornerRadius(Int)
-        case borderWidth(Int)
+        case cornerRadius(Double)
+        case borderWidth(Double)
         case alpha(Double)
         case shadowAlpha(Double)
         case backgroundImage(UIImage)
+        case image(UIImage)
+        case imageEdgeInsets(UIEdgeInsets)
+        case contentEdgeInsets(UIEdgeInsets)
+        case titleEdgeInsets(UIEdgeInsets)
     }
 }
 
@@ -38,13 +42,6 @@ extension StyleAttribute {
                 throw StyleAttributeError.parsingError(T.self, value)
             }
             return parsedValue as! T
-        }
-
-        func cast<T>(_ value: Any) throws -> T {
-            guard let parsedValue = value as? T else {
-                throw StyleAttributeError.parsingError(T.self, value)
-            }
-            return parsedValue
         }
 
         let nameParts = name.components(separatedBy: ":")
@@ -77,15 +74,23 @@ extension StyleAttribute {
         case "font":
             attribute = try .font(parse(value))
         case "cornerRadius":
-            attribute = try .cornerRadius(cast(value))
+            attribute = try .cornerRadius(parse(value))
         case "borderWidth":
-            attribute = try .borderWidth(cast(value))
+            attribute = try .borderWidth(parse(value))
         case "alpha", "opacity":
-            attribute = try .alpha(cast(value))
+            attribute = try .alpha(parse(value))
         case "shadowAlpha", "shadowOpacity":
-            attribute = try .shadowAlpha(cast(value))
+            attribute = try .shadowAlpha(parse(value))
         case "backgroundImage":
             attribute = try .backgroundImage(parse(value))
+        case "image":
+            attribute = try .image(parse(value))
+        case "imageEdgeInsets":
+            attribute = try .imageEdgeInsets(parse(value))
+        case "contentEdgeInsets":
+            attribute = try .contentEdgeInsets(parse(value))
+        case "titleEdgeInsets":
+            attribute = try .titleEdgeInsets(parse(value))
         default:
             return nil
         }
@@ -112,6 +117,54 @@ extension UIControlState {
 protocol Parseable {
     associatedtype ParsedType
     static func parse(value: Any) -> ParsedType?
+}
+
+extension Int: Parseable {
+
+    static func parse(value: Any) -> Int? {
+        if let string = value as? String {
+            return Int(string)
+        }
+        return value as? Int
+    }
+}
+
+extension Double: Parseable {
+
+    static func parse(value: Any) -> Double? {
+        if let int = value as? Int {
+            return Double(int)
+        } else if let string = value as? String {
+            return Double(string)
+        }
+        return value as? Double
+    }
+}
+
+extension UIEdgeInsets: Parseable {
+
+    static func parse(value: Any) -> UIEdgeInsets? {
+        var edges: [Double]?
+        if let double = Double.parse(value: value) {
+            let float = CGFloat(double)
+            return UIEdgeInsets(top: float, left: float, bottom: float, right: float)
+        }
+        else if let string = value as? String {
+            let edgeStrings = string.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+            edges = edgeStrings.flatMap{Double.parse(value: $0)}
+        } else if let array = value as? [Any] {
+            edges = array.flatMap{Double.parse(value: $0)}
+        }
+        if let edges = edges {
+            if edges.count == 2 {
+                return UIEdgeInsets(top: CGFloat(edges[1]), left: CGFloat(edges[0]), bottom: CGFloat(edges[1]), right: CGFloat(edges[0]))
+            } else if edges.count == 4 {
+                return UIEdgeInsets(top: CGFloat(edges[0]), left: CGFloat(edges[1]), bottom: CGFloat(edges[2]), right: CGFloat(edges[3]))
+            }
+        }
+
+        return nil
+    }
 }
 
 enum StyleAttributeError: Error {

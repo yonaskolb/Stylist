@@ -31,9 +31,17 @@ extension Theme {
         guard let data = FileManager.default.contents(atPath: path) else {
             throw ThemeError.notFound
         }
+        try self.init(data: data)
+    }
+
+    public init(data: Data) throws {
         guard let string = String(data: data, encoding: .utf8) else {
             throw ThemeError.decodingError
         }
+        try self.init(string: string)
+    }
+
+    public init(string: String) throws {
         let yaml = try Yams.load(yaml: string)
         guard let dictionary = yaml as? [String: Any] else {
             throw ThemeError.decodingError

@@ -84,9 +84,28 @@ extension UIView {
             self.alpha = CGFloat(alpha)
         case .shadowAlpha(let alpha):
             layer.shadowOpacity = Float(alpha)
+        case .image(let image):
+            if let view = self as? UIButton {
+                view.setImage(image, for: .normal)
+            }
         case .backgroundImage(let image):
             if let view = self as? UIButton {
                 view.setBackgroundImage(image, for: styleAttribute.controlState)
+            }
+            else {
+                backgroundColor = UIColor(patternImage: image)
+            }
+        case .imageEdgeInsets(let insets):
+            if let view = self as? UIButton {
+                view.imageEdgeInsets = insets
+            }
+        case .titleEdgeInsets(let insets):
+            if let view = self as? UIButton {
+                view.titleEdgeInsets = insets
+            }
+        case .contentEdgeInsets(let insets):
+            if let view = self as? UIButton {
+                view.contentEdgeInsets = insets
             }
         case .textColor(let color):
             if let view = self as? UILabel {
@@ -105,6 +124,8 @@ extension UIView {
                 view.font = font
             } else if let view = self as? UITextField {
                 view.font = font
+            } else if let view = self as? UIButton {
+                view.titleLabel?.font = font
             }
         }
     }

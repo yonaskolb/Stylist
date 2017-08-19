@@ -44,9 +44,9 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="style" value="customView"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0A-Hg-F2N">
-                                        <rect key="frame" x="0.0" y="148.5" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0A-Hg-F2N">
+                                        <rect key="frame" x="0.0" y="148.5" width="121" height="30"/>
+                                        <state key="normal" title="Custom button" backgroundImage="buttonBack"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="style" value="myButton"/>
                                         </userDefinedRuntimeAttributes>
@@ -97,4 +97,7 @@
             <point key="canvasLocation" x="-111.2" y="146.17691154422789"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="buttonBack" width="28" height="30"/>
+    </resources>
 </document>

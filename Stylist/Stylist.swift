@@ -13,7 +13,7 @@ public class Stylist {
 
     public static let shared = Stylist()
 
-    var viewStyles: [String: [WeakContainer<UIView>]] = [:]
+    var viewStyles: [String: [WeakContainer<UIAppearance>]] = [:]
 
     var theme: Theme?
 
@@ -25,9 +25,9 @@ public class Stylist {
         viewStyles = [:]
     }
 
-    func setStyles(view: UIView, styles: [String]) {
+    func setStyles(view: UIAppearance, styles: [String]) {
         for style in styles {
-            var views: [WeakContainer<UIView>]
+            var views: [WeakContainer<UIAppearance>]
             if let existingViews = viewStyles[style] {
                 views = existingViews.filter{ $0.value != nil }
             } else {
@@ -42,16 +42,14 @@ public class Stylist {
 
         if let theme = theme {
             for style in styles {
-                if let attributes = theme.getAttributes(style) {
-                    for attribute in attributes {
-                        apply(attribute: attribute, view: view)
-                    }
+                if let style = theme.getStyle(style) {
+                    view.apply(style: style)
                 }
             }
         }
     }
 
-    func getStyles(view: UIView) -> [String] {
+    func getStyles(view: UIAppearance) -> [String] {
         var styles: [String] = []
         for (style, views) in viewStyles {
             for viewContainer in views {
@@ -68,43 +66,8 @@ public class Stylist {
         for style in theme.styles {
             if let views = viewStyles[style.name] {
                 for view in views.flatMap({$0.value}) {
-                    for attribute in style.attributes {
-                        apply(attribute: attribute, view: view)
-                    }
+                    view.apply(style: style)
                 }
-            }
-        }
-    }
-
-    func apply(attribute: StyleAttribute, view: UIView) {
-        switch attribute.attribute {
-        case .backgroundColor(let color): view.backgroundColor = color
-        case .cornerRadius(let radius): view.layer.cornerRadius = CGFloat(radius)
-        case .borderColor(let color): view.layer.borderColor = color.cgColor
-        case .borderWidth(let width): view.layer.borderWidth = CGFloat(width)
-        case .alpha(let alpha): view.alpha = CGFloat(alpha)
-        case .shadowAlpha(let alpha): view.layer.shadowOpacity = Float(alpha)
-        case .backgroundImage(let image):
-            if let view = view as? UIButton {
-                view.setBackgroundImage(image, for: attribute.controlState)
-            }
-        case .textColor(let color):
-            if let view = view as? UILabel {
-                view.textColor = color
-            } else if let view = view as? UITextView {
-                view.textColor = color
-            } else if let view = view as? UITextField {
-                view.textColor = color
-            } else if let view = view as? UIButton {
-                view.setTitleColor(color, for: attribute.controlState)
-            }
-        case .font(let font):
-            if let view = view as? UILabel {
-                view.font = font
-            } else if let view = view as? UITextView {
-                view.font = font
-            } else if let view = view as? UITextField {
-                view.font = font
             }
         }
     }

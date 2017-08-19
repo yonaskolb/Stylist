@@ -17,11 +17,11 @@ public struct Theme {
         self.styles = styles
     }
 
-    func getAttributes(_ name: String) -> [StyleAttribute]? {
+    func getStyle(_ name: String) -> Style? {
         guard let style = styles.first(where: { $0.name == name}) else {
             return nil
         }
-        return style.attributes
+        return style
     }
 }
 

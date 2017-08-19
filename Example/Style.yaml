@@ -1,8 +1,11 @@
-header:
-  textColor: red
-  font: Zapfino:20
-customView:
-  backgroundColor: AAAAFF55
-myButton:
-  textColor: green
-  textColor:highlighted: purple
+variables:
+  primaryFont: Zapfino:20
+styles:
+  header:
+    textColor: red
+    font: $primaryFont
+  customView:
+    backgroundColor: AAAAFF55
+  myButton:
+    textColor: green
+    textColor:highlighted: purple

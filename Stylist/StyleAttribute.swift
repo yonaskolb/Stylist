@@ -11,19 +11,21 @@ import UIKit
 
 public struct StyleAttribute {
 
-    public let controlState: UIControlState
     public let attribute: Attribute
+    public let controlState: UIControlState
+    public let barMetrics: UIBarMetrics
 
     public enum Attribute {
-    case backgroundColor(Color)
-    case borderColor(Color)
-    case textColor(Color)
-    case font(Font)
-    case cornerRadius(Int)
-    case borderWidth(Int)
-    case alpha(Double)
-    case shadowAlpha(Double)
-    case backgroundImage(UIImage)
+        case backgroundColor(Color)
+        case borderColor(Color)
+        case textColor(Color)
+        case tintColor(Color)
+        case font(Font)
+        case cornerRadius(Int)
+        case borderWidth(Int)
+        case alpha(Double)
+        case shadowAlpha(Double)
+        case backgroundImage(UIImage)
     }
 }
 
@@ -48,17 +50,15 @@ extension StyleAttribute {
         let nameParts = name.components(separatedBy: ":")
         let attributeName = nameParts[0]
         let controlState: UIControlState
+        let barMetrics: UIBarMetrics = .default
+        //TODO: parse UIBarMetrics
+
         if nameParts.count == 2 {
             let controlStateString = nameParts[1]
-            switch controlStateString {
-                case "normal": controlState = .normal
-                case "application": controlState = .application
-                case "disabled": controlState = .disabled
-                case "focused": controlState = .focused
-                case "highlighted": controlState = .highlighted
-                case "reserved": controlState = .reserved
-                case "selected": controlState = .selected
-                default: throw StyleAttributeError.incorrectControlState(controlStateString)
+            if let parsedControlState = UIControlState(name: controlStateString) {
+                controlState = parsedControlState
+            } else {
+                throw StyleAttributeError.incorrectControlState(controlStateString)
             }
         } else {
             controlState = .normal
@@ -70,6 +70,8 @@ extension StyleAttribute {
             attribute = try .backgroundColor(parse(value))
         case "borderColor":
             attribute = try .borderColor(parse(value))
+        case "tintColor":
+            attribute = try .tintColor(parse(value))
         case "textColor":
             attribute = try .textColor(parse(value))
         case "font":
@@ -87,7 +89,23 @@ extension StyleAttribute {
         default:
             return nil
         }
-        self.init(controlState: controlState, attribute: attribute)
+        self.init(attribute: attribute, controlState: controlState, barMetrics: barMetrics)
+    }
+}
+
+extension UIControlState {
+
+    init?(name: String) {
+        switch name {
+        case "normal": self = .normal
+        case "application": self = .application
+        case "disabled": self = .disabled
+        case "focused": self = .focused
+        case "highlighted": self = .highlighted
+        case "reserved": self = .reserved
+        case "selected": self = .selected
+        default: return nil
+        }
     }
 }
 

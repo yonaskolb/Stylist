@@ -54,8 +54,39 @@ extension Font: Parseable {
                 }
             } else if parts.count == 2 {
                 let name = parts[0]
-                if let size = Double(parts[1]), let font = UIFont(name: name, size: CGFloat(size)) {
-                    return font
+                if let size = Double(parts[1]) {
+                    let fontSize = CGFloat(size)
+                    if let font = UIFont(name: name, size: fontSize) {
+                        return font
+                    }
+                    if name.contains("system") {
+                        let systemName = name.replacingOccurrences(of: "system", with: "").lowercased()
+                        let weight: CGFloat?
+                        switch systemName {
+                        case "black":
+                            weight = UIFontWeightBlack
+                        case "heavy":
+                            weight = UIFontWeightHeavy
+                        case "light":
+                            weight = UIFontWeightLight
+                        case "medium":
+                            weight = UIFontWeightMedium
+                        case "semibold":
+                            weight = UIFontWeightSemibold
+                        case "thin":
+                            weight = UIFontWeightThin
+                        case "ultralight":
+                            weight = UIFontWeightUltraLight
+                        case "bold":
+                            return UIFont.boldSystemFont(ofSize: fontSize)
+                        case "italic":
+                            return UIFont.italicSystemFont(ofSize: fontSize)
+                        default: weight = nil
+                        }
+                        if let weight = weight {
+                            return UIFont.systemFont(ofSize: fontSize, weight: weight)
+                        }
+                    }
                 }
             }
         }

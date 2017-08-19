@@ -43,11 +43,27 @@ extension Theme {
 
     public init(dictionary: [String: Any]) throws {
         var styles: [Style] = []
-        for (key, value) in dictionary {
+        var variables: [String: Any] = [:]
+        var styleDictionary = dictionary
+
+        if let variablesDictionary = dictionary["variables"] as? [String: Any] {
+            variables = variablesDictionary
+            styleDictionary = (dictionary["styles"] as? [String: Any]) ?? [:]
+        }
+
+        for (key, value) in styleDictionary {
             if let styleDictionary = value as? [String: Any] {
                 var attributes: [StyleAttribute] = []
                 for (attributeName, value) in styleDictionary {
-                    if let attribute = try StyleAttribute(name: attributeName, value: value) {
+                    var attributeValue = value
+                    if let string = attributeValue as? String, string.hasPrefix("$") {
+                        let variableName = string.trimmingCharacters(in: CharacterSet.init(charactersIn: "$"))
+                        guard let variable = variables[variableName] else {
+                            throw ThemeError.incorrectVariable(name: attributeName, variable: variableName)
+                        }
+                        attributeValue = variable
+                    }
+                    if let attribute = try StyleAttribute(name: attributeName, value: attributeValue) {
                         attributes.append(attribute)
                     }
                 }
@@ -65,4 +81,5 @@ extension Theme {
 enum ThemeError: Error {
     case notFound
     case decodingError
+    case incorrectVariable(name:String, variable: String)
 }

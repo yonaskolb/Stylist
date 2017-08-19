@@ -20,7 +20,6 @@
 		8933C7881EB5B820000D00A4 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Stylist.swift */; };
 		8933C78E1EB5B82C000D00A4 /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
 		8933C78F1EB5B82C000D00A4 /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
-		8933C7901EB5B82D000D00A4 /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
 		A4CEF6CC8B9E3778ADC562B7 /* Pods_Stylist_watchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A69A252ABB1BC87721D369D /* Pods_Stylist_watchOS.framework */; };
 		CC2385061F47852E00FB0073 /* StyleAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385051F47852E00FB0073 /* StyleAttribute.swift */; };
 		CC2385071F47852E00FB0073 /* StyleAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385051F47852E00FB0073 /* StyleAttribute.swift */; };
@@ -58,6 +57,7 @@
 		CC68ECE31F485E120063AE1F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECE11F485E120063AE1F /* Style.swift */; };
 		CC68ECE41F485E120063AE1F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECE11F485E120063AE1F /* Style.swift */; };
 		CC68ECE51F485E120063AE1F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECE11F485E120063AE1F /* Style.swift */; };
+		CC68ECE61F487CBE0063AE1F /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
 		DD7502881C68FEDE006590AF /* Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* Stylist.framework */; };
 		DD7502921C690C7A006590AF /* Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* Stylist.framework */; };
 		E433936EBBCB070ECB93413C /* Pods_Stylist_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43247853AA2F30E5A2D5BB0C /* Pods_Stylist_macOS.framework */; };
@@ -328,8 +328,7 @@
 			children = (
 				8933C7891EB5B82A000D00A4 /* StylistTests.swift */,
 			);
-			name = Tests;
-			path = Tests/StylistTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		CC23850F1F478E8A00FB0073 /* Example */ = {
@@ -1066,7 +1065,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8933C7901EB5B82D000D00A4 /* StylistTests.swift in Sources */,
+				CC68ECE61F487CBE0063AE1F /* StylistTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

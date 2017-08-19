@@ -58,35 +58,32 @@ extension UIAppearance {
     }
 
     func apply(styleAttribute: StyleAttribute) {
+        if let view = self as? UIView {
+            view.apply(styleAttribute: styleAttribute)
+        } else if let view = self as? UIBarItem {
+            view.apply(styleAttribute: styleAttribute)
+        }
+    }
+}
+
+extension UIView {
+
+    func apply(styleAttribute: StyleAttribute) {
         switch styleAttribute.attribute {
         case .backgroundColor(let color):
-            if let view = self as? UIView {
-                view.backgroundColor = color
-            }
+            self.backgroundColor = color
         case .cornerRadius(let radius):
-            if let view = self as? UIView {
-                view.layer.cornerRadius = CGFloat(radius)
-            }
-
+            self.layer.cornerRadius = CGFloat(radius)
         case .borderColor(let color):
-            if let view = self as? UIView {
-                view.layer.borderColor = color.cgColor
-            }
-
+            self.layer.borderColor = color.cgColor
+        case .tintColor(let color):
+            self.tintColor = color
         case .borderWidth(let width):
-            if let view = self as? UIView {
-                view.layer.borderWidth = CGFloat(width)
-            }
-
+            self.layer.borderWidth = CGFloat(width)
         case .alpha(let alpha):
-            if let view = self as? UIView {
-                view.alpha = CGFloat(alpha)
-            }
-
+            self.alpha = CGFloat(alpha)
         case .shadowAlpha(let alpha):
-            if let view = self as? UIView {
-                view.layer.shadowOpacity = Float(alpha)
-            }
+            layer.shadowOpacity = Float(alpha)
         case .backgroundImage(let image):
             if let view = self as? UIButton {
                 view.setBackgroundImage(image, for: styleAttribute.controlState)
@@ -109,6 +106,19 @@ extension UIAppearance {
             } else if let view = self as? UITextField {
                 view.font = font
             }
+        }
+    }
+}
+
+extension UIBarItem {
+
+    func apply(styleAttribute: StyleAttribute) {
+        switch styleAttribute.attribute {
+        case .backgroundImage(let image):
+            if let view = self as? UIBarButtonItem {
+                view.setBackgroundImage(image, for: styleAttribute.controlState, barMetrics: styleAttribute.barMetrics)
+            }
+        default: break
         }
     }
 }

@@ -20,6 +20,9 @@ extension Image: Parseable {
 
     static func parse(value: Any) -> Image? {
         guard let string = value as? String else { return nil }
+        if string == "none" {
+            return UIImage()
+        }
         return UIImage(named: string)
     }
 }

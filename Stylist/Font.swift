@@ -27,32 +27,7 @@ extension Font: Parseable {
         } else if let string = value as? String {
             let parts = string.components(separatedBy: ":")
             if parts.count == 1 {
-                let textStyleString = string.replacingOccurrences(of: " ", with: "").lowercased()
-                var textStyle: UIFontTextStyle?
-                switch textStyleString {
-                case "title1":
-                    textStyle = .title1
-                case "title2":
-                    textStyle = .title2
-                case "title3":
-                    textStyle = .title3
-                case "headline":
-                    textStyle = .headline
-                case "subheadline":
-                    textStyle = .subheadline
-                case "body":
-                    textStyle = .body
-                case "callout":
-                    textStyle = .callout
-                case "footnote":
-                    textStyle = .footnote
-                case "caption1":
-                    textStyle = .caption1
-                case "caption2":
-                    textStyle = .caption2
-                default: break
-                }
-                if let textStyle = textStyle {
+                if let textStyle = UIFontTextStyle(name: string) {
                     return UIFont.preferredFont(forTextStyle: textStyle)
                 }
             } else if parts.count == 2 {
@@ -90,9 +65,43 @@ extension Font: Parseable {
                             return UIFont.systemFont(ofSize: fontSize, weight: weight)
                         }
                     }
+                } else if let textStyle = UIFontTextStyle(name: parts[1]) {
+                    let fontSize = UIFont.preferredFont(forTextStyle: textStyle).pointSize
+                    if let font = UIFont(name: name, size: fontSize) {
+                        return font
+                    }
                 }
             }
         }
         return nil
+    }
+}
+
+private extension UIFontTextStyle {
+
+    init?(name: String) {
+        switch name.replacingOccurrences(of: " ", with: "").lowercased() {
+        case "title1":
+            self = .title1
+        case "title2":
+            self = .title2
+        case "title3":
+            self = .title3
+        case "headline":
+            self = .headline
+        case "subheadline":
+            self = .subheadline
+        case "body":
+            self = .body
+        case "callout":
+            self = .callout
+        case "footnote":
+            self = .footnote
+        case "caption1":
+            self = .caption1
+        case "caption2":
+            self = .caption2
+        default: return nil
+        }
     }
 }

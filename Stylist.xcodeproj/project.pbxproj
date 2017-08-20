@@ -40,6 +40,10 @@
 		CC23852C1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
 		CC23852D1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
 		CC23852E1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
+		CC64F6FE1F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
+		CC64F6FF1F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
+		CC64F7001F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
+		CC64F7011F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
 		CC68ECD11F47A1540063AE1F /* Style.yaml in Resources */ = {isa = PBXBuildFile; fileRef = CC68ECD01F47A1540063AE1F /* Style.yaml */; };
 		CC68ECD31F47A2AF0063AE1F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECD21F47A2AF0063AE1F /* Color.swift */; };
 		CC68ECD41F47A2AF0063AE1F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECD21F47A2AF0063AE1F /* Color.swift */; };
@@ -141,6 +145,7 @@
 		CC23851C1F478E8A00FB0073 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC2385251F47911200FB0073 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		CC23852A1F47962D00FB0073 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAnchor.swift; sourceTree = "<group>"; };
 		CC68ECD01F47A1540063AE1F /* Style.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Style.yaml; sourceTree = "<group>"; };
 		CC68ECD21F47A2AF0063AE1F /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CC68ECD71F4859060063AE1F /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -319,6 +324,7 @@
 				CC68ECD71F4859060063AE1F /* Font.swift */,
 				CC68ECDC1F485B240063AE1F /* Image.swift */,
 				CC68ECE11F485E120063AE1F /* Style.swift */,
+				CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */,
 			);
 			path = Stylist;
 			sourceTree = "<group>";
@@ -1056,6 +1062,7 @@
 				CC2385261F47911200FB0073 /* View.swift in Sources */,
 				CC23852B1F47962D00FB0073 /* Theme.swift in Sources */,
 				CC68ECD81F4859060063AE1F /* Font.swift in Sources */,
+				CC64F6FE1F48FEC100A5972F /* LayoutAnchor.swift in Sources */,
 				CC2385061F47852E00FB0073 /* StyleAttribute.swift in Sources */,
 				CC68ECD31F47A2AF0063AE1F /* Color.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* Stylist.swift in Sources */,
@@ -1079,6 +1086,7 @@
 				CC2385281F47911200FB0073 /* View.swift in Sources */,
 				CC23852D1F47962D00FB0073 /* Theme.swift in Sources */,
 				CC68ECDA1F4859060063AE1F /* Font.swift in Sources */,
+				CC64F7001F48FEC100A5972F /* LayoutAnchor.swift in Sources */,
 				CC2385081F47852E00FB0073 /* StyleAttribute.swift in Sources */,
 				CC68ECD51F47A2AF0063AE1F /* Color.swift in Sources */,
 				8933C7871EB5B820000D00A4 /* Stylist.swift in Sources */,
@@ -1094,6 +1102,7 @@
 				CC2385291F47911200FB0073 /* View.swift in Sources */,
 				CC23852E1F47962D00FB0073 /* Theme.swift in Sources */,
 				CC68ECDB1F4859060063AE1F /* Font.swift in Sources */,
+				CC64F7011F48FEC100A5972F /* LayoutAnchor.swift in Sources */,
 				CC2385091F47852E00FB0073 /* StyleAttribute.swift in Sources */,
 				CC68ECD61F47A2AF0063AE1F /* Color.swift in Sources */,
 				8933C7881EB5B820000D00A4 /* Stylist.swift in Sources */,
@@ -1109,6 +1118,7 @@
 				CC2385271F47911200FB0073 /* View.swift in Sources */,
 				CC23852C1F47962D00FB0073 /* Theme.swift in Sources */,
 				CC68ECD91F4859060063AE1F /* Font.swift in Sources */,
+				CC64F6FF1F48FEC100A5972F /* LayoutAnchor.swift in Sources */,
 				CC2385071F47852E00FB0073 /* StyleAttribute.swift in Sources */,
 				CC68ECD41F47A2AF0063AE1F /* Color.swift in Sources */,
 				8933C7861EB5B820000D00A4 /* Stylist.swift in Sources */,

@@ -14,6 +14,7 @@ public struct StyleAttribute {
     public let attribute: Attribute
     public let controlState: UIControlState
     public let barMetrics: UIBarMetrics
+    public let interfaceIdiom: UIUserInterfaceIdiom
 
     public enum Attribute {
         case backgroundColor(Color)
@@ -30,6 +31,8 @@ public struct StyleAttribute {
         case imageEdgeInsets(UIEdgeInsets)
         case contentEdgeInsets(UIEdgeInsets)
         case titleEdgeInsets(UIEdgeInsets)
+        case widthAnchor(LayoutAnchor)
+        case heightAnchor(LayoutAnchor)
     }
 }
 
@@ -44,8 +47,22 @@ extension StyleAttribute {
             return parsedValue as! T
         }
 
-        let nameParts = name.components(separatedBy: ":")
-        let attributeName = nameParts[0]
+        var attributeName = name
+        var interfaceIdiom = UIUserInterfaceIdiom.unspecified
+        if let match = try! NSRegularExpression(pattern: "(.*)\\(device:(.*)\\)", options: []).firstMatch(in: attributeName, options: [], range: NSRange(location: 0, length: attributeName.characters.count)) {
+
+            attributeName = (name as NSString).substring(with: match.rangeAt(1))
+            let device = (name as NSString).substring(with: match.rangeAt(2))
+            switch device.lowercased() {
+                case "iphone", "phone": interfaceIdiom = .phone
+                case "ipad", "pad": interfaceIdiom = .pad
+                default: throw StyleAttributeError.incorrectDevice(device)
+            }
+        }
+
+        let nameParts = attributeName.components(separatedBy: ":")
+        attributeName = nameParts[0]
+
         let controlState: UIControlState
         let barMetrics: UIBarMetrics = .default
         //TODO: parse UIBarMetrics
@@ -91,10 +108,14 @@ extension StyleAttribute {
             attribute = try .contentEdgeInsets(parse(value))
         case "titleEdgeInsets":
             attribute = try .titleEdgeInsets(parse(value))
+        case "widthAnchor":
+            attribute = try .widthAnchor(parse(value))
+        case "heightAnchor":
+            attribute = try .heightAnchor(parse(value))
         default:
             return nil
         }
-        self.init(attribute: attribute, controlState: controlState, barMetrics: barMetrics)
+        self.init(attribute: attribute, controlState: controlState, barMetrics: barMetrics, interfaceIdiom: interfaceIdiom)
     }
 }
 
@@ -141,6 +162,13 @@ extension Double: Parseable {
     }
 }
 
+extension CGFloat: Parseable {
+
+    static func parse(value: Any) -> CGFloat? {
+        return Double.parse(value: value).flatMap { CGFloat($0) }
+    }
+}
+
 extension UIEdgeInsets: Parseable {
 
     static func parse(value: Any) -> UIEdgeInsets? {
@@ -170,4 +198,5 @@ extension UIEdgeInsets: Parseable {
 enum StyleAttributeError: Error {
     case parsingError(Any.Type, Any)
     case incorrectControlState(String)
+    case incorrectDevice(String)
 }

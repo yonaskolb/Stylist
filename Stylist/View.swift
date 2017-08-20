@@ -58,6 +58,9 @@ extension UIAppearance {
     }
 
     func apply(styleAttribute: StyleAttribute) {
+
+        guard styleAttribute.interfaceIdiom == .unspecified || styleAttribute.interfaceIdiom == UIDevice.current.userInterfaceIdiom else { return }
+
         if let view = self as? UIView {
             view.apply(styleAttribute: styleAttribute)
         } else if let view = self as? UIBarItem {
@@ -127,6 +130,38 @@ extension UIView {
             } else if let view = self as? UIButton {
                 view.titleLabel?.font = font
             }
+        case .widthAnchor(let anchor):
+            if let existingContraint = self.constraints.first(where: {$0.firstItem === self && $0.firstAttribute == .width && $0.relation == .equal }) {
+                existingContraint.isActive = false
+            }
+
+
+            let contraint:NSLayoutConstraint
+
+            if anchor.ratio {
+                contraint = NSLayoutConstraint(item: self, attribute: .width, relatedBy: anchor.equality, toItem: self, attribute: .height, multiplier: anchor.constant, constant: 0)
+            } else {
+                contraint = NSLayoutConstraint(item: self, attribute: .width, relatedBy: anchor.equality, toItem: nil, attribute: .height, multiplier: 1, constant: anchor.constant)
+            }
+
+            contraint.isActive = true
+            self.translatesAutoresizingMaskIntoConstraints = false
+
+        case .heightAnchor(let anchor):
+            if let existingContraint = self.constraints.first(where: {$0.firstItem === self && $0.firstAttribute == .height && $0.relation == .equal }) {
+                existingContraint.isActive = false
+            }
+
+            let contraint:NSLayoutConstraint
+
+            if anchor.ratio {
+                contraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: anchor.equality, toItem: self, attribute: .width, multiplier: anchor.constant, constant: 0)
+            } else {
+                contraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: anchor.equality, toItem: nil, attribute: .width, multiplier: 1, constant: anchor.constant)
+            }
+
+            contraint.isActive = true
+            self.translatesAutoresizingMaskIntoConstraints = false
         }
     }
 }

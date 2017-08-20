@@ -15,7 +15,7 @@ public class Stylist {
 
     var viewStyles: [String: [WeakContainer<UIAppearance>]] = [:]
 
-    var theme: Theme?
+    public var theme: Theme?
 
     init() {
 

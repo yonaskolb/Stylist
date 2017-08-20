@@ -15,5 +15,6 @@ styles:
     backgroundColor: clear
     cornerRadius: 5
     font: "systemThin:30"
-    contentEdgeInsets: 20,10
+    contentEdgeInsets: 20,15
+    contentEdgeInsets:highlighted: 22,12
     backgroundImage: buttonBack

@@ -16,9 +16,9 @@ import Foundation
     public typealias Font = NSFont
 #endif
 
-extension Font: Parseable {
+extension Font: StyleValue {
 
-    static func parse(value: Any) -> Font? {
+    public static func parse(value: Any) -> Font? {
         if let int = value as? Int {
             return UIFont.systemFont(ofSize: CGFloat(int))
         }

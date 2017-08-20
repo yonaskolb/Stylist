@@ -64,7 +64,6 @@ extension Theme {
 
         for (key, value) in stylesDictionary {
             if var styleDictionary = value as? [String: Any] {
-                var attributes: [StyleAttribute] = []
                 if let styles = styleDictionary["styles"] as? [String] {
                     for style in styles {
                         if let sharedStyle = stylesDictionary[style] as? [String: Any] {
@@ -74,41 +73,50 @@ extension Theme {
                                 }
                             }
                         } else {
-                            throw ThemeError.invalidStyleReference(style)
+                            throw ThemeError.invalidStyleReference(style: key, reference: style)
                         }
                     }
                 }
 
-                for (attributeName, value) in styleDictionary {
-                    if attributeName == "styles" {
-                        continue
-                    }
+                func parseStyle(dictionary: [String: Any]) throws -> Style {
 
-                    var attributeValue = value
-                    if let string = attributeValue as? String, string.hasPrefix("$") {
-                        var variableName = string.trimmingCharacters(in: CharacterSet(charactersIn: "$"))
-                        let parts = variableName.components(separatedBy: ":")
-                        if parts.count > 1 {
-                            variableName = parts[0]
+                    var properties: [StylePropertyValue] = []
+
+                    for (propertyName, value) in dictionary {
+                        if propertyName == "styles" || propertyName == "parent" {
+                            continue
                         }
-                        guard let variable = variables[variableName] else {
-                            throw ThemeError.invalidVariable(name: attributeName, variable: variableName)
+
+                        func resolveVariable(_ value: Any) throws -> Any {
+                            var propertyValue = value
+                            if let string = propertyValue as? String, string.hasPrefix("$") {
+                                var variableName = string.trimmingCharacters(in: CharacterSet(charactersIn: "$"))
+                                let parts = variableName.components(separatedBy: ":")
+                                if parts.count > 1 {
+                                    variableName = parts[0]
+                                }
+                                guard let variable = variables[variableName] else {
+                                    throw ThemeError.invalidVariable(name: propertyName, variable: variableName)
+                                }
+                                propertyValue = variable
+                                if parts.count > 1 {
+                                    propertyValue = "\(propertyValue):" + Array(parts.dropFirst()).joined(separator: ":")
+                                }
+                            }
+                            return propertyValue
                         }
-                        attributeValue = variable
-                        if parts.count > 1 {
-                            attributeValue = "\(attributeValue):" + Array(parts.dropFirst()).joined(separator: ":")
-                        }
+
+                        let propertyValue = try resolveVariable(value)
+                        properties.append(try StylePropertyValue(name: propertyName, value: propertyValue))
                     }
-                    if let attribute = try StyleAttribute(name: attributeName, value: attributeValue) {
-                        attributes.append(attribute)
-                    } else {
-                        print("Unknown attribute in \(key): \(attributeName)")
+                    var parentStyle: Style?
+                    if let parentDictionary = dictionary["parent"] as? [String: Any] {
+                        parentStyle = try parseStyle(dictionary: parentDictionary)
                     }
+                    return Style(name: key, properties: properties, parentStyle: parentStyle)
                 }
-                if !attributes.isEmpty {
-                    let style = Style(name: key, attributes: attributes)
-                    styles.append(style)
-                }
+                let style = try parseStyle(dictionary: styleDictionary)
+                styles.append(style)
             }
         }
         self.styles = styles
@@ -120,5 +128,8 @@ enum ThemeError: Error {
     case notFound
     case decodingError
     case invalidVariable(name:String, variable: String)
-    case invalidStyleReference(String)
+    case invalidStyleReference(style: String, reference: String)
+    case invalidControlState(name: String, controlState: String)
+    case invalidDevice(name: String, device: String)
+    case invalidBarMetrics(name: String, barMetrics: String)
 }

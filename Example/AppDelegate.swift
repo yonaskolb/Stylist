@@ -28,7 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .updated(let data):
                     do {
                         let theme = try Theme(data: data)
-                        Stylist.shared.apply(theme: theme)
+                        UIView.animate(withDuration: 0.2) {
+                            Stylist.shared.apply(theme: theme)
+                        }
                     } catch {
                         print("Error loading theme:\n\(error)")
                     }

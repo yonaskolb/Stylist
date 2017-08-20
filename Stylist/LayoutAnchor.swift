@@ -36,9 +36,9 @@ extension NSLayoutRelation {
     static var all: [NSLayoutRelation] = [.equal, .greaterThanOrEqual, .lessThanOrEqual]
 }
 
-extension LayoutAnchor: Parseable {
+extension LayoutAnchor: StyleValue {
 
-    static func parse(value: Any) -> LayoutAnchor? {
+    public static func parse(value: Any) -> LayoutAnchor? {
         if let constant = CGFloat.parse(value: value) {
             return LayoutAnchor(constant: constant)
         } else if let string = value as? String {

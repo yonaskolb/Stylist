@@ -16,37 +16,42 @@ import Foundation
     public typealias Color = NSColor
 #endif
 
-extension Color: Parseable {
+extension Color: StyleValue {
 
-    typealias ParsedType = Color
+    public typealias ParsedType = Color
 
     public static func parse(value: Any) -> Color? {
-        if let string = value as? String {
-            switch string {
-            case "red": return .red
-            case "blue": return .blue
-            case "green": return .green
-            case "purple": return .purple
-            case "yellow": return .yellow
-            case "orange": return .orange
-            case "gray", "grey": return .gray
-            case "brown": return .brown
-            case "cyan": return .cyan
-            case "magenta": return .magenta
-            case "darkGray", "darkGrey": return .darkGray
-            case "lightGray", "lightGrey": return .lightGray
-            case "white": return .white
-            case "black": return .black
-            case "none", "transparent", "clear": return .clear
-            default:
-                if let color = Color(hexString: string) {
-                    return color
-                }
-            }
-        } else if let int = value as? Int, let color = Color(hex: int) {
-            return color
+        let string = String(describing: value)
+        var colorString = string
+        var color: Color?
+        let parts = string.components(separatedBy: ":")
+        var alpha: CGFloat?
+        if parts.count == 2 {
+            colorString = parts[0]
+            alpha = CGFloat.parse(value: parts[1])
         }
-        return nil
+        switch colorString {
+        case "red": color = .red
+        case "blue": color = .blue
+        case "green": color = .green
+        case "purple": color = .purple
+        case "yellow": color = .yellow
+        case "orange": color = .orange
+        case "gray", "grey": color = .gray
+        case "brown": color = .brown
+        case "cyan": color = .cyan
+        case "magenta": color = .magenta
+        case "darkGray", "darkGrey": color = .darkGray
+        case "lightGray", "lightGrey": color = .lightGray
+        case "white": color = .white
+        case "black": color = .black
+        case "none", "transparent", "clear": color = .clear
+        default: color = Color(hexString: colorString)
+        }
+        if let alpha = alpha, alpha < 1 {
+            color = color?.withAlphaComponent(alpha)
+        }
+        return color
     }
 }
 

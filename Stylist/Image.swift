@@ -16,9 +16,9 @@ import Foundation
     public typealias Image = NSImage
 #endif
 
-extension Image: Parseable {
+extension Image: StyleValue {
 
-    static func parse(value: Any) -> Image? {
+    public static func parse(value: Any) -> Image? {
         guard let string = value as? String else { return nil }
         if string == "none" {
             return UIImage()

@@ -7,7 +7,12 @@
 //
 
 import Foundation
-import UIKit
+
+#if os(iOS) || os(tvOS)
+    import UIKit
+#elseif os(macOS)
+    import Cocoa
+#endif
 
 enum StyleProperties {
 
@@ -224,9 +229,12 @@ enum StyleProperties {
             view.isTranslucent = value.value
         }
 
+        #if os(iOS)
+
         add("barStyle") { (view: UINavigationBar, value: PropertyValue<UIBarStyle>) in
             view.barStyle = value.value
         }
+        #endif
 
         add("shadowImage") { (view: UINavigationBar, value: PropertyValue<UIImage>) in
             view.shadowImage = value.value

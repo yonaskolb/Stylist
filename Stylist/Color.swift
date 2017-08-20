@@ -8,10 +8,10 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(watchOS)
+#if os(iOS) || os(tvOS)
     import UIKit
     public typealias Color = UIColor
-#else
+#elseif os(macOS)
     import Cocoa
     public typealias Color = NSColor
 #endif

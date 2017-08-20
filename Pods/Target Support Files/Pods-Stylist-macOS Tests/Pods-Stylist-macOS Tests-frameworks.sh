@@ -104,12 +104,12 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble-macOS/Nimble.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Quick-macOS/Quick.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Yams-watchOS/Yams.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Yams-macOS/Yams.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble-macOS/Nimble.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Quick-macOS/Quick.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Yams-watchOS/Yams.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Yams-macOS/Yams.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

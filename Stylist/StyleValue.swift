@@ -7,7 +7,12 @@
 //
 
 import Foundation
-import UIKit
+
+#if os(iOS) || os(tvOS)
+    import UIKit
+#elseif os(macOS)
+    import Cocoa
+#endif
 
 public protocol StyleValue {
     associatedtype ParsedType
@@ -150,18 +155,6 @@ extension CGSize: StyleValue {
     }
 }
 
-extension UIBarStyle: StyleValue {
-
-    public static func parse(value: Any) -> UIBarStyle? {
-        guard let string = value as? String else { return nil }
-        switch string {
-        case "black": return .black
-        case "default": return .default
-        default: return nil
-        }
-    }
-}
-
 extension UIStackViewAlignment: StyleValue {
 
     public static func parse(value: Any) -> UIStackViewAlignment? {
@@ -206,3 +199,17 @@ extension UILayoutConstraintAxis: StyleValue {
         }
     }
 }
+
+#if os(iOS)
+    extension UIBarStyle: StyleValue {
+
+        public static func parse(value: Any) -> UIBarStyle? {
+            guard let string = value as? String else { return nil }
+            switch string {
+            case "black": return .black
+            case "default": return .default
+            default: return nil
+            }
+        }
+    }
+#endif

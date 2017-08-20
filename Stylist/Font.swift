@@ -8,10 +8,10 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(watchOS)
+#if os(iOS) || os(tvOS)
     import UIKit
     public typealias Font = UIFont
-#else
+#elseif os(macOS)
     import Cocoa
     public typealias Font = NSFont
 #endif

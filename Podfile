@@ -26,11 +26,6 @@ target 'Stylist-tvOS' do
 end
 
 target 'Stylist-macOS' do
-  platform :watchos, '2.0'
-  stylist_pods
-end
-
-target 'Stylist-watchOS' do
   platform :osx, '10.10'
   stylist_pods
 end

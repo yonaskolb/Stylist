@@ -8,6 +8,12 @@
 
 import Foundation
 
+#if os(iOS) || os(tvOS)
+    import UIKit
+#elseif os(macOS)
+    import Cocoa
+#endif
+
 public class Style {
     public let name: String
     let properties: [StylePropertyValue]

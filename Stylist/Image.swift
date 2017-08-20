@@ -8,10 +8,10 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(watchOS)
+#if os(iOS) || os(tvOS)
     import UIKit
     public typealias Image = UIImage
-#else
+#elseif os(macOS)
     import Cocoa
     public typealias Image = NSImage
 #endif

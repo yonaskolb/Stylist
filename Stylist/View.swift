@@ -8,14 +8,15 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(watchOS)
+#if os(iOS) || os(tvOS)
     import UIKit
     public typealias View = UIView
-#else
+#elseif os(macOS)
     import Cocoa
     public typealias View = NSView
 #endif
 
+#if os(iOS) || os(tvOS)
 extension View {
 
     @IBInspectable public var styles: [String] {
@@ -37,6 +38,7 @@ extension View {
     }
 }
 
+
 extension UIBarItem {
 
     @IBInspectable public var styles: [String] {
@@ -57,3 +59,4 @@ extension UIBarItem {
         }
     }
 }
+#endif

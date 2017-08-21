@@ -95,16 +95,15 @@ enum StyleProperties {
 
         add("widthAnchor") { (view: UIView, value: PropertyValue<LayoutAnchor>) in
             let anchor = value.value
-            if let existingContraint = view.constraints.first(where: {$0.firstItem === view && $0.firstAttribute == .width && $0.relation == .equal }) {
+            if let existingContraint = view.constraints.first(where: {
+                    $0.firstItem === view &&
+                    $0.firstAttribute == .width &&
+                    $0.secondItem == nil
+            }) {
                 existingContraint.isActive = false
             }
 
-            let contraint:NSLayoutConstraint
-            if anchor.ratio {
-                contraint = NSLayoutConstraint(item: view, attribute: .width, relatedBy: anchor.equality, toItem: view, attribute: .height, multiplier: anchor.constant, constant: 0)
-            } else {
-                contraint = NSLayoutConstraint(item: view, attribute: .width, relatedBy: anchor.equality, toItem: nil, attribute: .height, multiplier: 1, constant: anchor.constant)
-            }
+            let contraint = NSLayoutConstraint(item: view, attribute: .width, relatedBy: anchor.equality, toItem: nil, attribute: .height, multiplier: 1, constant: anchor.constant)
 
             contraint.isActive = true
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -112,17 +111,32 @@ enum StyleProperties {
 
         add("heightAnchor") { (view: UIView, value: PropertyValue<LayoutAnchor>) in
             let anchor = value.value
-            if let existingContraint = view.constraints.first(where: {$0.firstItem === view && $0.firstAttribute == .height && $0.relation == .equal }) {
+            if let existingContraint = view.constraints.first(where: {
+                $0.firstItem === view &&
+                    $0.firstAttribute == .height &&
+                    $0.secondItem == nil
+            }) {
                 existingContraint.isActive = false
             }
 
-            let contraint:NSLayoutConstraint
-            if anchor.ratio {
-                contraint = NSLayoutConstraint(item: view, attribute: .height, relatedBy: anchor.equality, toItem: view, attribute: .width, multiplier: anchor.constant, constant: 0)
-            } else {
-                contraint = NSLayoutConstraint(item: view, attribute: .height, relatedBy: anchor.equality, toItem: nil, attribute: .width, multiplier: 1, constant: anchor.constant)
+            let contraint = NSLayoutConstraint(item: view, attribute: .height, relatedBy: anchor.equality, toItem: nil, attribute: .width, multiplier: 1, constant: anchor.constant)
+
+            contraint.isActive = true
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
+
+        add("aspectRatioAnchor") { (view: UIView, value: PropertyValue<AspectRatioAnchor>) in
+            let anchor = value.value
+            if let existingContraint = view.constraints.first(where: {
+                $0.firstItem === view &&
+                    $0.firstAttribute == .width &&
+                    $0.secondItem === view &&
+                    $0.secondAttribute == .height
+            }) {
+                existingContraint.isActive = false
             }
 
+            let contraint = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: view, attribute: .height, multiplier: value.value.ratio, constant: 0)
             contraint.isActive = true
             view.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -166,10 +180,6 @@ enum StyleProperties {
         }
 
         // UILabel
-
-        add("textColor") { (view: UILabel, value: PropertyValue<Color>) in
-            view.textColor = value.value
-        }
 
         add("textColor") { (view: UILabel, value: PropertyValue<Color>) in
             view.textColor = value.value
@@ -231,9 +241,9 @@ enum StyleProperties {
 
         #if os(iOS)
 
-        add("barStyle") { (view: UINavigationBar, value: PropertyValue<UIBarStyle>) in
-            view.barStyle = value.value
-        }
+            add("barStyle") { (view: UINavigationBar, value: PropertyValue<UIBarStyle>) in
+                view.barStyle = value.value
+            }
         #endif
 
         add("shadowImage") { (view: UINavigationBar, value: PropertyValue<UIImage>) in
@@ -248,7 +258,7 @@ enum StyleProperties {
         add("backgroundImage") { (view: UISearchBar, value: PropertyValue<UIImage>) in
             view.backgroundImage = value.value
         }
-        
+
         // UIStackView
         add("spacing") { (view: UIStackView, value: PropertyValue<CGFloat>) in
             view.spacing = value.value
@@ -280,17 +290,17 @@ enum StyleProperties {
         func add<ViewType, PropertyType: StyleValue>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
             properties.append(StyleProperty(name: name, style: style))
         }
-
+        
         // UIBarItem
         add("image") { (view: UIBarItem, value: PropertyValue<Image>) in
             view.image = value.value
         }
-
+        
         // UIBarButtonItem
         add("tintColor") { (view: UIBarButtonItem, value: PropertyValue<Color>) in
             view.tintColor = value.value
         }
-
+        
         return properties
     }()
     

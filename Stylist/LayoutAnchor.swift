@@ -18,12 +18,10 @@ public struct LayoutAnchor {
 
     public let constant: CGFloat
     public let equality: NSLayoutRelation
-    public let ratio: Bool
 
-    public init(constant: CGFloat, equality: NSLayoutRelation = .equal, ratio: Bool = false) {
+    public init(constant: CGFloat, equality: NSLayoutRelation = .equal) {
         self.constant = constant
         self.equality = equality
-        self.ratio = ratio
     }
 
 }
@@ -56,14 +54,34 @@ extension LayoutAnchor: StyleValue {
                 }
             }
 
-            var ratio = false
-            if parsedString.hasPrefix("*") {
-                parsedString = parsedString.replacingOccurrences(of: "*", with: "")
-                ratio = true
-            }
             if let constant = CGFloat.parse(value: parsedString) {
-                return LayoutAnchor(constant: constant, equality: equality, ratio: ratio)
+                return LayoutAnchor(constant: constant, equality: equality)
             }
+        }
+        return nil
+    }
+}
+
+struct AspectRatioAnchor: StyleValue {
+
+    let ratio: CGFloat
+
+    public static func parse(value: Any) -> AspectRatioAnchor? {
+        if let float = CGFloat.parse(value: value) {
+            return AspectRatioAnchor(ratio: float)
+        }
+        else if let string = value as? String {
+            guard let match = try! NSRegularExpression(pattern: "(\\d*(?:\\.\\d*)?)([:/])(\\d*(?:\\.\\d*)?)", options: []).firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.characters.count)) else { return nil }
+
+            let string1 = (string as NSString).substring(with: match.rangeAt(1))
+            let symbol = (string as NSString).substring(with: match.rangeAt(2))
+            let string2 = (string as NSString).substring(with: match.rangeAt(3))
+
+            guard let number1 = Float.parse(value: string1), let number2 = Float.parse(value: string2) else {
+                return nil
+            }
+            let ratio = symbol == "/" ? (number1/number2) : number2/number1
+            return AspectRatioAnchor(ratio: CGFloat(ratio))
         }
         return nil
     }

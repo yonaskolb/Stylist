@@ -37,6 +37,9 @@ extension Font: StyleValue {
                     if let font = UIFont(name: name, size: fontSize) {
                         return font
                     }
+                    if name == "system" {
+                        return UIFont.systemFont(ofSize: fontSize)
+                    }
                     if name.contains("system") {
                         let systemName = name.replacingOccurrences(of: "system", with: "").lowercased()
                         let weight: CGFloat?

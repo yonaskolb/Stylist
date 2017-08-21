@@ -25,11 +25,6 @@ target 'Stylist-tvOS' do
   stylist_pods
 end
 
-target 'Stylist-macOS' do
-  platform :osx, '10.10'
-  stylist_pods
-end
-
 target 'Stylist-iOS Tests' do
   platform :ios, '10.0'
   test_pods
@@ -37,10 +32,5 @@ end
 
 target 'Stylist-tvOS Tests' do
   platform :tvos, '10.0'
-  test_pods
-end
-
-target 'Stylist-macOS Tests' do
-  platform :osx, '10.10'
   test_pods
 end

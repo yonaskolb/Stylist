@@ -8,19 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		17003FBA6248AEC53EE3D392 /* Pods_Stylist_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA8ED23512B7B5D299BA5F5B /* Pods_Stylist_tvOS.framework */; };
-		1EDD4F194E6FACA9C505DC0F /* Pods_Stylist_macOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E17AEA69B829DF29439909B /* Pods_Stylist_macOS_Tests.framework */; };
 		5133D3E3B514B02AA6A13BD4 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9F7B501A3F95065C3B43707 /* Pods_Example.framework */; };
 		52D6D9871BEFF229002C0205 /* Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Stylist.framework */; };
 		535BD3EF11C3878517DE35E8 /* Pods_Stylist_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C186A7E7F661536D838BB3A0 /* Pods_Stylist_iOS.framework */; };
 		5A10E213C613A76B49721262 /* Pods_Stylist_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE632A630F82E19940217F5E /* Pods_Stylist_iOS_Tests.framework */; };
 		7640052C6E5AE6F0D174F01A /* Pods_Stylist_tvOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9245472812F659E9F0E1973B /* Pods_Stylist_tvOS_Tests.framework */; };
 		8933C7851EB5B820000D00A4 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Stylist.swift */; };
-		8933C7861EB5B820000D00A4 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Stylist.swift */; };
 		8933C7881EB5B820000D00A4 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Stylist.swift */; };
 		8933C78E1EB5B82C000D00A4 /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
-		8933C78F1EB5B82C000D00A4 /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
 		CC2385061F47852E00FB0073 /* StyleProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385051F47852E00FB0073 /* StyleProperty.swift */; };
-		CC2385071F47852E00FB0073 /* StyleProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385051F47852E00FB0073 /* StyleProperty.swift */; };
 		CC2385091F47852E00FB0073 /* StyleProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385051F47852E00FB0073 /* StyleProperty.swift */; };
 		CC2385111F478E8A00FB0073 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385101F478E8A00FB0073 /* AppDelegate.swift */; };
 		CC2385131F478E8A00FB0073 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385121F478E8A00FB0073 /* ViewController.swift */; };
@@ -30,37 +26,26 @@
 		CC2385201F478E9600FB0073 /* Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Stylist.framework */; };
 		CC2385211F478E9600FB0073 /* Stylist.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Stylist.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CC2385261F47911200FB0073 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385251F47911200FB0073 /* View.swift */; };
-		CC2385271F47911200FB0073 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385251F47911200FB0073 /* View.swift */; };
 		CC2385291F47911200FB0073 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385251F47911200FB0073 /* View.swift */; };
 		CC23852B1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
-		CC23852C1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
 		CC23852E1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
 		CC64F6FE1F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
-		CC64F6FF1F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
 		CC64F7011F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
 		CC64F7031F49DFA900A5972F /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F7021F49DFA900A5972F /* Properties.swift */; };
-		CC64F7041F49DFA900A5972F /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F7021F49DFA900A5972F /* Properties.swift */; };
 		CC64F7061F49DFA900A5972F /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F7021F49DFA900A5972F /* Properties.swift */; };
 		CC64F7081F49EC0500A5972F /* StyleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F7071F49EC0500A5972F /* StyleValue.swift */; };
-		CC64F7091F49EC0500A5972F /* StyleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F7071F49EC0500A5972F /* StyleValue.swift */; };
 		CC64F70B1F49EC0500A5972F /* StyleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F7071F49EC0500A5972F /* StyleValue.swift */; };
 		CC68ECD11F47A1540063AE1F /* Style.yaml in Resources */ = {isa = PBXBuildFile; fileRef = CC68ECD01F47A1540063AE1F /* Style.yaml */; };
 		CC68ECD31F47A2AF0063AE1F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECD21F47A2AF0063AE1F /* Color.swift */; };
-		CC68ECD41F47A2AF0063AE1F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECD21F47A2AF0063AE1F /* Color.swift */; };
 		CC68ECD61F47A2AF0063AE1F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECD21F47A2AF0063AE1F /* Color.swift */; };
 		CC68ECD81F4859060063AE1F /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECD71F4859060063AE1F /* Font.swift */; };
-		CC68ECD91F4859060063AE1F /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECD71F4859060063AE1F /* Font.swift */; };
 		CC68ECDB1F4859060063AE1F /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECD71F4859060063AE1F /* Font.swift */; };
 		CC68ECDD1F485B240063AE1F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECDC1F485B240063AE1F /* Image.swift */; };
-		CC68ECDE1F485B240063AE1F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECDC1F485B240063AE1F /* Image.swift */; };
 		CC68ECE01F485B240063AE1F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECDC1F485B240063AE1F /* Image.swift */; };
 		CC68ECE21F485E120063AE1F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECE11F485E120063AE1F /* Style.swift */; };
-		CC68ECE31F485E120063AE1F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECE11F485E120063AE1F /* Style.swift */; };
 		CC68ECE51F485E120063AE1F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECE11F485E120063AE1F /* Style.swift */; };
 		CC68ECE61F487CBE0063AE1F /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
-		DD7502881C68FEDE006590AF /* Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* Stylist.framework */; };
 		DD7502921C690C7A006590AF /* Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* Stylist.framework */; };
-		E433936EBBCB070ECB93413C /* Pods_Stylist_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43247853AA2F30E5A2D5BB0C /* Pods_Stylist_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,13 +62,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 52D6D97B1BEFF229002C0205;
 			remoteInfo = "Stylist-iOS";
-		};
-		DD7502801C68FCFC006590AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52D6D9731BEFF229002C0205 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52D6DA0E1BF000BD002C0205;
-			remoteInfo = "Stylist-macOS";
 		};
 		DD7502931C690C7A006590AF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -118,7 +96,6 @@
 		52D6D97C1BEFF229002C0205 /* Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* Stylist-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stylist-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9F01BEFFFBE002C0205 /* Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52D6DA0F1BF000BD002C0205 /* Stylist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stylist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E17AEA69B829DF29439909B /* Pods_Stylist_macOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_macOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		859CDAE0E43DE87EEAF810A4 /* Pods-Stylist-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist-macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stylist-macOS/Pods-Stylist-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8933C7841EB5B820000D00A4 /* Stylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stylist.swift; sourceTree = "<group>"; };
@@ -152,7 +129,6 @@
 		D98666288C6A3F4D1841BC7D /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D9F7B501A3F95065C3B43707 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA8ED23512B7B5D299BA5F5B /* Pods_Stylist_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD75027A1C68FCFC006590AF /* Stylist-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stylist-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD75028D1C690C7A006590AF /* Stylist-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stylist-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06370705087C18CBC932908 /* Pods-Stylist-iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist-iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ED6FF735701446B702D6F67E /* Pods-Stylist-macOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist-macOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stylist-macOS Tests/Pods-Stylist-macOS Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,29 +165,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52D6DA0B1BF000BD002C0205 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E433936EBBCB070ECB93413C /* Pods_Stylist_macOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CC23850B1F478E8A00FB0073 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CC2385201F478E9600FB0073 /* Stylist.framework in Frameworks */,
 				5133D3E3B514B02AA6A13BD4 /* Pods_Example.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD7502771C68FCFC006590AF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DD7502881C68FEDE006590AF /* Stylist.framework in Frameworks */,
-				1EDD4F194E6FACA9C505DC0F /* Pods_Stylist_macOS_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,8 +228,6 @@
 				52D6D97C1BEFF229002C0205 /* Stylist.framework */,
 				52D6D9861BEFF229002C0205 /* Stylist-iOS Tests.xctest */,
 				52D6D9F01BEFFFBE002C0205 /* Stylist.framework */,
-				52D6DA0F1BF000BD002C0205 /* Stylist.framework */,
-				DD75027A1C68FCFC006590AF /* Stylist-macOS Tests.xctest */,
 				DD75028D1C690C7A006590AF /* Stylist-tvOS Tests.xctest */,
 				CC23850E1F478E8A00FB0073 /* Example.app */,
 			);
@@ -374,13 +331,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52D6DA0C1BF000BD002C0205 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -445,26 +395,6 @@
 			productReference = 52D6D9F01BEFFFBE002C0205 /* Stylist.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		52D6DA0E1BF000BD002C0205 /* Stylist-macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 52D6DA201BF000BD002C0205 /* Build configuration list for PBXNativeTarget "Stylist-macOS" */;
-			buildPhases = (
-				35BF5090985A1B0E94B7D419 /* [CP] Check Pods Manifest.lock */,
-				52D6DA0A1BF000BD002C0205 /* Sources */,
-				52D6DA0B1BF000BD002C0205 /* Frameworks */,
-				52D6DA0C1BF000BD002C0205 /* Headers */,
-				52D6DA0D1BF000BD002C0205 /* Resources */,
-				0E0313FF6FBC9F78172370E0 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Stylist-macOS";
-			productName = "Stylist-macOS";
-			productReference = 52D6DA0F1BF000BD002C0205 /* Stylist.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		CC23850D1F478E8A00FB0073 /* Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC23851F1F478E8A00FB0073 /* Build configuration list for PBXNativeTarget "Example" */;
@@ -486,27 +416,6 @@
 			productName = Example;
 			productReference = CC23850E1F478E8A00FB0073 /* Example.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DD7502791C68FCFC006590AF /* Stylist-macOS Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DD7502821C68FCFC006590AF /* Build configuration list for PBXNativeTarget "Stylist-macOS Tests" */;
-			buildPhases = (
-				C14C16AA0FE39899E58E2A47 /* [CP] Check Pods Manifest.lock */,
-				DD7502761C68FCFC006590AF /* Sources */,
-				DD7502771C68FCFC006590AF /* Frameworks */,
-				DD7502781C68FCFC006590AF /* Resources */,
-				C16BB8E928389CF3C9A62900 /* [CP] Embed Pods Frameworks */,
-				2396F5C97CF082404FDE78C1 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DD7502811C68FCFC006590AF /* PBXTargetDependency */,
-			);
-			name = "Stylist-macOS Tests";
-			productName = "Stylist-OS Tests";
-			productReference = DD75027A1C68FCFC006590AF /* Stylist-macOS Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		DD75028C1C690C7A006590AF /* Stylist-tvOS Tests */ = {
 			isa = PBXNativeTarget;
@@ -552,18 +461,10 @@
 						CreatedOnToolsVersion = 7.1;
 						LastSwiftMigration = 0800;
 					};
-					52D6DA0E1BF000BD002C0205 = {
-						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0800;
-					};
 					CC23850D1F478E8A00FB0073 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = U7E5MQU624;
 						ProvisioningStyle = Automatic;
-					};
-					DD7502791C68FCFC006590AF = {
-						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0800;
 					};
 					DD75028C1C690C7A006590AF = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -585,10 +486,8 @@
 			projectRoot = "";
 			targets = (
 				52D6D97B1BEFF229002C0205 /* Stylist-iOS */,
-				52D6DA0E1BF000BD002C0205 /* Stylist-macOS */,
 				52D6D9EF1BEFFFBE002C0205 /* Stylist-tvOS */,
 				52D6D9851BEFF229002C0205 /* Stylist-iOS Tests */,
-				DD7502791C68FCFC006590AF /* Stylist-macOS Tests */,
 				DD75028C1C690C7A006590AF /* Stylist-tvOS Tests */,
 				CC23850D1F478E8A00FB0073 /* Example */,
 			);
@@ -617,13 +516,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52D6DA0D1BF000BD002C0205 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CC23850C1F478E8A00FB0073 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -632,13 +524,6 @@
 				CC23851B1F478E8A00FB0073 /* LaunchScreen.storyboard in Resources */,
 				CC2385181F478E8A00FB0073 /* Assets.xcassets in Resources */,
 				CC2385161F478E8A00FB0073 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD7502781C68FCFC006590AF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,54 +550,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0E0313FF6FBC9F78172370E0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-macOS/Pods-Stylist-macOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2396F5C97CF082404FDE78C1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-macOS Tests/Pods-Stylist-macOS Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		35BF5090985A1B0E94B7D419 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Stylist-macOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3BE6F35B13912505072D49CB /* [CP] Copy Pods Resources */ = {
@@ -874,46 +711,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-iOS/Pods-Stylist-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C14C16AA0FE39899E58E2A47 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Stylist-macOS Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C16BB8E928389CF3C9A62900 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-macOS Tests/Pods-Stylist-macOS Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nimble-macOS/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick-macOS/Quick.framework",
-				"${BUILT_PRODUCTS_DIR}/Yams-macOS/Yams.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Yams.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-macOS Tests/Pods-Stylist-macOS Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E7A78C44659D0290DBE300CE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1016,38 +813,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52D6DA0A1BF000BD002C0205 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CC64F7091F49EC0500A5972F /* StyleValue.swift in Sources */,
-				CC68ECDE1F485B240063AE1F /* Image.swift in Sources */,
-				CC2385271F47911200FB0073 /* View.swift in Sources */,
-				CC23852C1F47962D00FB0073 /* Theme.swift in Sources */,
-				CC68ECD91F4859060063AE1F /* Font.swift in Sources */,
-				CC64F6FF1F48FEC100A5972F /* LayoutAnchor.swift in Sources */,
-				CC2385071F47852E00FB0073 /* StyleProperty.swift in Sources */,
-				CC68ECD41F47A2AF0063AE1F /* Color.swift in Sources */,
-				8933C7861EB5B820000D00A4 /* Stylist.swift in Sources */,
-				CC64F7041F49DFA900A5972F /* Properties.swift in Sources */,
-				CC68ECE31F485E120063AE1F /* Style.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CC23850A1F478E8A00FB0073 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CC2385131F478E8A00FB0073 /* ViewController.swift in Sources */,
 				CC2385111F478E8A00FB0073 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD7502761C68FCFC006590AF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8933C78F1EB5B82C000D00A4 /* StylistTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,11 +842,6 @@
 			isa = PBXTargetDependency;
 			target = 52D6D97B1BEFF229002C0205 /* Stylist-iOS */;
 			targetProxy = CC2385221F478E9600FB0073 /* PBXContainerItemProxy */;
-		};
-		DD7502811C68FCFC006590AF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 52D6DA0E1BF000BD002C0205 /* Stylist-macOS */;
-			targetProxy = DD7502801C68FCFC006590AF /* PBXContainerItemProxy */;
 		};
 		DD7502941C690C7A006590AF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1320,55 +1086,6 @@
 			};
 			name = Release;
 		};
-		52D6DA211BF000BD002C0205 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 859CDAE0E43DE87EEAF810A4 /* Pods-Stylist-macOS.debug.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Configs/Stylist.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-macOS";
-				PRODUCT_NAME = Stylist;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		52D6DA221BF000BD002C0205 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7F18ECA11277795CD80C76D /* Pods-Stylist-macOS.release.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Configs/Stylist.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-macOS";
-				PRODUCT_NAME = Stylist;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 		CC23851D1F478E8A00FB0073 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D98666288C6A3F4D1841BC7D /* Pods-Example.debug.xcconfig */;
@@ -1404,39 +1121,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yonaskolb.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		DD7502831C68FCFC006590AF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F00182F3C5434C3E3CC10A2F /* Pods-Stylist-macOS Tests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Configs/StylistTests.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-macOS-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		DD7502841C68FCFC006590AF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED6FF735701446B702D6F67E /* Pods-Stylist-macOS Tests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Configs/StylistTests.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-macOS-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1510,29 +1194,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52D6DA201BF000BD002C0205 /* Build configuration list for PBXNativeTarget "Stylist-macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				52D6DA211BF000BD002C0205 /* Debug */,
-				52D6DA221BF000BD002C0205 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		CC23851F1F478E8A00FB0073 /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC23851D1F478E8A00FB0073 /* Debug */,
 				CC23851E1F478E8A00FB0073 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DD7502821C68FCFC006590AF /* Build configuration list for PBXNativeTarget "Stylist-macOS Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DD7502831C68FCFC006590AF /* Debug */,
-				DD7502841C68FCFC006590AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

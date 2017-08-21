@@ -30,7 +30,7 @@ extension Color: StyleValue {
             colorString = parts[0]
             alpha = CGFloat.parse(value: parts[1])
         }
-        switch colorString {
+        switch colorString.lowercased().replacingOccurrences(of: " ", with: "") {
         case "red": color = .red
         case "blue": color = .blue
         case "green": color = .green
@@ -41,8 +41,8 @@ extension Color: StyleValue {
         case "brown": color = .brown
         case "cyan": color = .cyan
         case "magenta": color = .magenta
-        case "darkGray", "darkGrey": color = .darkGray
-        case "lightGray", "lightGrey": color = .lightGray
+        case "darkgray", "darkgrey": color = .darkGray
+        case "lightgray", "lightgrey": color = .lightGray
         case "white": color = .white
         case "black": color = .black
         case "none", "transparent", "clear": color = .clear

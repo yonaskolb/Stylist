@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
   s.source_files  = "Stylist/**/*"
   s.frameworks  = "Foundation"
   s.dependency 'Yams'
+  s.dependency 'KZFileWatchers'
 end

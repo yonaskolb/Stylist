@@ -118,7 +118,7 @@ public class Stylist {
     }
 
 
-    /// Loads styles from a file
+    /// Loads a Theme from a file
     ///
     /// - Parameter path: the path to the file. Can be either a yaml or json file
     /// - Throws: throws if the file is not found or parsing fails
@@ -128,16 +128,17 @@ public class Stylist {
     }
 
 
-    /// Watch a file for changes and automatically reload styles if there are
+    /// Watch a Theme file and automatically reload and applies if there are changes
     ///
     /// - Parameters:
-    ///   - url: the url to the path. This can be a local file url or a remote url
+    ///   - url: the url to the Theme. This can be a local file url or a remote url
     ///   - animateChanges: whether to apply a small UIView animation when new changes are applied
-    ///   - parsingError: is called if there was an error parsing the style file
+    ///   - parsingError: is called if there was an error parsing the theme. 
+    ///     It contains finge grained info about why the theme was invalid
     /// - Returns: The file watcher, which can later be stopped
     /// - Throws: An error is thrown if the file couldn't be watched
     @discardableResult
-    public func watch(url: URL, animateChanges: Bool = true, parsingError: @escaping (StylistError) -> Void) -> FileWatcherProtocol {
+    public func watch(url: URL, animateChanges: Bool = true, parsingError: @escaping (ThemeError) -> Void) -> FileWatcherProtocol {
         let fileWatcher: FileWatcherProtocol
         if url.isFileURL {
             fileWatcher = FileWatcher.Local(path: url.path)
@@ -161,7 +162,7 @@ public class Stylist {
                         } else {
                             stylist.apply(theme: theme)
                         }
-                    } catch let error as StylistError {
+                    } catch let error as ThemeError {
                         parsingError(error)
                     } catch {
                         // unknown error occured
@@ -169,7 +170,7 @@ public class Stylist {
                 }
             }
         } catch {
-            parsingError(StylistError.notFound)
+            parsingError(ThemeError.notFound)
         }
         return fileWatcher
     }
@@ -177,7 +178,7 @@ public class Stylist {
 
 struct WeakContainer<T> where T: AnyObject {
     weak var value : T?
-    
+
     init(_ value: T) {
         self.value = value
     }

@@ -1,5 +1,5 @@
 //
-//  StylistError.swift
+//  ThemeError.swift
 //  Stylist
 //
 //  Created by Yonas Kolb on 22/8/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum StylistError: Error {
+public enum ThemeError: Error {
     case notFound
     case decodingError
     case invalidVariable(name:String, variable: String)

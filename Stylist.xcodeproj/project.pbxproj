@@ -29,8 +29,8 @@
 		CC2385291F47911200FB0073 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385251F47911200FB0073 /* View.swift */; };
 		CC23852B1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
 		CC23852E1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
-		CC4486F71F4CB7A300E9092E /* StylistError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4486F61F4CB7A300E9092E /* StylistError.swift */; };
-		CC4486F81F4CB7A300E9092E /* StylistError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4486F61F4CB7A300E9092E /* StylistError.swift */; };
+		CC4486F71F4CB7A300E9092E /* ThemeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4486F61F4CB7A300E9092E /* ThemeError.swift */; };
+		CC4486F81F4CB7A300E9092E /* ThemeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4486F61F4CB7A300E9092E /* ThemeError.swift */; };
 		CC64F6FE1F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
 		CC64F7011F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
 		CC64F7031F49DFA900A5972F /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F7021F49DFA900A5972F /* Properties.swift */; };
@@ -119,7 +119,7 @@
 		CC23851C1F478E8A00FB0073 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC2385251F47911200FB0073 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		CC23852A1F47962D00FB0073 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		CC4486F61F4CB7A300E9092E /* StylistError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylistError.swift; sourceTree = "<group>"; };
+		CC4486F61F4CB7A300E9092E /* ThemeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeError.swift; sourceTree = "<group>"; };
 		CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAnchor.swift; sourceTree = "<group>"; };
 		CC64F7021F49DFA900A5972F /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 		CC64F7071F49EC0500A5972F /* StyleValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleValue.swift; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 				CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */,
 				CC64F7021F49DFA900A5972F /* Properties.swift */,
 				CC64F7071F49EC0500A5972F /* StyleValue.swift */,
-				CC4486F61F4CB7A300E9092E /* StylistError.swift */,
+				CC4486F61F4CB7A300E9092E /* ThemeError.swift */,
 			);
 			path = Stylist;
 			sourceTree = "<group>";
@@ -788,7 +788,7 @@
 				CC68ECD81F4859060063AE1F /* Font.swift in Sources */,
 				CC64F6FE1F48FEC100A5972F /* LayoutAnchor.swift in Sources */,
 				CC2385061F47852E00FB0073 /* StyleProperty.swift in Sources */,
-				CC4486F71F4CB7A300E9092E /* StylistError.swift in Sources */,
+				CC4486F71F4CB7A300E9092E /* ThemeError.swift in Sources */,
 				CC68ECD31F47A2AF0063AE1F /* Color.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* Stylist.swift in Sources */,
 				CC64F7031F49DFA900A5972F /* Properties.swift in Sources */,
@@ -815,7 +815,7 @@
 				CC68ECDB1F4859060063AE1F /* Font.swift in Sources */,
 				CC64F7011F48FEC100A5972F /* LayoutAnchor.swift in Sources */,
 				CC2385091F47852E00FB0073 /* StyleProperty.swift in Sources */,
-				CC4486F81F4CB7A300E9092E /* StylistError.swift in Sources */,
+				CC4486F81F4CB7A300E9092E /* ThemeError.swift in Sources */,
 				CC68ECD61F47A2AF0063AE1F /* Color.swift in Sources */,
 				8933C7881EB5B820000D00A4 /* Stylist.swift in Sources */,
 				CC64F7061F49DFA900A5972F /* Properties.swift in Sources */,

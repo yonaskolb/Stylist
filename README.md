@@ -1,6 +1,6 @@
 # Stylist 🎨
 
-Stylist lets you define UI styles in a hot reloadable external yaml or json file
+Stylist lets you define UI styles in a hot reloadable external yaml or json theme file
 
 - ✅ **Group styles** in a human readable way
 - ✅ Apply styles through code or **Interface Builder**
@@ -10,7 +10,7 @@ Stylist lets you define UI styles in a hot reloadable external yaml or json file
 - ✅ Reference **styles** in other styles for a customizable heirachy
 - ✅ Define **custom** properties and custom parsing to set any property you wish
 
-Example style file:
+Example theme:
 
 ```yaml
 variables:
@@ -49,8 +49,8 @@ Add the following to your `podfile`
 pod 'Stylist', :git=> 'https://github.com/yonaskolb/Stylist'
 ```
 
-## Style File
-A style file has a list of `variables` and a list of `styles` each referenced by name.
+## Theme
+A theme file has a list of `variables` and a list of `styles` each referenced by name.
 Variables can be referenced in styles using `$variableName`.
 
 To set a style on a UIView, simply set it's `style` property:
@@ -70,7 +70,7 @@ Many UIKit views and bar buttons have built in properties that you can set. Thes
 Each style can also reference an array other other styles, that will be merged in order
 
 ## Hot Reloading
-You can choose to watch a file for changes, which means whever that file is changed the styles are reloaded. The file can be a local file on disk or a remote file.
+You can choose to watch a file, which means that whever that file is changed the styles are reloaded. The file can be a local file on disk or a remote file.
 This can be very useful while developing, as you can make changes on your device without recompiling and see the results instantly! To watch a file simply call `watch` on stylist and pass in a URL:
 
 ```swift
@@ -78,7 +78,7 @@ Stylist.shared.watch(url: fileOrRemoteURL, animateChanges: true) { error in
   print("An error occured while loading or parsing the file")
 }
 ```
-If an error occurs at any time the `parsingError` callback will be called with a `StylistError`, which will tell you exactly what went wrong including any formatting errors on invalid references. This means you can save an invalid file without worrying that things will blow up.
+If an error occurs at any time the `parsingError` callback will be called with a `ThemeError`, which will tell you exactly what went wrong including any formatting errors on invalid references. This means you can save an invalid theme without worrying that things will blow up.
 
 To stop watching the file, you can call `stop()` on the `FileWatcher` that is returned`
 
@@ -104,7 +104,7 @@ Many different types of properties are already supported and listed here in [Sty
 
 The `PropertyValue` that get's passed into the closure will have a `value` property containing your parsed value. It also has a `context` which contains [property query values](docs/StyleProperties.MD#queries) like device type,  UIControlState and UIBarMetrics.
 
-When a style file is loaded or when a style is set on a view, these custom properties will be applied if the view type and property name match.
+When a theme is loaded or when a style is set on a view, these custom properties will be applied if the view type and property name match.
 
 ## Attributions
 

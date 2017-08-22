@@ -1,6 +1,6 @@
 # Stylist 🎨
 
-Stylist lets you define UI styles in a hotloadable external yaml or json file
+Stylist lets you define UI styles in a hot reloadable external yaml or json file
 
 - ✅ **Group styles** in a human readable way
 - ✅ Apply styles through code or **Interface Builder**
@@ -38,6 +38,15 @@ styles:
     tintColor: $primaryColor
   mainSection:
     style: [themed]
+```
+
+## Installation
+
+#### Cocoapods
+Add the following to your `podfile`
+
+```
+pod 'Stylist', :git=> 'https://github.com/yonaskolb/Stylist'
 ```
 
 ## Style File
@@ -96,3 +105,17 @@ Many different types of properties are already supported and listed here in [Sty
 The `PropertyValue` that get's passed into the closure will have a `value` property containing your parsed value. It also has a `context` which contains [property query values](docs/StyleProperties.MD#queries) like device type,  UIControlState and UIBarMetrics.
 
 When a style file is loaded or when a style is set on a view, these custom properties will be applied if the view type and property name match.
+
+## Attributions
+
+This tool is powered by:
+
+- [KZFileWatchers](https://github.com/krzysztofzablocki/KZFileWatchers)
+- [Yams](https://github.com/jpsim/Yams)
+
+## Contributions
+Pull requests and issues are welcome
+
+## License
+
+Stylist is licensed under the MIT license. See [LICENSE](LICENSE) for more info.

@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import KZFileWatchers
 
 public class Stylist {
 
     public static let shared = Stylist()
+
+    var fileWatchers: [FileWatcherProtocol] = []
 
     var viewStyles: [String: [WeakContainer<NSObject>]] = [:]
 
@@ -113,11 +116,68 @@ public class Stylist {
             }
         }
     }
+
+
+    /// Loads styles from a file
+    ///
+    /// - Parameter path: the path to the file. Can be either a yaml or json file
+    /// - Throws: throws if the file is not found or parsing fails
+    public func load(path: String) throws {
+        let theme = try Theme(path: path)
+        apply(theme: theme)
+    }
+
+
+    /// Watch a file for changes and automatically reload styles if there are
+    ///
+    /// - Parameters:
+    ///   - url: the url to the path. This can be a local file url or a remote url
+    ///   - animateChanges: whether to apply a small UIView animation when new changes are applied
+    ///   - parsingError: is called if there was an error parsing the style file
+    /// - Returns: The file watcher, which can later be stopped
+    /// - Throws: An error is thrown if the file couldn't be watched
+    @discardableResult
+    public func watch(url: URL, animateChanges: Bool = true, parsingError: @escaping (StylistError) -> Void) -> FileWatcherProtocol {
+        let fileWatcher: FileWatcherProtocol
+        if url.isFileURL {
+            fileWatcher = FileWatcher.Local(path: url.path)
+        } else {
+            fileWatcher = FileWatcher.Remote(url: url)
+        }
+
+        let stylist = self
+        do {
+            try fileWatcher.start() { result in
+                switch result {
+                case .noChanges:
+                    break
+                case .updated(let data):
+                    do {
+                        let theme = try Theme(data: data)
+                        if animateChanges {
+                            UIView.animate(withDuration: 0.2) {
+                                stylist.apply(theme: theme)
+                            }
+                        } else {
+                            stylist.apply(theme: theme)
+                        }
+                    } catch let error as StylistError {
+                        parsingError(error)
+                    } catch {
+                        // unknown error occured
+                    }
+                }
+            }
+        } catch {
+            parsingError(StylistError.notFound)
+        }
+        return fileWatcher
+    }
 }
 
 struct WeakContainer<T> where T: AnyObject {
     weak var value : T?
-
+    
     init(_ value: T) {
         self.value = value
     }

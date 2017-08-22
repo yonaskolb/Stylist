@@ -46,26 +46,46 @@ Variables can be referenced in styles using `$variableName`.
 
 To set a style on a UIView, simply set it's `style` property:
 
-```
+```swift
 myView.style = "myStyle"
 ```
-A style can also be set in Interface Builder in the property inspector
+A style can also be set in Interface Builder in the property inspector.
+To load a style simply call:
+
+```swift
+Stylist.shared.load(path: pathToFile)
+```
 
 ## Style Properties
 Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](docs/StyleProperties.MD).
 Each style can also reference an array other other styles, that will be merged in order
 
+## Hot Reloading
+You can choose to watch a file for changes, which means whever that file is changed the styles are reloaded. The file can be a local file on disk or a remote file.
+This can be very useful while developing, as you can make changes on your device without recompiling and see the results instantly! To watch a file simply call `watch` on stylist and pass in a URL:
+
+```swift
+Stylist.shared.watch(url: fileOrRemoteURL, animateChanges: true) { error in
+  print("An error occured while loading or parsing the file")
+}
+```
+If an error occurs at any time the `parsingError` callback will be called with a `StylistError`, which will tell you exactly what went wrong including any formatting errors on invalid references. This means you can save an invalid file without worrying that things will blow up.
+
+To stop watching the file, you can call `stop()` on the `FileWatcher` that is returned`
+
+Note that if a style property was present and you then remove it, Stylist cannot revert the change so that property will remain in the previous state.
+
 ## Custom Properties
 Custom properties and parsers can also be added to let you configure anything you wish:
 
-```
+```swift
 Stylist.shared.addProperty("textTransform") { (view: MyView, value: PropertyValue<MyProperty>) in
     view.myProperty = value.value
 }
 ```
 `addProperty` takes a style name a simply generic closure that sets your property on your view. This closure can contain any other logic you wish. The view can be NSObject and the property must conform to `StyleValue` which is a simply protocol:
 
-```
+```swift
 public protocol StyleValue {
     associatedtype ParsedType
     static func parse(value: Any) -> ParsedType?

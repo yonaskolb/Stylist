@@ -31,14 +31,14 @@ extension Theme {
 
     public init(path: String) throws {
         guard let data = FileManager.default.contents(atPath: path) else {
-            throw ThemeError.notFound
+            throw StylistError.notFound
         }
         try self.init(data: data)
     }
 
     public init(data: Data) throws {
         guard let string = String(data: data, encoding: .utf8) else {
-            throw ThemeError.decodingError
+            throw StylistError.decodingError
         }
         try self.init(string: string)
     }
@@ -46,7 +46,7 @@ extension Theme {
     public init(string: String) throws {
         let yaml = try Yams.load(yaml: string)
         guard let dictionary = yaml as? [String: Any] else {
-            throw ThemeError.decodingError
+            throw StylistError.decodingError
         }
         try self.init(dictionary: dictionary)
     }
@@ -73,7 +73,7 @@ extension Theme {
                                 }
                             }
                         } else {
-                            throw ThemeError.invalidStyleReference(style: key, reference: style)
+                            throw StylistError.invalidStyleReference(style: key, reference: style)
                         }
                     }
                 }
@@ -96,7 +96,7 @@ extension Theme {
                                     variableName = parts[0]
                                 }
                                 guard let variable = variables[variableName] else {
-                                    throw ThemeError.invalidVariable(name: propertyName, variable: variableName)
+                                    throw StylistError.invalidVariable(name: propertyName, variable: variableName)
                                 }
                                 propertyValue = variable
                                 if parts.count > 1 {
@@ -122,14 +122,4 @@ extension Theme {
         self.styles = styles
     }
 
-}
-
-enum ThemeError: Error {
-    case notFound
-    case decodingError
-    case invalidVariable(name:String, variable: String)
-    case invalidStyleReference(style: String, reference: String)
-    case invalidControlState(name: String, controlState: String)
-    case invalidDevice(name: String, device: String)
-    case invalidBarMetrics(name: String, barMetrics: String)
 }

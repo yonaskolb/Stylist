@@ -48,7 +48,7 @@ struct StylePropertyValue {
             case "iphone", "phone": device = .phone
             case "ipad", "pad": device = .pad
             case "tv": device = .tv
-            default: throw ThemeError.invalidDevice(name: propertyName, device: deviceString)
+            default: throw StylistError.invalidDevice(name: propertyName, device: deviceString)
             }
         }
 
@@ -62,7 +62,7 @@ struct StylePropertyValue {
             if let parsedControlState = UIControlState(name: controlStateString) {
                 controlState = parsedControlState
             } else {
-                throw ThemeError.invalidControlState(name: propertyName, controlState: controlStateString)
+                throw StylistError.invalidControlState(name: propertyName, controlState: controlStateString)
             }
         }
 

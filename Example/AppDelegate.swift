@@ -18,26 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        let path =  #file.replacingOccurrences(of: "AppDelegate.swift", with: "Style.yaml")
-        fileWatcher = FileWatcher.Local(path: path)
-        do {
-            try fileWatcher?.start() { result in
-                switch result {
-                case .noChanges:
-                    break
-                case .updated(let data):
-                    do {
-                        let theme = try Theme(data: data)
-                        UIView.animate(withDuration: 0.2) {
-                            Stylist.shared.apply(theme: theme)
-                        }
-                    } catch {
-                        print("Error loading theme:\n\(error)")
-                    }
-                }
-            }
-        } catch {
-            print("Error watching file:\n\(error)")
+        let path =  (#file as NSString).deletingLastPathComponent + "/Style.yaml"
+        let url = URL(fileURLWithPath: path)
+        Stylist.shared.watch(url: url, animateChanges: true) { error in
+            print("Error loading theme:\n\(error)")
         }
 
         return true

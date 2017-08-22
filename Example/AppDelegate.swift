@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        let path =  (#file as NSString).deletingLastPathComponent + "/Style.yaml"
-        let url = URL(fileURLWithPath: path)
+        let url = URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("Style.yaml")
         Stylist.shared.watch(url: url, animateChanges: true) { error in
             print("Error loading theme:\n\(error)")
         }

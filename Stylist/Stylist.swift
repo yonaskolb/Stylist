@@ -19,7 +19,7 @@ public class Stylist {
 
     var properties: [StyleProperty] = []
 
-    var themes: [String: Theme] = [:]
+    public var themes: [String: Theme] = [:]
 
     init() {
         properties += StyleProperties.view

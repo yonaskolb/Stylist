@@ -100,6 +100,8 @@ public protocol StyleValue {
     static func parse(value: Any) -> ParsedType?
 }
 ```
+You can load multiple themes, and they will all be applied as long as they have different paths
+
 Many different types of properties are already supported and listed here in [Style Property Types](docs/StyleProperties.MD#types)
 
 The `PropertyValue` that get's passed into the closure will have a `value` property containing your parsed value. It also has a `context` which contains [property query values](docs/StyleProperties.MD#queries) like device type,  UIControlState and UIBarMetrics.

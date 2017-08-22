@@ -19,7 +19,7 @@ public class Stylist {
 
     var properties: [StyleProperty] = []
 
-    public var theme: Theme?
+    var themes: [String: Theme] = [:]
 
     init() {
         properties += StyleProperties.view
@@ -57,7 +57,7 @@ public class Stylist {
             viewStyles[style] = views
         }
 
-        if let theme = theme {
+        for theme in themes.values {
             for style in styles {
                 if let style = theme.getStyle(style) {
                     apply(view: view, style: style)
@@ -101,8 +101,7 @@ public class Stylist {
         return styles
     }
 
-    public func apply(theme: Theme) {
-        self.theme = theme
+    func apply(theme: Theme) {
         for style in theme.styles {
             if let views = viewStyles[style.name] {
                 for view in views.flatMap({$0.value}) {
@@ -124,6 +123,7 @@ public class Stylist {
     /// - Throws: throws if the file is not found or parsing fails
     public func load(path: String) throws {
         let theme = try Theme(path: path)
+        self.themes[path] = theme
         apply(theme: theme)
     }
 
@@ -155,6 +155,7 @@ public class Stylist {
                 case .updated(let data):
                     do {
                         let theme = try Theme(data: data)
+                        self.themes[url.path] = theme
                         if animateChanges {
                             UIView.animate(withDuration: 0.2) {
                                 stylist.apply(theme: theme)

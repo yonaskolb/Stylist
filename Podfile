@@ -7,11 +7,11 @@ end
 
 def stylist_pods
   pod 'Yams'
+  pod 'KZFileWatchers'
 end
 
 target 'Example' do
   platform :ios, '10.0'
-  pod 'KZFileWatchers', :git=> 'https://github.com/yonaskolb/KZFileWatchers', :branch=> 'tvOS'
   stylist_pods
 end
 

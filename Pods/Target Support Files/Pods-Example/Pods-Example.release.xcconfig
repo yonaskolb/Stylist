@@ -1,8 +1,8 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/KZFileWatchers" "$PODS_CONFIGURATION_BUILD_DIR/Yams-iOS"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/KZFileWatchers-iOS" "$PODS_CONFIGURATION_BUILD_DIR/Yams-iOS"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/KZFileWatchers/KZFileWatchers.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Yams-iOS/Yams.framework/Headers"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/KZFileWatchers-iOS/KZFileWatchers.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Yams-iOS/Yams.framework/Headers"
 OTHER_LDFLAGS = $(inherited) -framework "KZFileWatchers" -framework "Yams"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = $BUILD_DIR

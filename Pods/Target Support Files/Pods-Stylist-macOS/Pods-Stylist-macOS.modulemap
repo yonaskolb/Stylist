@@ -1,6 +1,0 @@
-framework module Pods_Stylist_macOS {
-  umbrella header "Pods-Stylist-macOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -594,12 +594,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble-tvOS/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick-tvOS/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/KZFileWatchers-tvOS/KZFileWatchers.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams-tvOS/Yams.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KZFileWatchers.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Yams.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,7 +631,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/KZFileWatchers/KZFileWatchers.framework",
+				"${BUILT_PRODUCTS_DIR}/KZFileWatchers-iOS/KZFileWatchers.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams-iOS/Yams.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -735,12 +737,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble-iOS/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick-iOS/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/KZFileWatchers-iOS/KZFileWatchers.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams-iOS/Yams.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KZFileWatchers.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Yams.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

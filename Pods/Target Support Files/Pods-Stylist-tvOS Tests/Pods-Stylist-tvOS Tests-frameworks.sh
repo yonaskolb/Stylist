@@ -104,11 +104,13 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble-tvOS/Nimble.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Quick-tvOS/Quick.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KZFileWatchers-tvOS/KZFileWatchers.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Yams-tvOS/Yams.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Nimble-tvOS/Nimble.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Quick-tvOS/Quick.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KZFileWatchers-tvOS/KZFileWatchers.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Yams-tvOS/Yams.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

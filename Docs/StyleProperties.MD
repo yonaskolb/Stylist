@@ -1,4 +1,7 @@
-# Styles
+# Style Properties
+- [Types](#types)
+- [Queries](#queries)
+- [Properties](#properties)
 
 ## Types
 ### Color
@@ -63,6 +66,32 @@ Many other UIKit types are parsable too:
 	- leftRight, topBottom: `5,10`
 	- top, left, bottom, right: `10,5,5,5`
 
+## Queries
+There are a few ways to limit the scope of a property similar to media queries in CSS
+
+#### UIControlState
+For properties that are specific to a UIControlState you can use the format
+
+```yaml
+property:controlState: value
+```
+for example: 
+
+```yaml
+textColor:highlighted: red
+```
+
+#### Device
+Properties can be specific to a device using using the format: 
+
+```yaml
+property(device:UIUserInterfaceIdiom): value
+```
+for example: 
+
+```yaml
+font(device:iphone): MyFont:32
+```
 
 ## Properties
 - UIView

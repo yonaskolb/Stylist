@@ -47,6 +47,7 @@ struct StylePropertyValue {
             switch deviceString.lowercased() {
             case "iphone", "phone": device = .phone
             case "ipad", "pad": device = .pad
+            case "tv": device = .tv
             default: throw ThemeError.invalidDevice(name: propertyName, device: deviceString)
             }
         }

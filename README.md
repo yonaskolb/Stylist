@@ -1,4 +1,4 @@
-# Stylist 🎨
+#  Stylist 🎨
 
 Stylist lets you define UI styles in a hot reloadable external yaml or json theme file
 
@@ -40,7 +40,7 @@ styles:
     style: [themed]
 ```
 
-## Installation
+## ⬇️ Install
 
 #### Cocoapods
 Add the following to your `podfile`
@@ -49,7 +49,7 @@ Add the following to your `podfile`
 pod 'Stylist', :git=> 'https://github.com/yonaskolb/Stylist'
 ```
 
-## Theme
+## 🎨 Theme
 A theme file has a list of `variables` and a list of `styles` each referenced by name.
 Variables can be referenced in styles using `$variableName`.
 
@@ -65,11 +65,11 @@ To load a style simply call:
 Stylist.shared.load(path: pathToFile)
 ```
 
-## Style Properties
+## 🖌 Style Properties
 Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](docs/StyleProperties.MD).
 Each style can also reference an array other other styles, that will be merged in order
 
-## Hot Reloading
+## 🔥 Hot Reloading
 You can choose to watch a file, which means that whever that file is changed the styles are reloaded. The file can be a local file on disk or a remote file.
 This can be very useful while developing, as you can make changes on your device without recompiling and see the results instantly! To watch a file simply call `watch` on stylist and pass in a URL:
 
@@ -80,11 +80,11 @@ Stylist.shared.watch(url: fileOrRemoteURL, animateChanges: true) { error in
 ```
 If an error occurs at any time the `parsingError` callback will be called with a `ThemeError`, which will tell you exactly what went wrong including any formatting errors on invalid references. This means you can save an invalid theme without worrying that things will blow up.
 
-To stop watching the file, you can call `stop()` on the `FileWatcher` that is returned`
+To stop watching the file, you can call `stop()` on the `FileWatcher` that is returned.
 
 Note that if a style property was present and you then remove it, Stylist cannot revert the change so that property will remain in the previous state.
 
-## Custom Properties
+## ⚙️ Custom Properties
 Custom properties and parsers can also be added to let you configure anything you wish:
 
 ```swift
@@ -108,16 +108,16 @@ The `PropertyValue` that get's passed into the closure will have a `value` prope
 
 When a theme is loaded or when a style is set on a view, these custom properties will be applied if the view type and property name match.
 
-## Attributions
+## 👥 Attributions
 
 This tool is powered by:
 
 - [KZFileWatchers](https://github.com/krzysztofzablocki/KZFileWatchers)
 - [Yams](https://github.com/jpsim/Yams)
 
-## Contributions
+## 👤 Contributions
 Pull requests and issues are welcome
 
-## License
+## 📄 License
 
 Stylist is licensed under the MIT license. See [LICENSE](LICENSE) for more info.

@@ -40,7 +40,7 @@ styles:
     style: [themed]
 ```
 
-## ⬇️ Install
+## ⬇️ Installing
 
 #### Cocoapods
 Add the following to your `podfile`

@@ -14,7 +14,7 @@ public struct StyleProperty {
     let apply: (Any, StylePropertyValue) throws -> Void
     private let supports: (String, Any) -> Bool
 
-    public init<ViewType, PropertyType: StyleValue>(name: String, style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
+    public init<ViewType, PropertyType>(name: String, style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
         self.name = name
         self.apply = { view, value in
             if let view = view as? ViewType {
@@ -32,7 +32,7 @@ public struct StyleProperty {
         }
     }
 
-    public init<ViewType, PropertyType: StyleValue>(name: String, view: ViewType.Type, property: PropertyType.Type, style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
+    public init<ViewType, PropertyType>(name: String, view: ViewType.Type, property: PropertyType.Type, style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
         self.init(name: name, style: style)
     }
 

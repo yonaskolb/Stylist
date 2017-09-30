@@ -42,22 +42,22 @@ extension Font: StyleValue {
                     }
                     if name.contains("system") {
                         let systemName = name.replacingOccurrences(of: "system", with: "").lowercased()
-                        let weight: CGFloat?
+                        let weight: UIFont.Weight?
                         switch systemName {
                         case "black":
-                            weight = UIFontWeightBlack
+                            weight = UIFont.Weight.black
                         case "heavy":
-                            weight = UIFontWeightHeavy
+                            weight = UIFont.Weight.heavy
                         case "light":
-                            weight = UIFontWeightLight
+                            weight = UIFont.Weight.light
                         case "medium":
-                            weight = UIFontWeightMedium
+                            weight = UIFont.Weight.medium
                         case "semibold":
-                            weight = UIFontWeightSemibold
+                            weight = UIFont.Weight.semibold
                         case "thin":
-                            weight = UIFontWeightThin
+                            weight = UIFont.Weight.thin
                         case "ultralight":
-                            weight = UIFontWeightUltraLight
+                            weight = UIFont.Weight.ultraLight
                         case "bold":
                             return UIFont.boldSystemFont(ofSize: fontSize)
                         case "italic":

@@ -68,16 +68,16 @@ extension Color {
 
         // Check for hash and remove the hash
         if hex.hasPrefix("#") {
-            hex = hex.substring(from: hex.characters.index(hex.startIndex, offsetBy: 1))
+            hex = String(hex[hex.index(hex.startIndex, offsetBy: 1)...])
         }
         var alpha: Float = 1.0
         if hex.characters.count == 8 {
-            let alphaHex = hex.substring(with: Range<String.Index>(hex.characters.index(hex.startIndex, offsetBy: 6) ..< hex.characters.index(hex.startIndex, offsetBy: 8)))
+            let alphaHex = hex[hex.index(hex.startIndex, offsetBy: 6) ..< hex.index(hex.startIndex, offsetBy: 8)]
             var alphaInt: CUnsignedInt = 0
 
-            Scanner(string: alphaHex).scanHexInt32(&alphaInt)
+            Scanner(string: String(alphaHex)).scanHexInt32(&alphaInt)
             alpha = Float(alphaInt) / 255.0
-            hex = hex.substring(with: Range<String.Index>(hex.startIndex ..< hex.characters.index(hex.startIndex, offsetBy: 6)))
+            hex = String(hex[..<hex.index(hex.startIndex, offsetBy: 6)])
         }
 
         self.init(hexString: hex, alpha: alpha)
@@ -94,23 +94,23 @@ extension Color {
 
         // Check for hash and remove the hash
         if hex.hasPrefix("#") {
-            hex = hex.substring(from: hex.characters.index(hex.startIndex, offsetBy: 1))
+            hex = String(hex[hex.index(hex.startIndex, offsetBy: 1)...])
         }
 
         if hex.range(of: "(^[0-9A-Fa-f]{6}$)|(^[0-9A-Fa-f]{3}$)", options: .regularExpression) != nil {
 
             // Deal with 3 character Hex strings
             if hex.characters.count == 3 {
-                let redHex = hex.substring(to: hex.characters.index(hex.startIndex, offsetBy: 1))
-                let greenHex = hex.substring(with: Range<String.Index>(hex.characters.index(hex.startIndex, offsetBy: 1) ..< hex.characters.index(hex.startIndex, offsetBy: 2)))
-                let blueHex = hex.substring(from: hex.characters.index(hex.startIndex, offsetBy: 2))
+                let redHex = String(hex[..<hex.index(hex.startIndex, offsetBy: 1)])
+                let greenHex = String(hex[hex.index(hex.startIndex, offsetBy: 1) ..< hex.index(hex.startIndex, offsetBy: 2)])
+                let blueHex = String(hex[hex.characters.index(hex.startIndex, offsetBy: 2)...])
 
                 hex = redHex + redHex + greenHex + greenHex + blueHex + blueHex
             }
 
-            let redHex = hex.substring(to: hex.characters.index(hex.startIndex, offsetBy: 2))
-            let greenHex = hex.substring(with: Range<String.Index>(hex.characters.index(hex.startIndex, offsetBy: 2) ..< hex.characters.index(hex.startIndex, offsetBy: 4)))
-            let blueHex = hex.substring(with: Range<String.Index>(hex.characters.index(hex.startIndex, offsetBy: 4) ..< hex.characters.index(hex.startIndex, offsetBy: 6)))
+            let redHex = String(hex[..<hex.index(hex.startIndex, offsetBy: 2)])
+            let greenHex = String(hex[hex.index(hex.startIndex, offsetBy: 2) ..< hex.index(hex.startIndex, offsetBy: 4)])
+            let blueHex = String(hex[hex.index(hex.startIndex, offsetBy: 4) ..< hex.index(hex.startIndex, offsetBy: 6)])
 
             var redInt: CUnsignedInt = 0
             var greenInt: CUnsignedInt = 0

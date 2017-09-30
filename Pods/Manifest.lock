@@ -1,8 +1,8 @@
 PODS:
   - KZFileWatchers (1.0.4)
-  - Nimble (7.0.1)
-  - Quick (1.1.0)
-  - Yams (0.3.5)
+  - Nimble (7.0.2)
+  - Quick (1.2.0)
+  - Yams (0.3.6)
 
 DEPENDENCIES:
   - KZFileWatchers
@@ -12,9 +12,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   KZFileWatchers: f7caa7aafa6068654b83c192ec363321c995184a
-  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
-  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
-  Yams: 2822e8b2a8c2b532c4a8d94ede9485ec2be7992d
+  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  Yams: 33b90105277731bc2035a309a718b51fb655005c
 
 PODFILE CHECKSUM: 8ec66bf2f426e369bc22fd7fff11c7e86d1e2695
 

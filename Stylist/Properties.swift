@@ -20,7 +20,7 @@ enum StyleProperties {
 
         var properties: [StyleProperty] = []
 
-        func add<ViewType, PropertyType: StyleValue>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
+        func add<ViewType, PropertyType>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
             properties.append(StyleProperty(name: name, style: style))
         }
 
@@ -287,7 +287,7 @@ enum StyleProperties {
 
         var properties: [StyleProperty] = []
 
-        func add<ViewType, PropertyType: StyleValue>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
+        func add<ViewType, PropertyType>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
             properties.append(StyleProperty(name: name, style: style))
         }
         

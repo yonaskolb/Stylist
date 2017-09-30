@@ -42,8 +42,8 @@ struct StylePropertyValue {
 
         if let match = try! NSRegularExpression(pattern: "(.*)\\(device:(.*)\\)", options: []).firstMatch(in: propertyName, options: [], range: NSRange(location: 0, length: propertyName.characters.count)) {
 
-            propertyName = (name as NSString).substring(with: match.rangeAt(1))
-            let deviceString = (name as NSString).substring(with: match.rangeAt(2))
+            propertyName = (name as NSString).substring(with: match.range(at: 1))
+            let deviceString = (name as NSString).substring(with: match.range(at: 2))
             switch deviceString.lowercased() {
             case "iphone", "phone": device = .phone
             case "ipad", "pad": device = .pad

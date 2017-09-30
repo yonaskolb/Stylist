@@ -25,11 +25,11 @@ public class Stylist {
         properties += StyleProperties.view
     }
 
-    public func addProperty<ViewType, PropertyType: StyleValue>(_ name: String, viewType: ViewType.Type, propertyType: PropertyType.Type, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
+    public func addProperty<ViewType, PropertyType>(_ name: String, viewType: ViewType.Type, propertyType: PropertyType.Type, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
         properties.append(StyleProperty(name: name, style: style))
     }
 
-    public func addProperty<ViewType, PropertyType: StyleValue>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
+    public func addProperty<ViewType, PropertyType>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
         properties.append(StyleProperty(name: name, style: style))
     }
 

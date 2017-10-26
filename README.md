@@ -66,7 +66,7 @@ Stylist.shared.load(path: pathToFile)
 ```
 
 ## 🖌 Style Properties
-Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](docs/StyleProperties.MD).
+Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](Docs/StyleProperties.MD).
 Each style can also reference an array other other styles, that will be merged in order
 
 ## 🔥 Hot Reloading
@@ -102,7 +102,7 @@ public protocol StyleValue {
 ```
 You can load multiple themes, and they will all be applied as long as they have different paths
 
-Many different types of properties are already supported and listed here in [Style Property Types](docs/StyleProperties.MD#types)
+Many different types of properties are already supported and listed here in [Style Property Types](Docs/StyleProperties.MD#types)
 
 The `PropertyValue` that get's passed into the closure will have a `value` property containing your parsed value. It also has a `context` which contains [property query values](docs/StyleProperties.MD#queries) like device type,  UIControlState and UIBarMetrics.
 

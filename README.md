@@ -104,7 +104,7 @@ You can load multiple themes, and they will all be applied as long as they have 
 
 Many different types of properties are already supported and listed here in [Style Property Types](Docs/StyleProperties.MD#types)
 
-The `PropertyValue` that get's passed into the closure will have a `value` property containing your parsed value. It also has a `context` which contains [property query values](docs/StyleProperties.MD#queries) like device type,  UIControlState and UIBarMetrics.
+The `PropertyValue` that get's passed into the closure will have a `value` property containing your parsed value. It also has a `context` which contains [property query values](Docs/StyleProperties.MD#queries) like device type,  UIControlState and UIBarMetrics.
 
 When a theme is loaded or when a style is set on a view, these custom properties will be applied if the view type and property name match.
 

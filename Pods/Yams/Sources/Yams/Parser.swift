@@ -124,20 +124,7 @@ public final class Parser {
             // use native endian
             let isLittleEndian = 1 == 1.littleEndian
             yaml_parser_set_encoding(&parser, isLittleEndian ? YAML_UTF16LE_ENCODING : YAML_UTF16BE_ENCODING)
-            let encoding: String.Encoding
-            #if swift(>=3.1)
-                encoding = isLittleEndian ? .utf16LittleEndian : .utf16BigEndian
-            #else
-                /*
-                 ```
-                 "".data(using: .utf16LittleEndian).withUnsafeBytes { (bytes: UnsafePointer<UInt8>) in
-                    bytes == nil // true on Swift 3.0.2, false on Swift 3.1
-                 }
-                 ```
-                 for avoiding above, use `.utf16` if yaml is empty.
-                 */
-                encoding = yaml.isEmpty ? .utf16 : isLittleEndian ? .utf16LittleEndian : .utf16BigEndian
-            #endif
+            let encoding: String.Encoding = isLittleEndian ? .utf16LittleEndian : .utf16BigEndian
             data = yaml.data(using: encoding)!
             data.withUnsafeBytes { bytes in
                 yaml_parser_set_input_string(&parser, bytes, data.count)
@@ -175,8 +162,8 @@ public final class Parser {
     }
 
     // MARK: private
-    fileprivate var anchors = [String: Node]()
-    fileprivate var parser = yaml_parser_t()
+    private var anchors = [String: Node]()
+    private var parser = yaml_parser_t()
 #if USE_UTF8
     private let utf8CString: ContiguousArray<CChar>
 #else
@@ -185,12 +172,12 @@ public final class Parser {
 }
 
 // MARK: implementation details
-extension Parser {
-    fileprivate var streamEndProduced: Bool {
+private extension Parser {
+    private var streamEndProduced: Bool {
         return parser.stream_end_produced != 0
     }
 
-    fileprivate func loadDocument() throws -> Node {
+    func loadDocument() throws -> Node {
         let node = try loadNode(from: parse())
         try parse() // Drop YAML_DOCUMENT_END_EVENT
         return node
@@ -212,7 +199,7 @@ extension Parser {
     }
 
     @discardableResult
-    fileprivate func parse() throws -> Event {
+    func parse() throws -> Event {
         let event = Event()
         guard yaml_parser_parse(&parser, &event.event) == 1 else {
             throw YamlError(from: parser, with: yaml)
@@ -278,7 +265,7 @@ extension Parser {
 }
 
 /// Representation of `yaml_event_t`
-fileprivate class Event {
+private class Event {
     var event = yaml_event_t()
     deinit { yaml_event_delete(&event) }
 
@@ -300,9 +287,8 @@ fileprivate class Event {
         return Node.Scalar.Style(rawValue: event.data.scalar.style.rawValue)!
     }
     var scalarTag: String? {
-        guard event.data.scalar.plain_implicit == 0,
-            event.data.scalar.quoted_implicit == 0 else {
-                return nil
+        if event.data.scalar.quoted_implicit == 1 {
+            return Tag.Name.str.rawValue
         }
         return string(from: event.data.scalar.tag)
     }
@@ -346,6 +332,6 @@ fileprivate class Event {
     }
 }
 
-fileprivate func string(from pointer: UnsafePointer<UInt8>!) -> String? {
+private func string(from pointer: UnsafePointer<UInt8>!) -> String? {
     return String.decodeCString(pointer, as: UTF8.self, repairingInvalidCodeUnits: true)?.result
 }

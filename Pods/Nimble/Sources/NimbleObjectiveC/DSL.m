@@ -1,5 +1,10 @@
 #import <Nimble/DSL.h>
+
+#if __has_include("Nimble-Swift.h")
+#import "Nimble-Swift.h"
+#else
 #import <Nimble/Nimble-Swift.h>
+#endif
 
 SWIFT_CLASS("_TtC6Nimble7NMBWait")
 @interface NMBWait : NSObject
@@ -139,6 +144,10 @@ NIMBLE_EXPORT id<NMBMatcher> NMB_allPass(id expectedValue) {
 
 NIMBLE_EXPORT id<NMBMatcher> NMB_satisfyAnyOfWithMatchers(id matchers) {
     return [NMBObjCMatcher satisfyAnyOfMatcher:matchers];
+}
+
+NIMBLE_EXPORT id<NMBMatcher> NMB_satisfyAllOfWithMatchers(id matchers) {
+    return [NMBObjCMatcher satisfyAllOfMatcher:matchers];
 }
 
 NIMBLE_EXPORT NMBObjCRaiseExceptionMatcher *NMB_raiseException() {

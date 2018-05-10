@@ -71,7 +71,7 @@ extension Color {
             hex = String(hex[hex.index(hex.startIndex, offsetBy: 1)...])
         }
         var alpha: Float = 1.0
-        if hex.characters.count == 8 {
+        if hex.count == 8 {
             let alphaHex = hex[hex.index(hex.startIndex, offsetBy: 6) ..< hex.index(hex.startIndex, offsetBy: 8)]
             var alphaInt: CUnsignedInt = 0
 
@@ -100,10 +100,10 @@ extension Color {
         if hex.range(of: "(^[0-9A-Fa-f]{6}$)|(^[0-9A-Fa-f]{3}$)", options: .regularExpression) != nil {
 
             // Deal with 3 character Hex strings
-            if hex.characters.count == 3 {
+            if hex.count == 3 {
                 let redHex = String(hex[..<hex.index(hex.startIndex, offsetBy: 1)])
                 let greenHex = String(hex[hex.index(hex.startIndex, offsetBy: 1) ..< hex.index(hex.startIndex, offsetBy: 2)])
-                let blueHex = String(hex[hex.characters.index(hex.startIndex, offsetBy: 2)...])
+                let blueHex = String(hex[hex.index(hex.startIndex, offsetBy: 2)...])
 
                 hex = redHex + redHex + greenHex + greenHex + blueHex + blueHex
             }
@@ -148,7 +148,7 @@ extension Color {
      */
     public convenience init?(hex: Int, alpha: Float) {
         var hexString = String(format: "%2X", hex)
-        let leadingZerosString = String(repeating: "0", count: 6 - hexString.characters.count)
+        let leadingZerosString = String(repeating: "0", count: 6 - hexString.count)
         hexString = leadingZerosString + hexString
         self.init(hexString: hexString as String, alpha: alpha)
     }

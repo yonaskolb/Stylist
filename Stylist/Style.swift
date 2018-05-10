@@ -40,7 +40,7 @@ struct StylePropertyValue {
         let barMetrics: UIBarMetrics = .default
         //TODO: parse UIBarMetrics
 
-        if let match = try! NSRegularExpression(pattern: "(.*)\\(device:(.*)\\)", options: []).firstMatch(in: propertyName, options: [], range: NSRange(location: 0, length: propertyName.characters.count)) {
+        if let match = try! NSRegularExpression(pattern: "(.*)\\(device:(.*)\\)", options: []).firstMatch(in: propertyName, options: [], range: NSRange(location: 0, length: propertyName.count)) {
 
             propertyName = (name as NSString).substring(with: match.range(at: 1))
             let deviceString = (name as NSString).substring(with: match.range(at: 2))

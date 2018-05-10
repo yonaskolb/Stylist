@@ -104,7 +104,7 @@ public class Stylist {
     func apply(theme: Theme) {
         for style in theme.styles {
             if let views = viewStyles[style.name] {
-                for view in views.flatMap({$0.value}) {
+                for view in views.compactMap({$0.value}) {
                     apply(view: view, style: style)
                 }
             }

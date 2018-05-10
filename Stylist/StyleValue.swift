@@ -91,9 +91,9 @@ extension UIEdgeInsets: StyleValue {
         }
         else if let string = value as? String {
             let edgeStrings = string.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-            edges = edgeStrings.flatMap{CGFloat.parse(value: $0)}
+            edges = edgeStrings.compactMap{CGFloat.parse(value: $0)}
         } else if let array = value as? [Any] {
-            edges = array.flatMap{CGFloat.parse(value: $0)}
+            edges = array.compactMap{CGFloat.parse(value: $0)}
         }
         if let edges = edges {
             if edges.count == 2 {
@@ -141,9 +141,9 @@ extension CGSize: StyleValue {
         }
         else if let string = value as? String {
             let edgeStrings = string.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-            edges = edgeStrings.flatMap{CGFloat.parse(value: $0)}
+            edges = edgeStrings.compactMap{CGFloat.parse(value: $0)}
         } else if let array = value as? [Any] {
-            edges = array.flatMap{CGFloat.parse(value: $0)}
+            edges = array.compactMap{CGFloat.parse(value: $0)}
         }
         if let edges = edges {
             if edges.count == 2 {

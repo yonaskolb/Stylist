@@ -71,7 +71,7 @@ struct AspectRatioAnchor: StyleValue {
             return AspectRatioAnchor(ratio: float)
         }
         else if let string = value as? String {
-            guard let match = try! NSRegularExpression(pattern: "(\\d*(?:\\.\\d*)?)([:/])(\\d*(?:\\.\\d*)?)", options: []).firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.characters.count)) else { return nil }
+            guard let match = try! NSRegularExpression(pattern: "(\\d*(?:\\.\\d*)?)([:/])(\\d*(?:\\.\\d*)?)", options: []).firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.count)) else { return nil }
 
             let string1 = (string as NSString).substring(with: match.range(at: 1))
             let symbol = (string as NSString).substring(with: match.range(at: 2))

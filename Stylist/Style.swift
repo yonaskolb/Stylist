@@ -38,7 +38,7 @@ struct StylePropertyValue {
         var device = UIUserInterfaceIdiom.unspecified
         var controlState: UIControlState = .normal
         let barMetrics: UIBarMetrics = .default
-        //TODO: parse UIBarMetrics
+        // TODO: parse UIBarMetrics
 
         if let match = try! NSRegularExpression(pattern: "(.*)\\(device:(.*)\\)", options: []).firstMatch(in: propertyName, options: [], range: NSRange(location: 0, length: propertyName.count)) {
 
@@ -55,8 +55,6 @@ struct StylePropertyValue {
         let nameParts = propertyName.components(separatedBy: ":")
         propertyName = nameParts[0]
 
-
-
         if nameParts.count == 2 {
             let controlStateString = nameParts[1]
             if let parsedControlState = UIControlState(name: controlStateString) {
@@ -68,7 +66,7 @@ struct StylePropertyValue {
 
         self.name = propertyName
         self.value = value
-        self.context = PropertyContext(device: device, controlState: controlState, barMetrics: barMetrics)
+        context = PropertyContext(device: device, controlState: controlState, barMetrics: barMetrics)
     }
 }
 

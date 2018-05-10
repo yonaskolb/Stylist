@@ -96,7 +96,7 @@ enum StyleProperties {
         add("widthAnchor") { (view: UIView, value: PropertyValue<LayoutAnchor>) in
             let anchor = value.value
             if let existingContraint = view.constraints.first(where: {
-                    $0.firstItem === view &&
+                $0.firstItem === view &&
                     $0.firstAttribute == .width &&
                     $0.secondItem == nil
             }) {
@@ -140,7 +140,6 @@ enum StyleProperties {
             contraint.isActive = true
             view.translatesAutoresizingMaskIntoConstraints = false
         }
-
 
         // UIImageView
         add("image") { (view: UIImageView, value: PropertyValue<UIImage>) in
@@ -290,18 +289,17 @@ enum StyleProperties {
         func add<ViewType, PropertyType>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
             properties.append(StyleProperty(name: name, style: style))
         }
-        
+
         // UIBarItem
         add("image") { (view: UIBarItem, value: PropertyValue<Image>) in
             view.image = value.value
         }
-        
+
         // UIBarButtonItem
         add("tintColor") { (view: UIBarButtonItem, value: PropertyValue<Color>) in
             view.tintColor = value.value
         }
-        
+
         return properties
     }()
-    
 }

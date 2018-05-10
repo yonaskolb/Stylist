@@ -23,7 +23,6 @@ public struct LayoutAnchor {
         self.constant = constant
         self.equality = equality
     }
-
 }
 
 extension NSLayoutRelation {
@@ -69,8 +68,7 @@ struct AspectRatioAnchor: StyleValue {
     public static func parse(value: Any) -> AspectRatioAnchor? {
         if let float = CGFloat.parse(value: value) {
             return AspectRatioAnchor(ratio: float)
-        }
-        else if let string = value as? String {
+        } else if let string = value as? String {
             guard let match = try! NSRegularExpression(pattern: "(\\d*(?:\\.\\d*)?)([:/])(\\d*(?:\\.\\d*)?)", options: []).firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.count)) else { return nil }
 
             let string1 = (string as NSString).substring(with: match.range(at: 1))
@@ -80,7 +78,7 @@ struct AspectRatioAnchor: StyleValue {
             guard let number1 = Float.parse(value: string1), let number2 = Float.parse(value: string2) else {
                 return nil
             }
-            let ratio = symbol == "/" ? (number1/number2) : number2/number1
+            let ratio = symbol == "/" ? (number1 / number2) : number2 / number1
             return AspectRatioAnchor(ratio: CGFloat(ratio))
         }
         return nil

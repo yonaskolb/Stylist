@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import XCTest
 import Stylist
+import XCTest
 
 class StylistTests: XCTestCase {
     func testExample() {
@@ -16,7 +16,7 @@ class StylistTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         //// XCTAssertEqual(Stylist().text, "Hello, World!")
     }
-    
+
     static var allTests = [
         ("testExample", testExample),
     ]

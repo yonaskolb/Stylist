@@ -11,7 +11,7 @@ import Foundation
 public enum ThemeError: Error {
     case notFound
     case decodingError
-    case invalidVariable(name:String, variable: String)
+    case invalidVariable(name: String, variable: String)
     case invalidStyleReference(style: String, reference: String)
     case invalidControlState(name: String, controlState: String)
     case invalidDevice(name: String, device: String)

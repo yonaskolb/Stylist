@@ -33,7 +33,6 @@ public class Stylist {
         properties.append(StyleProperty(name: name, style: style))
     }
 
-
     public func addProperty(_ property: StyleProperty) {
         properties.append(property)
     }
@@ -46,12 +45,12 @@ public class Stylist {
         for style in styles {
             var views: [WeakContainer<NSObject>]
             if let existingViews = viewStyles[style] {
-                views = existingViews.filter{ $0.value != nil }
+                views = existingViews.filter { $0.value != nil }
             } else {
                 views = []
             }
 
-            if !views.contains(where: { $0.value! === view}) {
+            if !views.contains(where: { $0.value! === view }) {
                 views.append(WeakContainer(view))
             }
             viewStyles[style] = views
@@ -104,18 +103,17 @@ public class Stylist {
     func apply(theme: Theme) {
         for style in theme.styles {
             if let views = viewStyles[style.name] {
-                for view in views.compactMap({$0.value}) {
+                for view in views.compactMap({ $0.value }) {
                     apply(view: view, style: style)
                 }
             }
             for property in style.properties {
-                if !properties.contains(where: {$0.name == property.name}) {
+                if !properties.contains(where: { $0.name == property.name }) {
                     print("Theme contains unknown property: \(property.name)")
                 }
             }
         }
     }
-
 
     /// Loads a Theme from a file
     ///
@@ -123,17 +121,16 @@ public class Stylist {
     /// - Throws: throws if the file is not found or parsing fails
     public func load(path: String) throws {
         let theme = try Theme(path: path)
-        self.themes[path] = theme
+        themes[path] = theme
         apply(theme: theme)
     }
-
 
     /// Watch a Theme file and automatically reload and applies if there are changes
     ///
     /// - Parameters:
     ///   - url: the url to the Theme. This can be a local file url or a remote url
     ///   - animateChanges: whether to apply a small UIView animation when new changes are applied
-    ///   - parsingError: is called if there was an error parsing the theme. 
+    ///   - parsingError: is called if there was an error parsing the theme.
     ///     It contains finge grained info about why the theme was invalid
     /// - Returns: The file watcher, which can later be stopped
     /// - Throws: An error is thrown if the file couldn't be watched
@@ -148,11 +145,11 @@ public class Stylist {
 
         let stylist = self
         do {
-            try fileWatcher.start() { result in
+            try fileWatcher.start { result in
                 switch result {
                 case .noChanges:
                     break
-                case .updated(let data):
+                case let .updated(data):
                     do {
                         let theme = try Theme(data: data)
                         self.themes[url.path] = theme
@@ -178,7 +175,7 @@ public class Stylist {
 }
 
 struct WeakContainer<T> where T: AnyObject {
-    weak var value : T?
+    weak var value: T?
 
     init(_ value: T) {
         self.value = value

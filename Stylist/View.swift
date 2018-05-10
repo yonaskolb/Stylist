@@ -17,46 +17,45 @@ import Foundation
 #endif
 
 #if os(iOS) || os(tvOS)
-extension View {
+    extension View {
 
-    @IBInspectable public var styles: [String] {
-        get {
-            return Stylist.shared.getStyles(view: self)
+        @IBInspectable public var styles: [String] {
+            get {
+                return Stylist.shared.getStyles(view: self)
+            }
+            set {
+                Stylist.shared.setStyles(view: self, styles: newValue)
+            }
         }
-        set {
-            Stylist.shared.setStyles(view: self, styles: newValue)
+
+        @IBInspectable public var style: String? {
+            get {
+                return Stylist.shared.getStyles(view: self).first
+            }
+            set {
+                Stylist.shared.setStyles(view: self, styles: newValue != nil ? [newValue!] : [])
+            }
         }
     }
 
-    @IBInspectable public var style: String? {
-        get {
-            return Stylist.shared.getStyles(view: self).first
+    extension UIBarItem {
+
+        @IBInspectable public var styles: [String] {
+            get {
+                return Stylist.shared.getStyles(view: self)
+            }
+            set {
+                Stylist.shared.setStyles(view: self, styles: newValue)
+            }
         }
-        set {
-            Stylist.shared.setStyles(view: self, styles: newValue != nil ? [newValue!] : [])
+
+        @IBInspectable public var style: String? {
+            get {
+                return Stylist.shared.getStyles(view: self).first
+            }
+            set {
+                Stylist.shared.setStyles(view: self, styles: newValue != nil ? [newValue!] : [])
+            }
         }
     }
-}
-
-
-extension UIBarItem {
-
-    @IBInspectable public var styles: [String] {
-        get {
-            return Stylist.shared.getStyles(view: self)
-        }
-        set {
-            Stylist.shared.setStyles(view: self, styles: newValue)
-        }
-    }
-
-    @IBInspectable public var style: String? {
-        get {
-            return Stylist.shared.getStyles(view: self).first
-        }
-        set {
-            Stylist.shared.setStyles(view: self, styles: newValue != nil ? [newValue!] : [])
-        }
-    }
-}
 #endif

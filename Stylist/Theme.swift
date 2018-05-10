@@ -20,7 +20,7 @@ public struct Theme {
     }
 
     func getStyle(_ name: String) -> Style? {
-        guard let style = styles.first(where: { $0.name == name}) else {
+        guard let style = styles.first(where: { $0.name == name }) else {
             return nil
         }
         return style
@@ -121,5 +121,4 @@ extension Theme {
         }
         self.styles = styles
     }
-
 }

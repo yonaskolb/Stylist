@@ -73,8 +73,8 @@ extension Bool: StyleValue {
     public static func parse(value: Any) -> Bool? {
         if let string = value as? String {
             switch string.lowercased() {
-            case "yes","true": return true
-            case "no","false": return false
+            case "yes", "true": return true
+            case "no", "false": return false
             default: break
             }
         }
@@ -88,12 +88,11 @@ extension UIEdgeInsets: StyleValue {
         var edges: [CGFloat]?
         if let float = CGFloat.parse(value: value) {
             return UIEdgeInsets(top: float, left: float, bottom: float, right: float)
-        }
-        else if let string = value as? String {
+        } else if let string = value as? String {
             let edgeStrings = string.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-            edges = edgeStrings.compactMap{CGFloat.parse(value: $0)}
+            edges = edgeStrings.compactMap { CGFloat.parse(value: $0) }
         } else if let array = value as? [Any] {
-            edges = array.compactMap{CGFloat.parse(value: $0)}
+            edges = array.compactMap { CGFloat.parse(value: $0) }
         }
         if let edges = edges {
             if edges.count == 2 {
@@ -138,12 +137,11 @@ extension CGSize: StyleValue {
         var edges: [CGFloat]?
         if let float = CGFloat.parse(value: value) {
             return CGSize(width: float, height: float)
-        }
-        else if let string = value as? String {
+        } else if let string = value as? String {
             let edgeStrings = string.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-            edges = edgeStrings.compactMap{CGFloat.parse(value: $0)}
+            edges = edgeStrings.compactMap { CGFloat.parse(value: $0) }
         } else if let array = value as? [Any] {
-            edges = array.compactMap{CGFloat.parse(value: $0)}
+            edges = array.compactMap { CGFloat.parse(value: $0) }
         }
         if let edges = edges {
             if edges.count == 2 {

@@ -16,7 +16,7 @@ public struct StyleProperty {
 
     public init<ViewType, PropertyType>(name: String, style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
         self.name = name
-        self.apply = { view, value in
+        apply = { view, value in
             if let view = view as? ViewType {
 
                 if let parsedValue = PropertyType.parse(value: value.value) {
@@ -28,7 +28,7 @@ public struct StyleProperty {
             }
         }
         supports = { otherName, view in
-            return otherName == name && view is ViewType
+            otherName == name && view is ViewType
         }
     }
 

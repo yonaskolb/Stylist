@@ -16,21 +16,16 @@ import Cocoa
 extension CGFloat: StyleValue {
 
     public static func parse(value: Any) -> CGFloat? {
-        return Float.parse(value: value).flatMap { CGFloat($0) }
-    }
-}
-
-extension Bool: StyleValue {
-
-    public static func parse(value: Any) -> Bool? {
-        if let string = value as? String {
-            switch string.lowercased() {
-            case "yes", "true": return true
-            case "no", "false": return false
-            default: break
+        if let float = value as? CGFloat {
+            return float
+        } else if let double = value as? Double {
+            return CGFloat(double)
+        }else if let string = value as? String {
+            if let double = Double(string) {
+                return CGFloat(double)
             }
         }
-        return value as? Bool
+        return Float.parse(value: value).flatMap { CGFloat($0) }
     }
 }
 
@@ -109,15 +104,15 @@ extension UIStackViewAlignment: StyleValue {
 
     public static func parse(value: Any) -> UIStackViewAlignment? {
         guard let string = value as? String else { return nil }
-        switch string {
+        switch string.lowercased().replacingOccurrences(of: " ", with: "") {
         case "fill": return .fill
         case "leading": return .leading
         case "top": return .top
-        case "firstBaseline": return .firstBaseline
+        case "firstbaseline": return .firstBaseline
         case "center": return .center
         case "trailing": return .trailing
         case "bottom": return .bottom
-        case "lastBaseline": return .lastBaseline
+        case "lastbaseline": return .lastBaseline
         default: return nil
         }
     }
@@ -129,10 +124,10 @@ extension UIStackViewDistribution: StyleValue {
         guard let string = value as? String else { return nil }
         switch string.lowercased().replacingOccurrences(of: " ", with: "") {
         case "fill": return .fill
-        case "fillEqually": return .fillEqually
-        case "fillProportionally": return .fillProportionally
-        case "equalSpacing": return .equalSpacing
-        case "equalCentering": return .equalCentering
+        case "fillequally": return .fillEqually
+        case "fillproportionally": return .fillProportionally
+        case "equalspacing": return .equalSpacing
+        case "equalcentering": return .equalCentering
         default: return nil
         }
     }
@@ -155,8 +150,9 @@ extension UIBarStyle: StyleValue {
 
     public static func parse(value: Any) -> UIBarStyle? {
         guard let string = value as? String else { return nil }
-        switch string {
+        switch string.lowercased().replacingOccurrences(of: " ", with: "") {
         case "black": return .black
+        case "blacktranslucent": return .blackTranslucent
         case "default": return .default
         default: return nil
         }

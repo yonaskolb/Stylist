@@ -29,6 +29,10 @@ extension Font: StyleValue {
             if parts.count == 1 {
                 if let textStyle = UIFontTextStyle(name: string) {
                     return UIFont.preferredFont(forTextStyle: textStyle)
+                } else if let int = Int(string) {
+                    return UIFont.systemFont(ofSize: CGFloat(int))
+                } else if let double = Double(string) {
+                    return UIFont.systemFont(ofSize: CGFloat(double))
                 }
             } else if parts.count == 2 {
                 let name = parts[0]

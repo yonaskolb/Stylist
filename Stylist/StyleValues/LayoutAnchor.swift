@@ -14,7 +14,7 @@ import Foundation
     import Cocoa
 #endif
 
-public struct LayoutAnchor {
+public struct LayoutAnchor: Equatable {
 
     public let constant: CGFloat
     public let equality: NSLayoutRelation
@@ -61,7 +61,7 @@ extension LayoutAnchor: StyleValue {
     }
 }
 
-struct AspectRatioAnchor: StyleValue {
+struct AspectRatioAnchor: StyleValue, Equatable {
 
     let ratio: CGFloat
 
@@ -75,7 +75,7 @@ struct AspectRatioAnchor: StyleValue {
             let symbol = (string as NSString).substring(with: match.range(at: 2))
             let string2 = (string as NSString).substring(with: match.range(at: 3))
 
-            guard let number1 = Float.parse(value: string1), let number2 = Float.parse(value: string2) else {
+            guard let number1 = CGFloat.parse(value: string1), let number2 = CGFloat.parse(value: string2) else {
                 return nil
             }
             let ratio = symbol == "/" ? (number1 / number2) : number2 / number1

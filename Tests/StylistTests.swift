@@ -18,59 +18,6 @@ class StylistTests: XCTestCase {
         Stylist.shared.clear()
     }
 
-    func testVariableSubstitution() throws {
-        let string = """
-        variables:
-          primaryColor: blue
-        styles:
-          header:
-            textColor: $primaryColor:0.5
-        """
-
-        let theme = try Theme(string: string)
-
-        let expectedTheme = Theme(
-            variables: ["primaryColor": "blue"],
-            styles: [
-                Style(name: "header", properties: [
-                    StylePropertyValue(name: "textColor", value: "blue:0.5")
-                    ])
-            ])
-        XCTAssertEqual(theme, expectedTheme)
-    }
-
-    func testThemeDecoding() throws {
-        let string = """
-        variables:
-          primaryColor: blue
-        styles:
-          header:
-            textColor:selected(device:ipad): $primaryColor:0.5
-        """
-
-        let theme = try Theme(string: string)
-
-        let expectedTheme = Theme(
-            variables: ["primaryColor": "blue"],
-            styles: [
-                Style(name: "header", properties: [
-                    StylePropertyValue(name: "textColor",
-                                       value: "blue:0.5",
-                                       context: PropertyContext(device: .pad, controlState: .selected))
-                    ])
-            ])
-        XCTAssertEqual(theme, expectedTheme)
-    }
-
-    func testPropertyContextDecoding() throws {
-
-        let propertyValue = try StylePropertyValue(id: "textColor:selected(device:ipad)", value: "red")
-        let expectedPropertyValue = StylePropertyValue(name: "textColor",
-                                       value: "red",
-                                       context: PropertyContext(device: .pad, controlState: .selected))
-        XCTAssertEqual(propertyValue, expectedPropertyValue)
-    }
-
     func testApplyStyle() throws {
         let stylist = Stylist()
 
@@ -148,46 +95,6 @@ class StylistTests: XCTestCase {
 
         XCTAssertEqual(view.backgroundColor, .red)
         XCTAssertEqual(view.layer.cornerRadius, 5)
-    }
-
-    func testThemeErrors() throws {
-
-        func expectError(theme string: String, expectedError: ThemeError, file: StaticString = #file, line: UInt = #line) {
-            do {
-                let theme = try Theme(string: string)
-                XCTFail("Theme decoded \(theme) but was supposed to fail with error \(expectedError)", file: file, line: line)
-            } catch let error as ThemeError {
-                XCTAssertEqual(error, expectedError, file: file, line: line)
-            } catch {
-                 XCTFail("Theme failed decoding with error \(error) but expected error \(expectedError)", file: file, line: line)
-            }
-        }
-
-        func theme(style: String = "testStyle", property: String? = nil, variable: String? = nil) -> String {
-            var theme = ""
-            if let variable = variable {
-                theme += """
-                
-                variables:
-                  \(variable)
-                """
-            }
-            if let property = property {
-                theme += """
-
-                styles:
-                  \(style):
-                    \(property)
-                """
-            }
-            return theme
-        }
-
-        expectError(theme: "^&*@#$", expectedError: ThemeError.decodingError)
-        expectError(theme: theme(property: "prop: $variable", variable: "var: red"), expectedError: ThemeError.invalidVariable(name: 
-            "prop", variable: "variable"))
-        expectError(theme: theme(property: "prop: $variable"), expectedError: ThemeError.invalidVariable(name:
-            "prop", variable: "variable"))
     }
 
 }

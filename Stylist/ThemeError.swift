@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum ThemeError: Error {
+public enum ThemeError: Error, Equatable {
     case notFound
     case decodingError
     case invalidVariable(name: String, variable: String)

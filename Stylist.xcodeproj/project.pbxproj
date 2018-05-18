@@ -16,6 +16,10 @@
 		8933C7851EB5B820000D00A4 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Stylist.swift */; };
 		8933C7881EB5B820000D00A4 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Stylist.swift */; };
 		8933C78E1EB5B82C000D00A4 /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
+		CC196D7D20AEA368006161E3 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC196D7C20AEA368006161E3 /* UIKit.swift */; };
+		CC196D7E20AEA368006161E3 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC196D7C20AEA368006161E3 /* UIKit.swift */; };
+		CC196D8020AEA3B4006161E3 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC196D7F20AEA3B4006161E3 /* Swift.swift */; };
+		CC196D8120AEA3B4006161E3 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC196D7F20AEA3B4006161E3 /* Swift.swift */; };
 		CC2385061F47852E00FB0073 /* StyleProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385051F47852E00FB0073 /* StyleProperty.swift */; };
 		CC2385091F47852E00FB0073 /* StyleProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385051F47852E00FB0073 /* StyleProperty.swift */; };
 		CC2385111F478E8A00FB0073 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385101F478E8A00FB0073 /* AppDelegate.swift */; };
@@ -25,8 +29,8 @@
 		CC23851B1F478E8A00FB0073 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC2385191F478E8A00FB0073 /* LaunchScreen.storyboard */; };
 		CC2385201F478E9600FB0073 /* Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Stylist.framework */; };
 		CC2385211F478E9600FB0073 /* Stylist.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Stylist.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CC2385261F47911200FB0073 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385251F47911200FB0073 /* View.swift */; };
-		CC2385291F47911200FB0073 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385251F47911200FB0073 /* View.swift */; };
+		CC2385261F47911200FB0073 /* Styleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385251F47911200FB0073 /* Styleable.swift */; };
+		CC2385291F47911200FB0073 /* Styleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2385251F47911200FB0073 /* Styleable.swift */; };
 		CC23852B1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
 		CC23852E1F47962D00FB0073 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC23852A1F47962D00FB0073 /* Theme.swift */; };
 		CC4486F71F4CB7A300E9092E /* ThemeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4486F61F4CB7A300E9092E /* ThemeError.swift */; };
@@ -49,6 +53,19 @@
 		CC68ECE61F487CBE0063AE1F /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
 		DD7502921C690C7A006590AF /* Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* Stylist.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		CC1295B420A6AF4D00804066 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = adam.swift;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		52D6D9881BEFF229002C0205 /* PBXContainerItemProxy */ = {
@@ -105,10 +122,12 @@
 		9245472812F659E9F0E1973B /* Pods_Stylist_tvOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_tvOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B7C7AC232B2BAE8BD63663 /* Pods-Stylist-iOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist-iOS Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2935BF998AD7BF0917564B7 /* Pods-Stylist-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stylist-tvOS/Pods-Stylist-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		AD2FAA261CD0B6D800659CF4 /* Stylist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Stylist.plist; sourceTree = "<group>"; };
-		AD2FAA281CD0B6E100659CF4 /* StylistTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StylistTests.plist; sourceTree = "<group>"; };
+		AD2FAA261CD0B6D800659CF4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD2FAA281CD0B6E100659CF4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCB9874A73066DD3C8CEFD63 /* Pods-Stylist-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stylist-iOS/Pods-Stylist-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C186A7E7F661536D838BB3A0 /* Pods_Stylist_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC196D7C20AEA368006161E3 /* UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKit.swift; sourceTree = "<group>"; };
+		CC196D7F20AEA3B4006161E3 /* Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
 		CC2385051F47852E00FB0073 /* StyleProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleProperty.swift; sourceTree = "<group>"; };
 		CC23850E1F478E8A00FB0073 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC2385101F478E8A00FB0073 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,7 +136,7 @@
 		CC2385171F478E8A00FB0073 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC23851A1F478E8A00FB0073 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC23851C1F478E8A00FB0073 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC2385251F47911200FB0073 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		CC2385251F47911200FB0073 /* Styleable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styleable.swift; sourceTree = "<group>"; };
 		CC23852A1F47962D00FB0073 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		CC4486F61F4CB7A300E9092E /* ThemeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeError.swift; sourceTree = "<group>"; };
 		CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAnchor.swift; sourceTree = "<group>"; };
@@ -217,7 +236,6 @@
 			children = (
 				8933C7811EB5B7E0000D00A4 /* Stylist */,
 				8933C7831EB5B7EB000D00A4 /* Tests */,
-				52D6D99C1BEFF38C002C0205 /* Configs */,
 				CC23850F1F478E8A00FB0073 /* Example */,
 				52D6D97D1BEFF229002C0205 /* Products */,
 				481DA5C0B46C8C7E8C32F115 /* Pods */,
@@ -235,15 +253,6 @@
 				CC23850E1F478E8A00FB0073 /* Example.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		52D6D99C1BEFF38C002C0205 /* Configs */ = {
-			isa = PBXGroup;
-			children = (
-				DD7502721C68FC1B006590AF /* Frameworks */,
-				DD7502731C68FC20006590AF /* Tests */,
-			);
-			path = Configs;
 			sourceTree = "<group>";
 		};
 		5D4EE681CFBA118382D8E40D /* Frameworks */ = {
@@ -264,17 +273,15 @@
 		8933C7811EB5B7E0000D00A4 /* Stylist */ = {
 			isa = PBXGroup;
 			children = (
-				8933C7841EB5B820000D00A4 /* Stylist.swift */,
-				CC2385051F47852E00FB0073 /* StyleProperty.swift */,
-				CC2385251F47911200FB0073 /* View.swift */,
-				CC23852A1F47962D00FB0073 /* Theme.swift */,
-				CC68ECD21F47A2AF0063AE1F /* Color.swift */,
-				CC68ECD71F4859060063AE1F /* Font.swift */,
-				CC68ECDC1F485B240063AE1F /* Image.swift */,
-				CC68ECE11F485E120063AE1F /* Style.swift */,
-				CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */,
+				AD2FAA261CD0B6D800659CF4 /* Info.plist */,
+				CC196D7A20AE9113006161E3 /* StyleValues */,
 				CC64F7021F49DFA900A5972F /* Properties.swift */,
+				CC68ECE11F485E120063AE1F /* Style.swift */,
 				CC64F7071F49EC0500A5972F /* StyleValue.swift */,
+				CC2385251F47911200FB0073 /* Styleable.swift */,
+				CC2385051F47852E00FB0073 /* StyleProperty.swift */,
+				8933C7841EB5B820000D00A4 /* Stylist.swift */,
+				CC23852A1F47962D00FB0073 /* Theme.swift */,
 				CC4486F61F4CB7A300E9092E /* ThemeError.swift */,
 			);
 			path = Stylist;
@@ -283,9 +290,23 @@
 		8933C7831EB5B7EB000D00A4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				AD2FAA281CD0B6E100659CF4 /* Info.plist */,
 				8933C7891EB5B82A000D00A4 /* StylistTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		CC196D7A20AE9113006161E3 /* StyleValues */ = {
+			isa = PBXGroup;
+			children = (
+				CC68ECD71F4859060063AE1F /* Font.swift */,
+				CC68ECDC1F485B240063AE1F /* Image.swift */,
+				CC68ECD21F47A2AF0063AE1F /* Color.swift */,
+				CC196D7C20AEA368006161E3 /* UIKit.swift */,
+				CC196D7F20AEA3B4006161E3 /* Swift.swift */,
+				CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */,
+			);
+			path = StyleValues;
 			sourceTree = "<group>";
 		};
 		CC23850F1F478E8A00FB0073 /* Example */ = {
@@ -300,22 +321,6 @@
 				CC68ECD01F47A1540063AE1F /* Style.yaml */,
 			);
 			path = Example;
-			sourceTree = "<group>";
-		};
-		DD7502721C68FC1B006590AF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AD2FAA261CD0B6D800659CF4 /* Stylist.plist */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DD7502731C68FC20006590AF /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				AD2FAA281CD0B6E100659CF4 /* StylistTests.plist */,
-			);
-			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +413,7 @@
 				6C396662B8EF02F90CA99A0C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				CC1295B420A6AF4D00804066 /* PBXBuildRule */,
 			);
 			dependencies = (
 				CC2385231F478E9600FB0073 /* PBXTargetDependency */,
@@ -704,16 +710,18 @@
 			files = (
 				CC64F7081F49EC0500A5972F /* StyleValue.swift in Sources */,
 				CC68ECDD1F485B240063AE1F /* Image.swift in Sources */,
-				CC2385261F47911200FB0073 /* View.swift in Sources */,
+				CC2385261F47911200FB0073 /* Styleable.swift in Sources */,
 				CC23852B1F47962D00FB0073 /* Theme.swift in Sources */,
 				CC68ECD81F4859060063AE1F /* Font.swift in Sources */,
 				CC64F6FE1F48FEC100A5972F /* LayoutAnchor.swift in Sources */,
 				CC2385061F47852E00FB0073 /* StyleProperty.swift in Sources */,
 				CC4486F71F4CB7A300E9092E /* ThemeError.swift in Sources */,
 				CC68ECD31F47A2AF0063AE1F /* Color.swift in Sources */,
+				CC196D7D20AEA368006161E3 /* UIKit.swift in Sources */,
 				8933C7851EB5B820000D00A4 /* Stylist.swift in Sources */,
 				CC64F7031F49DFA900A5972F /* Properties.swift in Sources */,
 				CC68ECE21F485E120063AE1F /* Style.swift in Sources */,
+				CC196D8020AEA3B4006161E3 /* Swift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,16 +739,18 @@
 			files = (
 				CC64F70B1F49EC0500A5972F /* StyleValue.swift in Sources */,
 				CC68ECE01F485B240063AE1F /* Image.swift in Sources */,
-				CC2385291F47911200FB0073 /* View.swift in Sources */,
+				CC2385291F47911200FB0073 /* Styleable.swift in Sources */,
 				CC23852E1F47962D00FB0073 /* Theme.swift in Sources */,
 				CC68ECDB1F4859060063AE1F /* Font.swift in Sources */,
 				CC64F7011F48FEC100A5972F /* LayoutAnchor.swift in Sources */,
 				CC2385091F47852E00FB0073 /* StyleProperty.swift in Sources */,
 				CC4486F81F4CB7A300E9092E /* ThemeError.swift in Sources */,
 				CC68ECD61F47A2AF0063AE1F /* Color.swift in Sources */,
+				CC196D7E20AEA368006161E3 /* UIKit.swift in Sources */,
 				8933C7881EB5B820000D00A4 /* Stylist.swift in Sources */,
 				CC64F7061F49DFA900A5972F /* Properties.swift in Sources */,
 				CC68ECE51F485E120063AE1F /* Style.swift in Sources */,
+				CC196D8120AEA3B4006161E3 /* Swift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,7 +934,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Configs/Stylist.plist;
+				INFOPLIST_FILE = Stylist/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-iOS";
@@ -946,7 +956,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Configs/Stylist.plist;
+				INFOPLIST_FILE = Stylist/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-iOS";
@@ -961,7 +971,7 @@
 			baseConfigurationReference = 94B7C7AC232B2BAE8BD63663 /* Pods-Stylist-iOS Tests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Configs/StylistTests.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-iOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -974,7 +984,7 @@
 			baseConfigurationReference = E06370705087C18CBC932908 /* Pods-Stylist-iOS Tests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Configs/StylistTests.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-iOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -992,7 +1002,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Configs/Stylist.plist;
+				INFOPLIST_FILE = Stylist/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-tvOS";
@@ -1014,7 +1024,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Configs/Stylist.plist;
+				INFOPLIST_FILE = Stylist/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-tvOS";
@@ -1067,7 +1077,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F1E9D81D5749A9F03B569685 /* Pods-Stylist-tvOS Tests.debug.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = Configs/StylistTests.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-tvOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1080,7 +1090,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA610C85A3762614BB8B5179 /* Pods-Stylist-tvOS Tests.release.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = Configs/StylistTests.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Stylist.Stylist-tvOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";

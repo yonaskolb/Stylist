@@ -15,7 +15,7 @@ public class Stylist {
 
     var fileWatchers: [FileWatcherProtocol] = []
 
-    var viewStyles: [String: [WeakContainer<NSObject>]] = [:]
+    var viewStyles: [String: [WeakContainer<NSObjectProtocol>]] = [:]
 
     var properties: [StyleProperty] = []
 
@@ -39,19 +39,22 @@ public class Stylist {
 
     func clear() {
         viewStyles = [:]
+        themes = [:]
+        fileWatchers = []
+        properties = StyleProperties.view
     }
 
-    func setStyles(view: NSObject, styles: [String]) {
+    func setStyles(styleable: Styleable, styles: [String]) {
         for style in styles {
-            var views: [WeakContainer<NSObject>]
+            var views: [WeakContainer<NSObjectProtocol>]
             if let existingViews = viewStyles[style] {
                 views = existingViews.filter { $0.value != nil }
             } else {
                 views = []
             }
 
-            if !views.contains(where: { $0.value! === view }) {
-                views.append(WeakContainer(view))
+            if !views.contains(where: { $0.value! === styleable }) {
+                views.append(WeakContainer(styleable))
             }
             viewStyles[style] = views
         }
@@ -59,28 +62,28 @@ public class Stylist {
         for theme in themes.values {
             for style in styles {
                 if let style = theme.getStyle(style) {
-                    apply(view: view, style: style)
+                    apply(styleable: styleable, style: style)
                 }
             }
         }
     }
 
-    func apply(view: Any, style: Style) {
+    func apply(styleable: Any, style: Style) {
         for styleProperty in style.properties {
 
             guard styleProperty.context.isValidDevice else { continue }
 
-            let properties = getValidProperties(name: styleProperty.name, view: view)
+            let properties = getValidProperties(name: styleProperty.name, view: styleable)
             for property in properties {
                 do {
-                    try property.apply(view, styleProperty)
+                    try property.apply(styleable, styleProperty)
                 } catch {
                     print("Error applying property: \(error)")
                 }
             }
         }
-        if let view = view as? View, let parent = view.superview, let parentStyle = style.parentStyle {
-            apply(view: parent, style: parentStyle)
+        if let view = styleable as? View, let parent = view.superview, let parentStyle = style.parentStyle {
+            apply(styleable: parent, style: parentStyle)
         }
     }
 
@@ -88,11 +91,11 @@ public class Stylist {
         return properties.filter { $0.canStyle(name: name, view: view) }
     }
 
-    func getStyles(view: NSObject) -> [String] {
+    func getStyles(styleable: Styleable) -> [String] {
         var styles: [String] = []
         for (style, views) in viewStyles {
             for viewContainer in views {
-                if let value = viewContainer.value, value === view {
+                if let value = viewContainer.value, value === styleable {
                     styles.append(style)
                 }
             }
@@ -104,7 +107,7 @@ public class Stylist {
         for style in theme.styles {
             if let views = viewStyles[style.name] {
                 for view in views.compactMap({ $0.value }) {
-                    apply(view: view, style: style)
+                    apply(styleable: view, style: style)
                 }
             }
             for property in style.properties {
@@ -121,7 +124,12 @@ public class Stylist {
     /// - Throws: throws if the file is not found or parsing fails
     public func load(path: String) throws {
         let theme = try Theme(path: path)
-        themes[path] = theme
+        addTheme(theme, name: path)
+    }
+
+    /// Adds a Theme with a name
+    public func addTheme(_ theme: Theme, name: String) {
+        themes[name] = theme
         apply(theme: theme)
     }
 
@@ -174,7 +182,7 @@ public class Stylist {
     }
 }
 
-struct WeakContainer<T> where T: AnyObject {
+struct WeakContainer<T> where T: NSObjectProtocol {
     weak var value: T?
 
     init(_ value: T) {

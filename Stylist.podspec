@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "9.0"
   s.tvos.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/yonaskolb/Stylist.git", :tag => s.version.to_s }
-  s.source_files  = "Stylist/**/*"
+  s.source_files  = "Stylist/**/*.swift"
   s.frameworks  = "Foundation"
   s.dependency 'Yams'
   s.dependency 'KZFileWatchers'

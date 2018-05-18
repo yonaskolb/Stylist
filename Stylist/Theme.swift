@@ -9,7 +9,7 @@
 import Foundation
 import Yams
 
-public struct Theme {
+public struct Theme: Equatable {
 
     public let variables: [String: Any]
     public let styles: [Style]
@@ -24,6 +24,11 @@ public struct Theme {
             return nil
         }
         return style
+    }
+
+    public static func == (lhs: Theme, rhs: Theme) -> Bool {
+        return NSDictionary(dictionary: lhs.variables).isEqual(to: rhs.variables)
+            && lhs.styles == rhs.styles
     }
 }
 
@@ -53,14 +58,8 @@ extension Theme {
 
     public init(dictionary: [String: Any]) throws {
         var styles: [Style] = []
-        var variables: [String: Any] = [:]
-        var stylesDictionary = dictionary
-
-        if let variablesDictionary = dictionary["variables"] as? [String: Any] {
-            variables = variablesDictionary
-            stylesDictionary = (dictionary["styles"] as? [String: Any]) ?? [:]
-        }
-        self.variables = variables
+        var variables: [String: Any] = dictionary["variables"] as? [String: Any] ?? [:]
+        let stylesDictionary = (dictionary["styles"] as? [String: Any]) ?? [:]
 
         for (key, value) in stylesDictionary {
             if var styleDictionary = value as? [String: Any] {
@@ -107,7 +106,7 @@ extension Theme {
                         }
 
                         let propertyValue = try resolveVariable(value)
-                        properties.append(try StylePropertyValue(name: propertyName, value: propertyValue))
+                        properties.append(try StylePropertyValue(id: propertyName, value: propertyValue))
                     }
                     var parentStyle: Style?
                     if let parentDictionary = dictionary["parent"] as? [String: Any] {
@@ -120,5 +119,6 @@ extension Theme {
             }
         }
         self.styles = styles
+        self.variables = variables
     }
 }

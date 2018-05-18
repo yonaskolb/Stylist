@@ -14,7 +14,7 @@ import Foundation
     import Cocoa
 #endif
 
-public class Style {
+public class Style: Equatable {
     public let name: String
     let properties: [StylePropertyValue]
     let parentStyle: Style?
@@ -24,16 +24,28 @@ public class Style {
         self.properties = properties
         self.parentStyle = parentStyle
     }
+
+    public static func == (lhs: Style, rhs: Style) -> Bool {
+        return lhs.name == rhs.name
+            && lhs.properties == rhs.properties
+            && lhs.parentStyle == rhs.parentStyle
+    }
 }
 
-struct StylePropertyValue {
+struct StylePropertyValue: Equatable {
     let name: String
     let value: Any
     let context: PropertyContext
 
-    init(name: String, value: Any) throws {
+    init(name: String, value: Any, context: PropertyContext = PropertyContext()) {
+        self.name = name
+        self.value = value
+        self.context = context
+    }
 
-        var propertyName = name
+    init(id: String, value: Any) throws {
+
+        var propertyName = id
 
         var device = UIUserInterfaceIdiom.unspecified
         var controlState: UIControlState = .normal
@@ -42,8 +54,8 @@ struct StylePropertyValue {
 
         if let match = try! NSRegularExpression(pattern: "(.*)\\(device:(.*)\\)", options: []).firstMatch(in: propertyName, options: [], range: NSRange(location: 0, length: propertyName.count)) {
 
-            propertyName = (name as NSString).substring(with: match.range(at: 1))
-            let deviceString = (name as NSString).substring(with: match.range(at: 2))
+            propertyName = (id as NSString).substring(with: match.range(at: 1))
+            let deviceString = (id as NSString).substring(with: match.range(at: 2))
             switch deviceString.lowercased() {
             case "iphone", "phone": device = .phone
             case "ipad", "pad": device = .pad
@@ -63,14 +75,18 @@ struct StylePropertyValue {
                 throw ThemeError.invalidControlState(name: propertyName, controlState: controlStateString)
             }
         }
+        let context = PropertyContext(device: device, controlState: controlState, barMetrics: barMetrics)
+        self.init(name: propertyName, value: value, context: context)
+    }
 
-        self.name = propertyName
-        self.value = value
-        context = PropertyContext(device: device, controlState: controlState, barMetrics: barMetrics)
+    public static func == (lhs: StylePropertyValue, rhs: StylePropertyValue) -> Bool {
+        return lhs.name == rhs.name
+        && lhs.context == rhs.context
+        && String(describing: lhs.value) == String(describing: rhs.value)
     }
 }
 
-public struct PropertyContext {
+public struct PropertyContext: Equatable {
 
     public let device: UIUserInterfaceIdiom
     public let controlState: UIControlState

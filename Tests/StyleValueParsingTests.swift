@@ -141,17 +141,6 @@ class StyleValueParsingTests: XCTestCase {
         assertStyleValueParsingNil(UILayoutConstraintAxis.self, "invalid")
     }
 
-    func testUIBarStyleParsing() throws {
-        assertStyleValueParsing(UIBarStyle.black, "black")
-        assertStyleValueParsing(UIBarStyle.default, "default")
-        assertStyleValueParsing(UIBarStyle.blackTranslucent, "blackTranslucent")
-
-        assertStyleValueParsing(UIBarStyle.blackTranslucent, "black translucent")
-        assertStyleValueParsing(UIBarStyle.blackTranslucent, "blacktranslucent")
-
-        assertStyleValueParsingNil(UIViewContentMode.self, "invalid")
-    }
-
     func testUILayoutConstraintAxisParsing() throws {
         assertStyleValueParsing(UILayoutConstraintAxis.vertical, "vertical")
         assertStyleValueParsing(UILayoutConstraintAxis.horizontal, "horizontal")
@@ -207,4 +196,17 @@ class StyleValueParsingTests: XCTestCase {
 
         assertStyleValueParsingNil(AspectRatioAnchor.self, "invalid")
     }
+
+    #if os(iOS)
+    func testUIBarStyleParsing() throws {
+        assertStyleValueParsing(UIBarStyle.black, "black")
+        assertStyleValueParsing(UIBarStyle.default, "default")
+        assertStyleValueParsing(UIBarStyle.blackTranslucent, "blackTranslucent")
+
+        assertStyleValueParsing(UIBarStyle.blackTranslucent, "black translucent")
+        assertStyleValueParsing(UIBarStyle.blackTranslucent, "blacktranslucent")
+
+        assertStyleValueParsingNil(UIViewContentMode.self, "invalid")
+    }
+    #endif
 }

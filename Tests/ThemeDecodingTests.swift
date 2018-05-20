@@ -12,7 +12,7 @@ import XCTest
 import Yams
 
 class ThemeDecodingTests: XCTestCase {
-    
+
     func testVariableSubstitution() throws {
         let string = """
         variables:
@@ -73,33 +73,41 @@ class ThemeDecodingTests: XCTestCase {
 
     func testThemeDecodingErrors() throws {
 
-        func expectError(theme string: String, expectedError: ThemeError, file: StaticString = #file, line: UInt = #line) {
-            do {
-                let theme = try Theme(string: string)
-                XCTFail("Theme decoded \(theme) but was supposed to fail with error \(expectedError)", file: file, line: line)
-            } catch let error as ThemeError {
-                XCTAssertEqual(error, expectedError, file: file, line: line)
-            } catch {
-                XCTFail("Theme failed decoding with error \(error) but expected error \(expectedError)", file: file, line: line)
-            }
-        }
-
-        func theme(style: String = "testStyle", property: String? = nil, variable: String? = nil) -> String {
+        func themeString(style: String = "testStyle", property: String? = nil) throws {
             var theme = ""
-            if let variable = variable {
-                theme += "\nvariables:\n  \(variable)"
-            }
             if let property = property {
                 theme += "\nstyles:\n  \(style):\n    \(property)"
             }
-            return theme
+            _ = try Theme(string: theme)
         }
 
-        expectError(theme: "^&*@#$", expectedError: ThemeError.decodingError)
-        expectError(theme: theme(property: "prop: $variable", variable: "var: red"), expectedError: ThemeError.invalidVariable(name:
-            "prop", variable: "variable"))
-        expectError(theme: theme(property: "prop: $variable"), expectedError: ThemeError.invalidVariable(name:
-            "prop", variable: "variable"))
+        expectError(ThemeError.notFound) {
+            _ = try Theme(path: "invalid")
+        }
+
+        expectError(ThemeError.decodingError) {
+            _ = try Theme(string: "^&*@#$")
+        }
+
+        expectError(ThemeError.invalidVariable(name: "prop", variable: "variable")) {
+            try themeString(property: "prop: $variable")
+        }
+
+        expectError(ThemeError.invalidStyleReference(style: "testStyle", reference: "invalid")) {
+           try themeString(property: "styles: [invalid]")
+        }
+
+        expectError(ThemeError.invalidControlState(name: "color", controlState: "invalid")) {
+            try themeString(property: "color:invalid: red")
+        }
+
+        expectError(ThemeError.invalidDevice(name: "color", device: "invalid")) {
+            try themeString(property: "color(device:invalid): red")
+        }
+
+//        expectError(ThemeError.invalidBarMetrics(name: "color", barMetrics: "invalid")) {
+//            try themeString(property: "color(barMetrics:invalid): red")
+//        }
     }
     
 }

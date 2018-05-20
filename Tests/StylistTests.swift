@@ -43,6 +43,8 @@ class StylistTests: XCTestCase {
             ])
 
         stylist.addTheme(theme, name: "theme")
+        XCTAssertEqual(stylist.themes["theme"], theme)
+
         let view = UIView()
         stylist.setStyles(styleable: view, styles: ["blueBack", "rounded"])
 
@@ -62,6 +64,16 @@ class StylistTests: XCTestCase {
         
         XCTAssertEqual(view.backgroundColor, .red)
         XCTAssertEqual(view.layer.cornerRadius, 5)
+    }
+
+    func testSettingStyles() {
+        let view = UIView()
+        view.style = "test"
+        XCTAssertEqual(view.style, "test")
+        XCTAssertEqual(view.styles, ["test"])
+        view.styles = ["one", "two"]
+        //XCTAssertEqual(view.styles, ["one", "two"])
+        //XCTAssertEqual(view.style, "one")
     }
 
     func testSetStyles() throws {
@@ -96,5 +108,21 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(view.backgroundColor, .red)
         XCTAssertEqual(view.layer.cornerRadius, 5)
     }
+
+    //TODO test loading files
+
+    //TODO: test watching files
+
+    //TODO: test set correct style property based on PropertyContext
+
+    //TODO: test custom property
+
+    //TODO: test shared styles
+
+    //TODO: test custom Styleable
+
+    //TODO: test UIBarItem
+
+    //TODO: test all default properties
 
 }

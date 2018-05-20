@@ -1,28 +1,20 @@
 PODS:
   - KZFileWatchers (1.0.5)
-  - Nimble (7.1.1)
-  - Quick (1.3.0)
   - Yams (0.7.0)
 
 DEPENDENCIES:
   - KZFileWatchers
-  - Nimble
-  - Quick
   - Yams
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - KZFileWatchers
-    - Nimble
-    - Quick
     - Yams
 
 SPEC CHECKSUMS:
   KZFileWatchers: cdb033e4120fbe61c8e0f4df3613d5894741653d
-  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
-  Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
   Yams: 9dfe90be5b942df6fa42ead8e6f0313e05600755
 
-PODFILE CHECKSUM: 8ec66bf2f426e369bc22fd7fff11c7e86d1e2695
+PODFILE CHECKSUM: 413f6583afac1b695d510112f382d304e2f88192
 
 COCOAPODS: 1.5.0

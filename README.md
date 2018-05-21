@@ -1,5 +1,8 @@
 #  Stylist 🎨
 
+[![Build Status](https://img.shields.io/circleci/project/github/yonaskolb/Stylist.svg?style=for-the-badge)](https://circleci.com/gh/yonaskolb/Stylist)
+[![license](https://img.shields.io/github/license/yonaskolb/Stylist.svg?style=for-the-badge)](https://github.com/yonaskolb/Stylist/blob/master/LICENSE)
+
 Stylist lets you define UI styles in a hot reloadable external yaml or json theme file
 
 - ✅ **Group styles** in a human readable way

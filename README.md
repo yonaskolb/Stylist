@@ -3,15 +3,16 @@
 [![Build Status](https://img.shields.io/circleci/project/github/yonaskolb/Stylist.svg?style=for-the-badge)](https://circleci.com/gh/yonaskolb/Stylist)
 [![license](https://img.shields.io/github/license/yonaskolb/Stylist.svg?style=for-the-badge)](https://github.com/yonaskolb/Stylist/blob/master/LICENSE)
 
-Stylist lets you define UI styles in a hot reloadable external yaml or json theme file
+Stylist lets you define UI styles in a hot-reloadable external yaml or json theme file
 
-- ✅ **Group styles** in a human readable way
+- ✅ Define styles in **external themes**
 - ✅ Apply styles through code or **Interface Builder**
-- ✅ **Hotload** styles to see results immediatly without compiling
+- ✅ **Hotload** themes to see results immediatly without recompiling
+- ✅ **Swap** entire themes on the fly
 - ✅ Built in style properties for all popular **UIKit** classes
 - ✅ Reference **variables** for commonly used properties
 - ✅ Reference **styles** in other styles for a customizable heirachy
-- ✅ Define **custom** properties and custom parsing to set any property you wish
+- ✅ Define **custom** strongly type properties and custom parsing to set any property you wish
 
 Example theme:
 
@@ -40,7 +41,7 @@ styles:
   themed:
     tintColor: $primaryColor
   mainSection:
-    style: [themed]
+    styles: [themed]
 ```
 
 ## ⬇️ Installing
@@ -62,15 +63,19 @@ To set a style on a UIView, simply set it's `style` property:
 myView.style = "myStyle"
 ```
 A style can also be set in Interface Builder in the property inspector.
-To load a style simply call:
+
+
+To load a Theme simply call:
 
 ```swift
 Stylist.shared.load(path: pathToFile)
 ```
 
+You can load multiple themes, and they will all be applied as long as they have different paths
+
 ## 🖌 Style Properties
 Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](Docs/StyleProperties.MD).
-Each style can also reference an array other other styles, that will be merged in order
+Each style can also reference an array of other styles that will be merged in order
 
 ## 🔥 Hot Reloading
 You can choose to watch a file, which means that whever that file is changed the styles are reloaded. The file can be a local file on disk or a remote file.
@@ -88,7 +93,7 @@ To stop watching the file, you can call `stop()` on the `FileWatcher` that is re
 Note that if a style property was present and you then remove it, Stylist cannot revert the change so that property will remain in the previous state.
 
 ## ⚙️ Custom Properties
-Custom properties and parsers can also be added to let you configure anything you wish:
+Custom properties and parsers can also be added to let you configure anything you wish in a strongly typed way:
 
 ```swift
 Stylist.shared.addProperty("textTransform") { (view: MyView, value: PropertyValue<MyProperty>) in
@@ -103,7 +108,6 @@ public protocol StyleValue {
     static func parse(value: Any) -> ParsedType?
 }
 ```
-You can load multiple themes, and they will all be applied as long as they have different paths
 
 Many different types of properties are already supported and listed here in [Style Property Types](Docs/StyleProperties.MD#types)
 

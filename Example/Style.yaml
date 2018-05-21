@@ -5,7 +5,8 @@ styles:
     textColor: red
     font: $primaryFont
   customView:
-    backgroundColor: blue
+    backgroundColor(h:regular): yellow
+    backgroundColor(h:compact): blue
     cornerRadius: 20
     borderColor: blue
     borderWidth: 2

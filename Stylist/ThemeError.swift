@@ -15,5 +15,6 @@ public enum ThemeError: Error, Equatable {
     case invalidStyleReference(style: String, reference: String)
     case invalidPropertyState(name: String, state: String)
     case invalidDevice(name: String, device: String)
+    case invalidSizeClass(name: String, sizeClass: String)
     case invalidStyleContext(String)
 }

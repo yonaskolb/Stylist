@@ -77,7 +77,7 @@ public class Stylist {
     func apply(styleable: Any, style: Style) {
         for styleProperty in style.properties {
 
-            guard styleProperty.context.styleContext.isValidDevice else { continue }
+            guard styleProperty.context.styleContext.targets(styleable: styleable) else { continue }
 
             let properties = getValidProperties(name: styleProperty.name, view: styleable)
             for property in properties {

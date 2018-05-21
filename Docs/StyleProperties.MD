@@ -69,6 +69,8 @@ Many other UIKit types are parsable too:
 ## Queries
 There are a few ways to limit the scope of a property similar to media queries in CSS
 
+### State
+
 #### UIControlState
 For properties that are specific to a UIControlState you can use the format
 
@@ -81,6 +83,20 @@ for example:
 textColor:highlighted: red
 ```
 
+#### UIBarMetrics
+For properties that are specific to a UIControlState you can use the format
+
+```yaml
+property:barMetrics: value
+```
+for example: 
+
+```yaml
+backgroundImage:compact: compact_bar
+```
+
+### Trait Collection
+
 #### Device
 Properties can be specific to a device using using the format: 
 
@@ -91,6 +107,23 @@ for example:
 
 ```yaml
 font(device:iphone): MyFont:32
+```
+
+#### Size Class
+Properties can be specified for a certain horizontal or vertical size class using the format: 
+
+```yaml
+property(h/v:UIUserInterfaceSizeClass): value
+```
+for example: 
+
+```yaml
+font(h:regular): MyFont:32
+```
+
+All these contexts can be combined together
+```yaml
+color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 ```
 
 ## Properties

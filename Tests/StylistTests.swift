@@ -76,6 +76,21 @@ class StylistTests: XCTestCase {
         //XCTAssertEqual(view.style, "one")
     }
 
+    func testFilteringSizeClasses() {
+
+        let view = UIView()
+        let traitCollection = UITraitCollection(horizontalSizeClass: .compact)
+        TraitViewController.addTraits([traitCollection], to: view)
+
+        let style = Style(name: "", properties: [
+            StylePropertyValue(name: "backgroundColor", value: "green", context: PropertyContext(styleContext: .init(horizontalSizeClass: .compact))),
+            StylePropertyValue(name: "backgroundColor", value: "red", context: PropertyContext(styleContext: .init(horizontalSizeClass: .regular)))
+            ])
+        Stylist.shared.apply(styleable: view, style: style)
+
+        XCTAssertEqual(view.backgroundColor, .green)
+    }
+
     func testSetStyles() throws {
 
         let theme = Theme(styles: [
@@ -109,7 +124,7 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(view.layer.cornerRadius, 5)
     }
 
-    //TODO test loading files
+    //TODO: test loading files
 
     //TODO: test watching files
 
@@ -126,3 +141,34 @@ class StylistTests: XCTestCase {
     //TODO: test all default properties
 
 }
+
+class TraitViewController: UIViewController {
+
+    let childViewController: UIViewController
+    let traits: [UITraitCollection]
+
+    init(traits: [UITraitCollection], view: UIView) {
+        self.traits = traits
+        childViewController = UIViewController()
+        super.init(nibName: nil, bundle: nil)
+
+        self.view.addSubview(childViewController.view)
+        addChildViewController(childViewController)
+        childViewController.willMove(toParentViewController: self)
+        childViewController.didMove(toParentViewController: self)
+        childViewController.view.addSubview(view)
+    }
+
+    static func addTraits(_ traits: [UITraitCollection], to view: UIView) {
+        _ = TraitViewController(traits: traits, view: view)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func overrideTraitCollection(forChildViewController childViewController: UIViewController) -> UITraitCollection? {
+        return UITraitCollection(traitsFrom: traits)
+    }
+}
+

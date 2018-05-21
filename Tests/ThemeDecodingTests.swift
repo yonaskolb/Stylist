@@ -61,7 +61,7 @@ class ThemeDecodingTests: XCTestCase {
 
         let values = try [
             StylePropertyValue(id: "textColor:selected(device:ipad)", value: "red"),
-            StylePropertyValue(id: "textColor:compact(device:phone)", value: "blue")
+            StylePropertyValue(id: "textColor:compact(device:phone, h:regular)", value: "blue")
         ]
 
         let expectedValues = [
@@ -70,7 +70,7 @@ class ThemeDecodingTests: XCTestCase {
                                context: PropertyContext(styleContext: .init(device: .pad), controlState: .selected)),
             StylePropertyValue(name: "textColor",
                                value: "blue",
-                               context: PropertyContext(styleContext: .init(device: .phone), barMetrics: .compact))
+                               context: PropertyContext(styleContext: .init(device: .phone, horizontalSizeClass: .regular), barMetrics: .compact))
         ]
         XCTAssertEqual(values, expectedValues)
     }
@@ -79,8 +79,8 @@ class ThemeDecodingTests: XCTestCase {
         let ids: [String] = [
             "color(device:pad)",
             "color(device: ipad)",
-            "color(device:phone)",
-            "color(device: iphone)",
+            "color(device:phone,h:regular)",
+            "color(device: iphone, v: compact)",
         ]
 
         let contexts: [StyleContext] = try ids.map { try StyleContext.getContext(id: $0).context }
@@ -88,8 +88,8 @@ class ThemeDecodingTests: XCTestCase {
         let expectedContexts: [StyleContext] = [
             StyleContext(device: .pad),
             StyleContext(device: .pad),
-            StyleContext(device: .phone),
-            StyleContext(device: .phone),
+            StyleContext(device: .phone, horizontalSizeClass: .regular),
+            StyleContext(device: .phone, verticalSizeClass: .compact),
         ]
 
         XCTAssertEqual(contexts, expectedContexts)

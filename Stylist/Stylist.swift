@@ -22,7 +22,12 @@ public class Stylist {
     public var themes: [String: Theme] = [:]
 
     init() {
+        addDefaultProperties()
+    }
+
+    func addDefaultProperties() {
         properties += StyleProperties.view
+        properties += StyleProperties.barItem
     }
 
     public func addProperty<ViewType, PropertyType>(_ name: String, viewType: ViewType.Type, propertyType: PropertyType.Type, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
@@ -41,7 +46,8 @@ public class Stylist {
         viewStyles = [:]
         themes = [:]
         fileWatchers = []
-        properties = StyleProperties.view
+        properties = []
+        addDefaultProperties()
     }
 
     func setStyles(styleable: Styleable, styles: [String]) {
@@ -71,7 +77,7 @@ public class Stylist {
     func apply(styleable: Any, style: Style) {
         for styleProperty in style.properties {
 
-            guard styleProperty.context.isValidDevice else { continue }
+            guard styleProperty.context.styleContext.isValidDevice else { continue }
 
             let properties = getValidProperties(name: styleProperty.name, view: styleable)
             for property in properties {

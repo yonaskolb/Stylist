@@ -13,7 +13,7 @@ public enum ThemeError: Error, Equatable {
     case decodingError
     case invalidVariable(name: String, variable: String)
     case invalidStyleReference(style: String, reference: String)
-    case invalidControlState(name: String, controlState: String)
+    case invalidPropertyState(name: String, state: String)
     case invalidDevice(name: String, device: String)
-    case invalidBarMetrics(name: String, barMetrics: String)
+    case invalidStyleContext(String)
 }

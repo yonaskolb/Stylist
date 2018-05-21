@@ -51,7 +51,7 @@ class ThemeDecodingTests: XCTestCase {
                 Style(name: "header", properties: [
                     StylePropertyValue(name: "textColor",
                                        value: "blue:0.5",
-                                       context: PropertyContext(device: .pad, controlState: .selected))
+                                       context: PropertyContext(styleContext: .init(device: .pad), controlState: .selected))
                     ])
             ])
         XCTAssertEqual(theme, expectedTheme)
@@ -60,15 +60,39 @@ class ThemeDecodingTests: XCTestCase {
     func testPropertyContextDecoding() throws {
 
         let values = try [
-            StylePropertyValue(id: "textColor:selected(device:ipad)", value: "red")
+            StylePropertyValue(id: "textColor:selected(device:ipad)", value: "red"),
+            StylePropertyValue(id: "textColor:compact(device:phone)", value: "blue")
         ]
 
         let expectedValues = [
             StylePropertyValue(name: "textColor",
                                value: "red",
-                               context: PropertyContext(device: .pad, controlState: .selected))
+                               context: PropertyContext(styleContext: .init(device: .pad), controlState: .selected)),
+            StylePropertyValue(name: "textColor",
+                               value: "blue",
+                               context: PropertyContext(styleContext: .init(device: .phone), barMetrics: .compact))
         ]
         XCTAssertEqual(values, expectedValues)
+    }
+
+    func testStyleContextDecoding() throws {
+        let ids: [String] = [
+            "color(device:pad)",
+            "color(device: ipad)",
+            "color(device:phone)",
+            "color(device: iphone)",
+        ]
+
+        let contexts: [StyleContext] = try ids.map { try StyleContext.getContext(id: $0).context }
+
+        let expectedContexts: [StyleContext] = [
+            StyleContext(device: .pad),
+            StyleContext(device: .pad),
+            StyleContext(device: .phone),
+            StyleContext(device: .phone),
+        ]
+
+        XCTAssertEqual(contexts, expectedContexts)
     }
 
     func testThemeDecodingErrors() throws {
@@ -97,7 +121,7 @@ class ThemeDecodingTests: XCTestCase {
            try themeString(property: "styles: [invalid]")
         }
 
-        expectError(ThemeError.invalidControlState(name: "color", controlState: "invalid")) {
+        expectError(ThemeError.invalidPropertyState(name: "color", state: "invalid")) {
             try themeString(property: "color:invalid: red")
         }
 
@@ -105,9 +129,13 @@ class ThemeDecodingTests: XCTestCase {
             try themeString(property: "color(device:invalid): red")
         }
 
-//        expectError(ThemeError.invalidBarMetrics(name: "color", barMetrics: "invalid")) {
-//            try themeString(property: "color(barMetrics:invalid): red")
-//        }
+        expectError(ThemeError.invalidStyleContext("color(invalid)")) {
+            try themeString(property: "color(invalid): red")
+        }
+
+        expectError(ThemeError.invalidStyleContext("color(invalid:ipad)")) {
+            try themeString(property: "color(invalid:ipad): red")
+        }
     }
     
 }

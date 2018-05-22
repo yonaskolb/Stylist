@@ -38,6 +38,24 @@ enum StyleProperties {
             view.alpha = value.value
         }
 
+        // UIView Frame
+
+        add("position") { (view: View, value: PropertyValue<CGPoint>) in
+            view.frame.origin = value.value
+        }
+
+        add("origin") { (view: View, value: PropertyValue<CGPoint>) in
+            view.frame.origin = value.value
+        }
+
+        add("size") { (view: View, value: PropertyValue<CGSize>) in
+            view.frame.size = value.value
+        }
+
+        add("frame") { (view: View, value: PropertyValue<CGRect>) in
+            view.frame = value.value
+        }
+
         // Layer
 
         add("borderColor") { (view: View, value: PropertyValue<Color>) in

@@ -58,6 +58,10 @@ Many other UIKit types are parsable too:
 - UIStackViewDistribution
 - UILayoutConstraintAxis
 - UIBarStyle
+- CGPoint
+	- x, y: `10,10` 
+- CGRect
+ 	- x, y, width, height: `10,10,30,30`
 - CGSize
 	- square: `5`
 	- width, height: `10,20`
@@ -150,6 +154,10 @@ color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- widthAnchor: LayoutAnchor
 	- heightAnchor: LayoutAnchor
 	- aspectRatioAnchor: Double or a division (`0.5` or `1/2`)
+- UIView frame
+	- origin: CGPoint
+	- size: CGSize
+	- frame: CGRect 
 - UIImageView
 	- image: Image
 - UIButton

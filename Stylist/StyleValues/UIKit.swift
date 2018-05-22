@@ -29,6 +29,47 @@ extension CGFloat: StyleValue {
     }
 }
 
+extension CGPoint: StyleValue {
+
+    public static func parse(value: Any) -> CGPoint? {
+        var floats: [CGFloat]?
+        if let float = CGFloat.parse(value: value) {
+            return CGPoint(x: float, y: float)
+        } else if let string = value as? String {
+            let edgeStrings = string.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+            floats = edgeStrings.compactMap { CGFloat.parse(value: $0) }
+        } else if let array = value as? [Any] {
+            floats = array.compactMap { CGFloat.parse(value: $0) }
+        }
+        if let floats = floats {
+            if floats.count == 2 {
+                return CGPoint(x: floats[0], y: floats[1])
+            }
+        }
+        return nil
+    }
+}
+
+extension CGRect: StyleValue {
+
+    public static func parse(value: Any) -> CGRect? {
+        var floats: [CGFloat]?
+        if let string = value as? String {
+            let edgeStrings = string.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+            floats = edgeStrings.compactMap { CGFloat.parse(value: $0) }
+        } else if let array = value as? [Any] {
+            floats = array.compactMap { CGFloat.parse(value: $0) }
+        }
+        if let floats = floats {
+            if floats.count == 4 {
+                return CGRect(x: floats[0], y: floats[1], width: floats[2], height: floats[3])
+            }
+        }
+
+        return nil
+    }
+}
+
 extension UIEdgeInsets: StyleValue {
 
     public static func parse(value: Any) -> UIEdgeInsets? {

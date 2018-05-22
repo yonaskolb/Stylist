@@ -90,12 +90,21 @@ public class Stylist {
         return styles
     }
 
-    func apply(theme: Theme) {
+    func apply(theme: Theme, animateChanges: Bool = false) {
         for style in theme.styles {
             if let views = viewStyles[style.name] {
                 views.compactMap { $0.value }
                     .forEach { view in
-                        apply(styleable: view, style: style)
+                        if animateChanges {
+                            UIView.animate(withDuration: 0.2) {
+                                if let view = view as? UIView, let parent = view.superview {
+                                    parent.layoutIfNeeded()
+                                }
+                                self.apply(styleable: view, style: style)
+                            }
+                        } else {
+                            apply(styleable: view, style: style)
+                        }
                     }
             }
             for property in style.properties {
@@ -168,13 +177,7 @@ public class Stylist {
                     do {
                         let theme = try Theme(data: data)
                         self.themes[url.path] = theme
-                        if animateChanges {
-                            UIView.animate(withDuration: 0.2) {
-                                stylist.apply(theme: theme)
-                            }
-                        } else {
-                            stylist.apply(theme: theme)
-                        }
+                        stylist.apply(theme: theme, animateChanges: animateChanges)
                     } catch let error as ThemeError {
                         parsingError(error)
                     } catch {

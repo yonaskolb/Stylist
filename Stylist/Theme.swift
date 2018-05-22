@@ -106,7 +106,7 @@ extension Theme {
                         }
 
                         let propertyValue = try resolveVariable(value)
-                        properties.append(try StylePropertyValue(id: propertyName, value: propertyValue))
+                        properties.append(try StylePropertyValue(string: propertyName, value: propertyValue))
                     }
                     var parentStyle: Style?
                     if let parentDictionary = dictionary["parent"] as? [String: Any] {

@@ -20,9 +20,9 @@ struct StylePropertyValue: Equatable {
         self.context = context
     }
 
-    init(id: String, value: Any) throws {
+    init(string: String, value: Any) throws {
 
-        var (propertyName, styleContext) = try StyleContext.getContext(id: id)
+        var (propertyName, styleContext) = try StyleContext.getContext(string: string)
 
         var controlState: UIControlState = .normal
         var barMetrics: UIBarMetrics = .default

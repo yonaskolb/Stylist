@@ -60,8 +60,8 @@ class ThemeDecodingTests: XCTestCase {
     func testPropertyContextDecoding() throws {
 
         let values = try [
-            StylePropertyValue(id: "textColor:selected(device:ipad)", value: "red"),
-            StylePropertyValue(id: "textColor:compact(device:phone, h:regular)", value: "blue")
+            StylePropertyValue(string: "textColor:selected(device:ipad)", value: "red"),
+            StylePropertyValue(string: "textColor:compact(device:phone, h:regular)", value: "blue")
         ]
 
         let expectedValues = [
@@ -83,7 +83,7 @@ class ThemeDecodingTests: XCTestCase {
             "color(device: iphone, v: compact)",
         ]
 
-        let contexts: [StyleContext] = try ids.map { try StyleContext.getContext(id: $0).context }
+        let contexts: [StyleContext] = try ids.map { try StyleContext.getContext(string: $0).context }
 
         let expectedContexts: [StyleContext] = [
             StyleContext(device: .pad),

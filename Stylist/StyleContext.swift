@@ -45,31 +45,31 @@ public struct StyleContext: Equatable {
 
 extension StyleContext {
 
-    static func getContext(id: String) throws -> (name: String, context: StyleContext) {
+    static func getContext(string: String) throws -> (name: String, context: StyleContext) {
 
         var device = UIUserInterfaceIdiom.unspecified
         var horizontalSizeClass = UIUserInterfaceSizeClass.unspecified
         var verticalSizeClass = UIUserInterfaceSizeClass.unspecified
 
-        var name = id
+        var name = string
         let regex = try NSRegularExpression(pattern: "(.*)\\((.*)\\)", options: [])
         if let match = regex.firstMatch(in: name, options: [], range: NSRange(location: 0, length: name.count)) {
 
-            name = (id as NSString).substring(with: match.range(at: 1))
+            name = (string as NSString).substring(with: match.range(at: 1))
 
-            let contextString = (id as NSString).substring(with: match.range(at: 2))
+            let contextString = (string as NSString).substring(with: match.range(at: 2))
             let contextArray = contextString
                 .split(separator: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
 
             let context = try Dictionary(uniqueKeysWithValues: contextArray
-                .map { string -> (String, String) in
-                    let parts = string
+                .map { keyAndValue -> (String, String) in
+                    let parts = keyAndValue
                         .split(separator: ":")
                         .map(String.init)
                         .map { $0.trimmingCharacters(in: .whitespaces) }
                     if parts.count != 2 {
-                        throw ThemeError.invalidStyleContext(id)
+                        throw ThemeError.invalidStyleContext(string)
                     }
                     return (parts[0], parts[1])
                 }
@@ -96,7 +96,7 @@ extension StyleContext {
                         throw ThemeError.invalidSizeClass(name: name, sizeClass: value)
                     }
                 default:
-                    throw ThemeError.invalidStyleContext(id)
+                    throw ThemeError.invalidStyleContext(string)
                 }
             }
         }

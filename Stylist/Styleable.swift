@@ -22,24 +22,34 @@ public protocol Styleable: class {
 
 extension Styleable {
 
-    public var styles: [String] {
-        get {
-            return Stylist.shared.getStyles(styleable: self)
-        }
-        set {
-            Stylist.shared.setStyles(styleable: self, styles: newValue)
-        }
+    func applyStyles(_ styles: [String]) {
+        Stylist.shared.setStyles(styleable: self, styles: styles)
     }
 }
 
 extension View: Styleable {
 
-    @IBInspectable public var style: String? {
+    struct AssociatedKeys {
+        static var Styles = "stylist_styles"
+    }
+
+    public var styles: [String] {
         get {
-            return Stylist.shared.getStyles(styleable: self).first
+            return objc_getAssociatedObject(self, &AssociatedKeys.Styles) as? [String] ?? []
         }
         set {
-            Stylist.shared.setStyles(styleable: self, styles: newValue != nil ? [newValue!] : [])
+            objc_setAssociatedObject(self, &AssociatedKeys.Styles,
+                                     newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            applyStyles(newValue)
+        }
+    }
+
+    @IBInspectable public var style: String? {
+        get {
+            return styles.first
+        }
+        set {
+            styles = newValue != nil ? [newValue!] : []
         }
     }
 }
@@ -47,12 +57,27 @@ extension View: Styleable {
 #if os(iOS) || os(tvOS)
     extension UIBarItem: Styleable {
 
-        @IBInspectable public var style: String? {
+        struct AssociatedKeys {
+            static var Styles = "stylist_styles"
+        }
+
+        public var styles: [String] {
             get {
-                return Stylist.shared.getStyles(styleable: self).first
+                return objc_getAssociatedObject(self, &AssociatedKeys.Styles) as? [String] ?? []
             }
             set {
-                Stylist.shared.setStyles(styleable: self, styles: newValue != nil ? [newValue!] : [])
+                objc_setAssociatedObject(self, &AssociatedKeys.Styles,
+                                         newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                applyStyles(newValue)
+            }
+        }
+
+        @IBInspectable public var style: String? {
+            get {
+                return styles.first
+            }
+            set {
+                styles = newValue != nil ? [newValue!] : []
             }
         }
     }

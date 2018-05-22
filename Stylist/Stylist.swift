@@ -13,8 +13,6 @@ public class Stylist {
 
     public static let shared = Stylist()
 
-    var fileWatchers: [FileWatcherProtocol] = []
-
     var viewStyles: [String: [WeakContainer<AnyObject>]] = [:]
 
     var properties: [StyleProperty] = []
@@ -45,7 +43,6 @@ public class Stylist {
     func clear() {
         viewStyles = [:]
         themes = [:]
-        fileWatchers = []
         properties = []
         addDefaultProperties()
     }
@@ -76,18 +73,6 @@ public class Stylist {
 
     func getValidProperties(name: String, view: Any) -> [StyleProperty] {
         return properties.filter { $0.canStyle(name: name, view: view) }
-    }
-
-    func getStyles(styleable: Styleable) -> [String] {
-        var styles: [String] = []
-        for (style, views) in viewStyles {
-            for viewContainer in views {
-                if let value = viewContainer.value, value === styleable {
-                    styles.append(style)
-                }
-            }
-        }
-        return styles
     }
 
     func apply(theme: Theme, animateChanges: Bool = false) {

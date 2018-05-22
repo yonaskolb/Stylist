@@ -14,7 +14,7 @@ import Foundation
     import Cocoa
 #endif
 
-enum StyleProperties {
+struct StyleProperties {
 
     static let view: [StyleProperty] = {
 

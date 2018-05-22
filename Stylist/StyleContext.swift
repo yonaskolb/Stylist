@@ -83,13 +83,13 @@ extension StyleContext {
                     } else {
                         throw ThemeError.invalidDevice(name: name, device: value)
                     }
-                case "h":
+                case "h", "horizontal":
                     if let value = UIUserInterfaceSizeClass(name: value) {
                         horizontalSizeClass = value
                     } else {
                         throw ThemeError.invalidSizeClass(name: name, sizeClass: value)
                     }
-                case "v":
+                case "v", "vertical":
                     if let value = UIUserInterfaceSizeClass(name: value) {
                         verticalSizeClass = value
                     } else {

@@ -117,7 +117,7 @@ font(device:iphone): MyFont:32
 Properties can be specified for a certain horizontal or vertical size class using the format: 
 
 ```yaml
-property(h/v:UIUserInterfaceSizeClass): value
+property(horizontal/vertical:UIUserInterfaceSizeClass): value
 ```
 for example: 
 

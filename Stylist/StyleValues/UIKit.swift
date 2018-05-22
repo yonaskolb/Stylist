@@ -20,7 +20,7 @@ extension CGFloat: StyleValue {
             return float
         } else if let double = value as? Double {
             return CGFloat(double)
-        }else if let string = value as? String {
+        } else if let string = value as? String {
             if let double = Double(string) {
                 return CGFloat(double)
             }

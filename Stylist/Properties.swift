@@ -83,6 +83,7 @@ enum StyleProperties {
         add("visible") { (view: UIView, value: PropertyValue<Bool>) in
             view.isHidden = !value.value
         }
+
         add("hidden") { (view: UIView, value: PropertyValue<Bool>) in
             view.isHidden = value.value
         }

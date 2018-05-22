@@ -31,6 +31,7 @@ extension Styleable {
         }
     }
 }
+
 extension View: Styleable {
 
     @IBInspectable public var style: String? {

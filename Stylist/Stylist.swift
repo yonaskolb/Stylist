@@ -74,25 +74,6 @@ public class Stylist {
         }
     }
 
-    func apply(styleable: Any, style: Style) {
-        for styleProperty in style.properties {
-
-            guard styleProperty.context.styleContext.targets(styleable: styleable) else { continue }
-
-            let properties = getValidProperties(name: styleProperty.name, view: styleable)
-            for property in properties {
-                do {
-                    try property.apply(styleable, styleProperty)
-                } catch {
-                    print("Error applying property: \(error)")
-                }
-            }
-        }
-        if let view = styleable as? View, let parent = view.superview, let parentStyle = style.parentStyle {
-            apply(styleable: parent, style: parentStyle)
-        }
-    }
-
     func getValidProperties(name: String, view: Any) -> [StyleProperty] {
         return properties.filter { $0.canStyle(name: name, view: view) }
     }
@@ -112,15 +93,35 @@ public class Stylist {
     func apply(theme: Theme) {
         for style in theme.styles {
             if let views = viewStyles[style.name] {
-                for view in views.compactMap({ $0.value }) {
-                    apply(styleable: view, style: style)
-                }
+                views.compactMap { $0.value }
+                    .forEach { view in
+                        apply(styleable: view, style: style)
+                    }
             }
             for property in style.properties {
                 if !properties.contains(where: { $0.name == property.name }) {
                     print("Theme contains unknown property: \(property.name)")
                 }
             }
+        }
+    }
+
+    func apply(styleable: Any, style: Style) {
+        for styleProperty in style.properties {
+
+            guard styleProperty.context.styleContext.targets(styleable: styleable) else { continue }
+
+            let properties = getValidProperties(name: styleProperty.name, view: styleable)
+            for property in properties {
+                do {
+                    try property.apply(styleable, styleProperty)
+                } catch {
+                    print("Could not parse property: \(error)")
+                }
+            }
+        }
+        if let view = styleable as? View, let parent = view.superview, let parentStyle = style.parentStyle {
+            apply(styleable: parent, style: parentStyle)
         }
     }
 

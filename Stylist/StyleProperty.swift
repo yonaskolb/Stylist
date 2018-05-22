@@ -23,17 +23,13 @@ public struct StyleProperty {
                     let propertyValue = PropertyValue(value: parsedValue as! PropertyType, context: value.context)
                     style(view, propertyValue)
                 } else {
-                    throw StylePropertyError.parsingError(PropertyType.self, value.value)
+                    throw StylePropertyError(propertyType: PropertyType.self, value: value.value)
                 }
             }
         }
-        supports = { otherName, view in
-            otherName == name && view is ViewType
+        supports = { propertyName, view in
+            propertyName == name && view is ViewType
         }
-    }
-
-    public init<ViewType, PropertyType>(name: String, view: ViewType.Type, property: PropertyType.Type, style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
-        self.init(name: name, style: style)
     }
 
     func canStyle(name: String, view: Any) -> Bool {
@@ -46,8 +42,7 @@ public struct PropertyValue<T: StyleValue> {
     public let context: PropertyContext
 }
 
-enum StylePropertyError: Error {
-    case parsingError(Any.Type, Any)
-    case incorrectControlState(String)
-    case incorrectDevice(String)
+struct StylePropertyError: Error {
+    let propertyType: Any.Type
+    let value: Any
 }

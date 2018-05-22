@@ -200,10 +200,6 @@ class ViewPropertiesTests: XCTestCase {
                 $0.titleColor(for: .highlighted) == .red
         }
 
-        testProperty(UIButton(), property: "font", value: "Arial:20") {
-            $0.titleLabel?.font == UIFont(name: "Arial", size: 20)
-        }
-
         testProperty(UIButton(), property: "titleFont", value: "title2") {
             $0.titleLabel?.font == UIFont.preferredFont(forTextStyle: .title2)
         }

@@ -16,7 +16,7 @@ import Foundation
     public typealias View = NSView
 #endif
 
-public protocol Styleable: class, NSObjectProtocol {
+public protocol Styleable: class {
     var styles: [String] { get set }
 }
 

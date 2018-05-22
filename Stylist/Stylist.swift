@@ -15,7 +15,7 @@ public class Stylist {
 
     var fileWatchers: [FileWatcherProtocol] = []
 
-    var viewStyles: [String: [WeakContainer<NSObjectProtocol>]] = [:]
+    var viewStyles: [String: [WeakContainer<AnyObject>]] = [:]
 
     var properties: [StyleProperty] = []
 
@@ -52,7 +52,7 @@ public class Stylist {
 
     func setStyles(styleable: Styleable, styles: [String]) {
         for style in styles {
-            var views: [WeakContainer<NSObjectProtocol>]
+            var views: [WeakContainer<AnyObject>]
             if let existingViews = viewStyles[style] {
                 views = existingViews.filter { $0.value != nil }
             } else {
@@ -188,7 +188,7 @@ public class Stylist {
     }
 }
 
-struct WeakContainer<T> where T: NSObjectProtocol {
+struct WeakContainer<T: AnyObject> {
     weak var value: T?
 
     init(_ value: T) {

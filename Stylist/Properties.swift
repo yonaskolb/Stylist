@@ -38,6 +38,10 @@ enum StyleProperties {
             view.alpha = value.value
         }
 
+        add("clipsToBounds") { (view: View, value: PropertyValue<Bool>) in
+            view.clipsToBounds = value.value
+        }
+
         // UIView Frame
 
         add("position") { (view: View, value: PropertyValue<CGPoint>) in
@@ -54,40 +58,6 @@ enum StyleProperties {
 
         add("frame") { (view: View, value: PropertyValue<CGRect>) in
             view.frame = value.value
-        }
-
-        // Layer
-
-        add("borderColor") { (view: View, value: PropertyValue<Color>) in
-            view.layer.borderColor = value.value.cgColor
-        }
-
-        add("borderWidth") { (view: View, value: PropertyValue<CGFloat>) in
-            view.layer.borderWidth = value.value
-        }
-
-        add("cornerRadius") { (view: View, value: PropertyValue<CGFloat>) in
-            view.layer.cornerRadius = value.value
-        }
-
-        add("clipsToBounds") { (view: View, value: PropertyValue<Bool>) in
-            view.clipsToBounds = value.value
-        }
-
-        add("shadowOpacity") { (view: View, value: PropertyValue<Float>) in
-            view.layer.shadowOpacity = value.value
-        }
-
-        add("shadowColor") { (view: View, value: PropertyValue<Color>) in
-            view.layer.shadowColor = value.value.cgColor
-        }
-
-        add("shadowOffset") { (view: View, value: PropertyValue<CGSize>) in
-            view.layer.shadowOffset = value.value
-        }
-
-        add("shadowRadius") { (view: View, value: PropertyValue<CGFloat>) in
-            view.layer.shadowRadius = value.value
         }
 
         add("backgroundImagePattern") { (view: View, value: PropertyValue<UIImage>) in
@@ -108,6 +78,36 @@ enum StyleProperties {
 
         add("layoutMargins") { (view: UIView, value: PropertyValue<UIEdgeInsets>) in
             view.layoutMargins = value.value
+        }
+
+        // Layer
+
+        add("borderColor") { (view: View, value: PropertyValue<Color>) in
+            view.layer.borderColor = value.value.cgColor
+        }
+
+        add("borderWidth") { (view: View, value: PropertyValue<CGFloat>) in
+            view.layer.borderWidth = value.value
+        }
+
+        add("cornerRadius") { (view: View, value: PropertyValue<CGFloat>) in
+            view.layer.cornerRadius = value.value
+        }
+
+        add("shadowOpacity") { (view: View, value: PropertyValue<Float>) in
+            view.layer.shadowOpacity = value.value
+        }
+
+        add("shadowColor") { (view: View, value: PropertyValue<Color>) in
+            view.layer.shadowColor = value.value.cgColor
+        }
+
+        add("shadowOffset") { (view: View, value: PropertyValue<CGSize>) in
+            view.layer.shadowOffset = value.value
+        }
+
+        add("shadowRadius") { (view: View, value: PropertyValue<CGFloat>) in
+            view.layer.shadowRadius = value.value
         }
 
         // Constraints

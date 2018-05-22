@@ -182,6 +182,7 @@ class StyleValueParsingTests: XCTestCase {
         assertStyleValueParsing(LayoutAnchor(constant: 10.0, equality: .greaterThanOrEqual), ">=10")
         assertStyleValueParsing(LayoutAnchor(constant: 10.0, equality: .lessThanOrEqual), "<=10")
         assertStyleValueParsing(LayoutAnchor(constant: 10.0, equality: .equal), "==10")
+        assertStyleValueParsing(LayoutAnchor(constant: 10.0, equality: .equal), "10")
 
         assertStyleValueParsingNil(LayoutAnchor.self, "=>10")
         assertStyleValueParsingNil(LayoutAnchor.self, "10>=")

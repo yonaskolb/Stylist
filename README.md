@@ -42,8 +42,8 @@ styles:
     tintColor: $primaryColor
   mainSection:
     styles: [themed]
-    axis(v:regular): horizontal
-    axis(h:compact): vertical
+    axis(horizontal:regular): horizontal
+    axis(horizontal:compact): vertical
 ```
 
 ## ⬇️ Installing

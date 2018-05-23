@@ -34,6 +34,31 @@ class ThemeDecodingTests: XCTestCase {
         XCTAssertEqual(theme, expectedTheme)
     }
 
+    func testStyleInheriting() throws {
+        let string = """
+        styles:
+          primary:
+            tintColor: red
+          header:
+            styles: [primary]
+            textColor: blue
+        """
+
+        let theme = try Theme(string: string)
+
+        let expectedTheme = Theme(
+            styles: [
+                try Style(selector: "header", properties: [
+                    StylePropertyValue(name: "textColor", value: "blue"),
+                    StylePropertyValue(name: "tintColor", value: "red"),
+                    ]),
+                try Style(selector: "primary", properties: [
+                    StylePropertyValue(name: "tintColor", value: "red"),
+                    ])
+            ])
+        XCTAssertEqual(theme, expectedTheme)
+    }
+
     func testThemeYamlDecoding() throws {
         let string = """
         variables:

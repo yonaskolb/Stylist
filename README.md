@@ -64,13 +64,6 @@ pod 'Stylist', :git=> 'https://github.com/yonaskolb/Stylist'
 A theme file has a list of `variables` and a list of `styles`.
 Variables can be referenced in styles using `$variableName`.
 
-To set a custom style on a UIView, simply set it's `style` property:
-
-```swift
-myView.style = "myStyle"
-```
-A style can also be set in Interface Builder in the property inspector.
-
 To load a Theme simply call:
 
 ```swift
@@ -79,16 +72,45 @@ Stylist.shared.load(path: pathToFile)
 
 You can load multiple themes, and they will all be applied as long as they have different paths.
 
-Styles are defined using a selector. This can be a class or a style or both. Custom classes must be prefixed by the module name. 
+You can also load a Theme manually and then add it by name, allowing you to swap themes at runtime.
+
+```swift
+let theme = try Theme(path: pathToTheme)
+Stylist.shared.addTheme(theme, name: "mainTheme")
+```
+
+## 🖌 Style
+
+Styles are defined using one or more selectors. Selectors can be a class or a style or both. Custom classes must be prefixed by the module name. 
 
 - `UIButton` all UIButtons
 - `MyApp.MyView` all MyView classes in the MyApp Module
 - `UITabBar.primary` all tab bars with the primary style
 - `primary` all views with the primary style
 
-Each style may also have a `styles` array that is list of other styles by selector that will also be applied to any views this style applies to.
+There can be multiple selectors seperated by a space, which then check if the later selectors are contained in the earlier selectors. This only applies to UIViews, and the containers don't have to be direct superviews but can be further up the chain.
 
-## 🖌 Style Properties
+For example, the following style will be applied to any `UIButton` this is contained within a view with a `section` style, that is then inside a `UIStackView` with the `main` style.
+
+```yaml
+styles:
+  UIStackView.main section UIButton:
+    font: title3
+```
+
+Each style may also have a `styles` array that is an array of other inherited styles, who's properties will also be applied.
+
+### Setting a Style
+To set a custom style on a UIView, simply set it's `style` property:
+
+```swift
+myView.style = "myStyle"
+```
+
+A style can also be set in Interface Builder in the identity inspector.
+![Interface Builder set style](Resources/IB_set_style.png)
+
+## 🖍 Style Properties
 Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](Docs/StyleProperties.MD).
 Each style can also reference an array of other styles that will be merged in order
 

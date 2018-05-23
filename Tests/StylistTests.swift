@@ -53,7 +53,7 @@ class StylistTests: XCTestCase {
 
         XCTAssertEqual(view.backgroundColor, .blue)
         XCTAssertEqual(view.layer.cornerRadius, 10)
-
+        
         let secondTheme = Theme(styles: [
             try Style(selector: "blueBack", properties: [
                 StylePropertyValue(name: "backgroundColor", value: "red")
@@ -67,6 +67,28 @@ class StylistTests: XCTestCase {
         
         XCTAssertEqual(view.backgroundColor, .red)
         XCTAssertEqual(view.layer.cornerRadius, 5)
+    }
+
+    func testParentStyles() throws {
+
+        let parentStyle = try Style(selector: "rounded", properties: [
+            StylePropertyValue(name: "cornerRadius", value: 10)
+            ])
+
+        let style = try Style(selector: "blueBack", properties: [
+                StylePropertyValue(name: "backgroundColor", value: "blue")
+                ], parentStyle: parentStyle)
+
+        let view = UIView()
+        let superview = UIView()
+        superview.addSubview(view)
+
+        Stylist.shared.apply(styleable: view, style: style)
+
+        XCTAssertEqual(view.backgroundColor, .blue)
+        XCTAssertEqual(superview.backgroundColor, nil)
+        XCTAssertEqual(superview.layer.cornerRadius, 10)
+        XCTAssertEqual(view.layer.cornerRadius, 0)
     }
 
     func testSettingStyles() {
@@ -227,8 +249,6 @@ class StylistTests: XCTestCase {
     //TODO: test loading files
 
     //TODO: test watching files
-
-    //TODO: test shared styles
 
     //TODO: test custom Styleable
 

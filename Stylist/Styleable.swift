@@ -22,8 +22,8 @@ public protocol Styleable: class {
 
 extension Styleable {
 
-    func applyStyles(_ styles: [String]) {
-        Stylist.shared.setStyles(styleable: self, styles: styles)
+    func applyStyles() {
+        Stylist.shared.style(self)
     }
 }
 
@@ -40,7 +40,7 @@ extension View: Styleable {
         set {
             objc_setAssociatedObject(self, &AssociatedKeys.Styles,
                                      newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            applyStyles(newValue)
+            applyStyles()
         }
     }
 
@@ -68,7 +68,7 @@ extension View: Styleable {
             set {
                 objc_setAssociatedObject(self, &AssociatedKeys.Styles,
                                          newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                applyStyles(newValue)
+                applyStyles()
             }
         }
 

@@ -17,4 +17,5 @@ public enum ThemeError: Error, Equatable {
     case invalidDevice(name: String, device: String)
     case invalidSizeClass(name: String, sizeClass: String)
     case invalidStyleContext(String)
+    case invalidStyleSelector(String)
 }

@@ -19,13 +19,6 @@ public struct Theme: Equatable {
         self.styles = styles
     }
 
-    func getStyle(_ name: String) -> Style? {
-        guard let style = styles.first(where: { $0.name == name }) else {
-            return nil
-        }
-        return style
-    }
-
     public static func == (lhs: Theme, rhs: Theme) -> Bool {
         return NSDictionary(dictionary: lhs.variables).isEqual(to: rhs.variables)
             && lhs.styles == rhs.styles
@@ -112,7 +105,7 @@ extension Theme {
                     if let parentDictionary = dictionary["parent"] as? [String: Any] {
                         parentStyle = try parseStyle(dictionary: parentDictionary)
                     }
-                    return Style(name: key, properties: properties, parentStyle: parentStyle)
+                    return try Style(selector: key, properties: properties, parentStyle: parentStyle)
                 }
                 let style = try parseStyle(dictionary: styleDictionary)
                 styles.append(style)

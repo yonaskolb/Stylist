@@ -13,7 +13,7 @@ public class Stylist {
 
     public static let shared = Stylist()
 
-    var viewStyles: [String: [WeakContainer<AnyObject>]] = [:]
+    var styleables: [WeakContainer<AnyObject>] = []
 
     var properties: [StyleProperty] = []
 
@@ -21,6 +21,7 @@ public class Stylist {
 
     init() {
         addDefaultProperties()
+        UIView.setupSwizzling()
     }
 
     func addDefaultProperties() {
@@ -28,11 +29,7 @@ public class Stylist {
         properties += StyleProperties.barItem
     }
 
-    public func addProperty<ViewType, PropertyType>(_ name: String, viewType: ViewType.Type, propertyType: PropertyType.Type, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
-        properties.append(StyleProperty(name: name, style: style))
-    }
-
-    public func addProperty<ViewType, PropertyType>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
+    public func addProperty<ViewType, PropertyType>(name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
         properties.append(StyleProperty(name: name, style: style))
     }
 
@@ -41,33 +38,15 @@ public class Stylist {
     }
 
     func clear() {
-        viewStyles = [:]
+        styleables = []
         themes = [:]
         properties = []
         addDefaultProperties()
     }
 
-    func setStyles(styleable: Styleable, styles: [String]) {
-        for style in styles {
-            var views: [WeakContainer<AnyObject>]
-            if let existingViews = viewStyles[style] {
-                views = existingViews.filter { $0.value != nil }
-            } else {
-                views = []
-            }
-
-            if !views.contains(where: { $0.value! === styleable }) {
-                views.append(WeakContainer(styleable))
-            }
-            viewStyles[style] = views
-        }
-
-        for theme in themes.values {
-            for style in styles {
-                if let style = theme.getStyle(style) {
-                    apply(styleable: styleable, style: style)
-                }
-            }
+    func addStyleable(_ styleable: Styleable) {
+        if !styleables.contains(where: { $0.value === styleable}) {
+            styleables.append(WeakContainer(styleable))
         }
     }
 
@@ -75,28 +54,32 @@ public class Stylist {
         return properties.filter { $0.canStyle(name: name, view: view) }
     }
 
+    func apply(style: Style, animateChanges: Bool = false) {
+        styleables.compactMap { $0.value as? Styleable }
+            .forEach { styleable in
+                guard style.applies(to: styleable) else { return }
+                if animateChanges {
+                    UIView.animate(withDuration: 0.2) {
+                        if let view = styleable as? UIView, let parent = view.superview {
+                            parent.layoutIfNeeded()
+                        }
+                        self.apply(styleable: styleable, style: style)
+                    }
+                } else {
+                    apply(styleable: styleable, style: style)
+                }
+        }
+
+        for property in style.properties {
+            if !properties.contains(where: { $0.name == property.name }) {
+                print("Theme contains unknown property: \(property.name)")
+            }
+        }
+    }
+
     func apply(theme: Theme, animateChanges: Bool = false) {
         for style in theme.styles {
-            if let views = viewStyles[style.name] {
-                views.compactMap { $0.value }
-                    .forEach { view in
-                        if animateChanges {
-                            UIView.animate(withDuration: 0.2) {
-                                if let view = view as? UIView, let parent = view.superview {
-                                    parent.layoutIfNeeded()
-                                }
-                                self.apply(styleable: view, style: style)
-                            }
-                        } else {
-                            apply(styleable: view, style: style)
-                        }
-                    }
-            }
-            for property in style.properties {
-                if !properties.contains(where: { $0.name == property.name }) {
-                    print("Theme contains unknown property: \(property.name)")
-                }
-            }
+            apply(style: style, animateChanges: animateChanges)
         }
     }
 
@@ -116,6 +99,19 @@ public class Stylist {
         }
         if let view = styleable as? View, let parent = view.superview, let parentStyle = style.parentStyle {
             apply(styleable: parent, style: parentStyle)
+        }
+    }
+
+    /// Style a Styleable class
+    ///
+    /// - Parameter styleable: The class to style. eg a UIView
+    public func style(_ styleable: Styleable) {
+        addStyleable(styleable)
+        for theme in themes.values {
+            for style in theme.styles {
+                guard style.applies(to: styleable) else { continue }
+                apply(styleable: styleable, style: style)
+            }
         }
     }
 

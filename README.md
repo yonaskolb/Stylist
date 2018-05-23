@@ -8,10 +8,11 @@ Stylist lets you define UI styles in a hot-reloadable external yaml or json them
 - ✅ Define styles in **external themes**
 - ✅ Apply styles through code or **Interface Builder**
 - ✅ **Hotload** themes to see results immediatly without recompiling
+- ✅ Apply styles be style **names** or **classes**
 - ✅ **Swap** entire themes on the fly
 - ✅ Built in style properties for all popular **UIKit** classes
 - ✅ Reference **variables** for commonly used properties
-- ✅ Reference **styles** in other styles for a customizable heirachy
+- ✅ Reference styles in other styles for a customizable **heirachy**
 - ✅ Define **custom** strongly type properties and custom parsing to set any property you wish
 
 Example theme:
@@ -21,9 +22,14 @@ variables:
   primaryColor: DB3B3B
   headingFont: Ubuntu
 styles:
-  primaryButton:
+  UIButton:
     backgroundImage: buttonBack
     backgroundImage:highlighted: buttonBack-highlighted
+  MyApp.Section:
+    styles: [themed]
+    axis(horizontal:regular): horizontal
+    axis(horizontal:compact): vertical
+  primaryButton:
     textColor: 55F
     textColor:highlighted: white
     contentEdgeInsets: [10,5]
@@ -38,12 +44,11 @@ styles:
   sectionHeading:
     font: title 2
     color: darkGray
+  content:
+    font: Arial:content
+    color: "#222222"
   themed:
     tintColor: $primaryColor
-  mainSection:
-    styles: [themed]
-    axis(horizontal:regular): horizontal
-    axis(horizontal:compact): vertical
 ```
 
 ## ⬇️ Installing
@@ -56,16 +61,15 @@ pod 'Stylist', :git=> 'https://github.com/yonaskolb/Stylist'
 ```
 
 ## 🎨 Theme
-A theme file has a list of `variables` and a list of `styles` each referenced by name.
+A theme file has a list of `variables` and a list of `styles`.
 Variables can be referenced in styles using `$variableName`.
 
-To set a style on a UIView, simply set it's `style` property:
+To set a custom style on a UIView, simply set it's `style` property:
 
 ```swift
 myView.style = "myStyle"
 ```
 A style can also be set in Interface Builder in the property inspector.
-
 
 To load a Theme simply call:
 
@@ -73,7 +77,16 @@ To load a Theme simply call:
 Stylist.shared.load(path: pathToFile)
 ```
 
-You can load multiple themes, and they will all be applied as long as they have different paths
+You can load multiple themes, and they will all be applied as long as they have different paths.
+
+Styles are defined using a selector. This can be a class or a style or both. Custom classes must be prefixed by the module name. 
+
+- `UIButton` all UIButtons
+- `MyApp.MyView` all MyView classes in the MyApp Module
+- `UITabBar.primary` all tab bars with the primary style
+- `primary` all views with the primary style
+
+Each style may also have a `styles` array that is list of other styles by selector that will also be applied to any views this style applies to.
 
 ## 🖌 Style Properties
 Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](Docs/StyleProperties.MD).

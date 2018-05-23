@@ -27,7 +27,7 @@ class ThemeDecodingTests: XCTestCase {
         let expectedTheme = Theme(
             variables: ["primaryColor": "blue"],
             styles: [
-                Style(name: "header", properties: [
+                try Style(selector: "header", properties: [
                     StylePropertyValue(name: "textColor", value: "blue:0.5")
                     ])
             ])
@@ -48,7 +48,7 @@ class ThemeDecodingTests: XCTestCase {
         let expectedTheme = Theme(
             variables: ["primaryColor": "blue"],
             styles: [
-                Style(name: "header", properties: [
+                try Style(selector: "header", properties: [
                     StylePropertyValue(name: "textColor",
                                        value: "blue:0.5",
                                        context: PropertyContext(styleContext: .init(device: .pad), controlState: .selected))
@@ -77,6 +77,13 @@ class ThemeDecodingTests: XCTestCase {
                                context: PropertyContext(styleContext: .init(verticalSizeClass: .compact))),
         ]
         XCTAssertEqual(values, expectedValues)
+    }
+
+    func testStyleSelectorDecoding() throws {
+        XCTAssertEqual(try SelectorComponent.components(from: "UIButton"), [SelectorComponent(classType: UIButton.self, style: nil)])
+        XCTAssertEqual(try SelectorComponent.components(from: "UIButton.red"), [SelectorComponent(classType: UIButton.self, style: "red")])
+        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests"), [SelectorComponent(classType: ThemeDecodingTests.self, style: nil)])
+        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests.red"), [SelectorComponent(classType: ThemeDecodingTests.self, style: "red")])
     }
 
     func testStyleContextDecoding() throws {
@@ -139,6 +146,18 @@ class ThemeDecodingTests: XCTestCase {
 
         expectError(ThemeError.invalidStyleContext("color(invalid:ipad)")) {
             try themeString(property: "color(invalid:ipad): red")
+        }
+
+        expectError(ThemeError.invalidStyleSelector("InvalidClass")) {
+            try themeString(style: "InvalidClass", property: "color: red")
+        }
+
+        expectError(ThemeError.invalidStyleSelector("Module.class.style.invalid")) {
+            try themeString(style: "Module.class.style.invalid", property: "color: red")
+        }
+
+        expectError(ThemeError.invalidStyleSelector("Module.Invalid")) {
+            try themeString(style: "Module.Invalid", property: "color: red")
         }
     }
     

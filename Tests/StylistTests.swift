@@ -21,7 +21,7 @@ class StylistTests: XCTestCase {
     func testApplyStyle() throws {
         let stylist = Stylist()
 
-        let style = Style(name: "blueBack", properties: [
+        let style = try Style(selector: "blueBack", properties: [
                 StylePropertyValue(name: "backgroundColor", value: "blue")
                 ])
 
@@ -34,10 +34,10 @@ class StylistTests: XCTestCase {
         let stylist = Stylist()
 
         let theme = Theme(styles: [
-                Style(name: "blueBack", properties: [
+                try Style(selector: "blueBack", properties: [
                     StylePropertyValue(name: "backgroundColor", value: "blue")
                     ]),
-                Style(name: "rounded", properties: [
+                try Style(selector: "rounded", properties: [
                     StylePropertyValue(name: "cornerRadius", value: 10)
                     ])
             ])
@@ -46,16 +46,17 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(stylist.themes["theme"], theme)
 
         let view = UIView()
-        stylist.setStyles(styleable: view, styles: ["blueBack", "rounded"])
+        view.styles = ["blueBack", "rounded"]
+        stylist.style(view)
 
         XCTAssertEqual(view.backgroundColor, .blue)
         XCTAssertEqual(view.layer.cornerRadius, 10)
 
         let secondTheme = Theme(styles: [
-            Style(name: "blueBack", properties: [
+            try Style(selector: "blueBack", properties: [
                 StylePropertyValue(name: "backgroundColor", value: "red")
                 ]),
-            Style(name: "rounded", properties: [
+            try Style(selector: "rounded", properties: [
                 StylePropertyValue(name: "cornerRadius", value: 5)
                 ])
             ])
@@ -76,13 +77,13 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(view.style, "one")
     }
 
-    func testFilteringSizeClasses() {
+    func testFilteringSizeClasses() throws {
 
         let view = UIView()
         let traitCollection = UITraitCollection(horizontalSizeClass: .compact)
         TraitViewController.addTraits([traitCollection], to: view)
 
-        let style = Style(name: "", properties: [
+        let style = try Style(selector: "style", properties: [
             StylePropertyValue(name: "backgroundColor", value: "green", context: PropertyContext(styleContext: .init(horizontalSizeClass: .compact))),
             StylePropertyValue(name: "backgroundColor", value: "red", context: PropertyContext(styleContext: .init(horizontalSizeClass: .regular)))
             ])
@@ -94,10 +95,10 @@ class StylistTests: XCTestCase {
     func testSetStyles() throws {
 
         let theme = Theme(styles: [
-            Style(name: "blueBack", properties: [
+            try Style(selector: "blueBack", properties: [
                 StylePropertyValue(name: "backgroundColor", value: "blue")
                 ]),
-            Style(name: "rounded", properties: [
+            try Style(selector: "rounded", properties: [
                 StylePropertyValue(name: "cornerRadius", value: 10)
                 ])
             ])
@@ -110,10 +111,10 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(view.layer.cornerRadius, 10)
 
         let secondTheme = Theme(styles: [
-            Style(name: "blueBack", properties: [
+            try Style(selector: "blueBack", properties: [
                 StylePropertyValue(name: "backgroundColor", value: "red")
                 ]),
-            Style(name: "rounded", properties: [
+            try Style(selector: "rounded", properties: [
                 StylePropertyValue(name: "cornerRadius", value: 5)
                 ])
             ])
@@ -124,13 +125,69 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(view.layer.cornerRadius, 5)
     }
 
+    func testSetClassStyles() throws {
+        let theme = Theme(styles: [
+            try Style(selector: "UIButton.blueBack", properties: [
+                StylePropertyValue(name: "backgroundColor", value: "blue")
+                ]),
+            try Style(selector: "UIButton", properties: [
+                StylePropertyValue(name: "cornerRadius", value: 10)
+                ]),
+            try Style(selector: "UIView", properties: [
+                StylePropertyValue(name: "alpha", value: 0.5)
+                ]),
+            try Style(selector: NSStringFromClass(CustomView.self), properties: [
+                StylePropertyValue(name: "backgroundColor", value: "green")
+                ]),
+            try Style(selector: "\(NSStringFromClass(CustomView.self)).blueBack", properties: [
+                StylePropertyValue(name: "backgroundColor", value: "blue")
+                ]),
+            ])
+        let container = UIView()
+        let button = UIButton()
+        let view = UIView()
+        let customView = CustomView()
+
+        Stylist.shared.addTheme(theme, name: "theme")
+
+        container.addSubview(button)
+        container.addSubview(view)
+        container.addSubview(customView)
+
+        XCTAssertEqual(view.layer.cornerRadius, 0)
+        XCTAssertEqual(button.layer.cornerRadius, 10)
+        XCTAssertEqual(button.backgroundColor, nil)
+        XCTAssertEqual(customView.backgroundColor, .green)
+        XCTAssertEqual(button.alpha, 0.5)
+        XCTAssertEqual(view.alpha, 0.5)
+        XCTAssertEqual(customView.alpha, 0.5)
+
+        button.style = "blueBack"
+        view.style = "blueBack"
+        customView.style = "blueBack"
+
+        XCTAssertEqual(button.backgroundColor, .blue)
+        XCTAssertEqual(view.backgroundColor, nil)
+        XCTAssertEqual(customView.backgroundColor, .blue)
+    }
+
+    func testAddingCustomProperties() throws {
+
+        let property = StyleProperty(name: "property") { (view: CustomView, value: PropertyValue<String>) in
+            view.customProperty = value.value
+        }
+
+        Stylist.shared.addProperty(property)
+        let customView = CustomView()
+        let style = try Style(selector: "custom", properties: [StylePropertyValue(name: "property", value: "hello")])
+        Stylist.shared.apply(styleable: customView, style: style)
+
+        XCTAssertEqual(customView.customProperty, "hello")
+    }
+
     //TODO: test loading files
 
     //TODO: test watching files
-
-    //TODO: test set correct style property based on PropertyContext
-
-    //TODO: test custom property
 
     //TODO: test shared styles
 
@@ -138,8 +195,11 @@ class StylistTests: XCTestCase {
 
     //TODO: test UIBarItem
 
-    //TODO: test all default properties
+}
 
+class CustomView: UIView {
+
+    var customProperty: String = ""
 }
 
 class TraitViewController: UIViewController {

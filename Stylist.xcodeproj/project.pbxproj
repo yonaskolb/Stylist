@@ -15,6 +15,7 @@
 		8933C7851EB5B820000D00A4 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Stylist.swift */; };
 		8933C7881EB5B820000D00A4 /* Stylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* Stylist.swift */; };
 		8933C78E1EB5B82C000D00A4 /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
+		CC0B571F20B568140022E84E /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0B571E20B568140022E84E /* SectionView.swift */; };
 		CC196D7D20AEA368006161E3 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC196D7C20AEA368006161E3 /* UIKit.swift */; };
 		CC196D7E20AEA368006161E3 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC196D7C20AEA368006161E3 /* UIKit.swift */; };
 		CC196D8020AEA3B4006161E3 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC196D7F20AEA3B4006161E3 /* Swift.swift */; };
@@ -64,6 +65,8 @@
 		CC68ECE21F485E120063AE1F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECE11F485E120063AE1F /* Style.swift */; };
 		CC68ECE51F485E120063AE1F /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68ECE11F485E120063AE1F /* Style.swift */; };
 		CC68ECE61F487CBE0063AE1F /* StylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* StylistTests.swift */; };
+		CCCB788C20B426D400ADDA8F /* UIViewSwizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB788B20B426D400ADDA8F /* UIViewSwizzle.swift */; };
+		CCCB788D20B426D400ADDA8F /* UIViewSwizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB788B20B426D400ADDA8F /* UIViewSwizzle.swift */; };
 		DD7502921C690C7A006590AF /* Stylist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* Stylist.framework */; };
 		E5E867FDFCC69BA59C79D4C4 /* Pods_Stylist_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE632A630F82E19940217F5E /* Pods_Stylist_iOS_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -142,6 +145,7 @@
 		AF425B6EB4F97F8C9AF79AAF /* Pods-Stylist-iOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist-iOS Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCB9874A73066DD3C8CEFD63 /* Pods-Stylist-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stylist-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stylist-iOS/Pods-Stylist-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C186A7E7F661536D838BB3A0 /* Pods_Stylist_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC0B571E20B568140022E84E /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		CC196D7C20AEA368006161E3 /* UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKit.swift; sourceTree = "<group>"; };
 		CC196D7F20AEA3B4006161E3 /* Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
 		CC196D8220AECFDA006161E3 /* ThemeDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDecodingTests.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 		CC68ECD71F4859060063AE1F /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		CC68ECDC1F485B240063AE1F /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		CC68ECE11F485E120063AE1F /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		CCCB788B20B426D400ADDA8F /* UIViewSwizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewSwizzle.swift; sourceTree = "<group>"; };
 		CE632A630F82E19940217F5E /* Pods_Stylist_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98666288C6A3F4D1841BC7D /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D9F7B501A3F95065C3B43707 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -307,6 +312,7 @@
 				CC49676120B2B21A00055C60 /* StyleContext.swift */,
 				CC49675E20B2B1D600055C60 /* StylePropertyValue.swift */,
 				CC49676420B2B22800055C60 /* PropertyContext.swift */,
+				CCCB788B20B426D400ADDA8F /* UIViewSwizzle.swift */,
 			);
 			path = Stylist;
 			sourceTree = "<group>";
@@ -347,6 +353,7 @@
 				CC2385191F478E8A00FB0073 /* LaunchScreen.storyboard */,
 				CC23851C1F478E8A00FB0073 /* Info.plist */,
 				CC68ECD01F47A1540063AE1F /* Style.yaml */,
+				CC0B571E20B568140022E84E /* SectionView.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -745,6 +752,7 @@
 				CC64F7031F49DFA900A5972F /* Properties.swift in Sources */,
 				CC68ECE21F485E120063AE1F /* Style.swift in Sources */,
 				CC196D8020AEA3B4006161E3 /* Swift.swift in Sources */,
+				CCCB788C20B426D400ADDA8F /* UIViewSwizzle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +789,7 @@
 				CC64F7061F49DFA900A5972F /* Properties.swift in Sources */,
 				CC68ECE51F485E120063AE1F /* Style.swift in Sources */,
 				CC196D8120AEA3B4006161E3 /* Swift.swift in Sources */,
+				CCCB788D20B426D400ADDA8F /* UIViewSwizzle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +799,7 @@
 			files = (
 				CC2385131F478E8A00FB0073 /* ViewController.swift in Sources */,
 				CC2385111F478E8A00FB0073 /* AppDelegate.swift in Sources */,
+				CC0B571F20B568140022E84E /* SectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

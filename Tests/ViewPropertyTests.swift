@@ -24,7 +24,7 @@ class ViewPropertiesTests: XCTestCase {
 
     func testProperty<T>(_ styleable: T, property: String, value: Any, file: StaticString = #file, line: UInt = #line, _ compare: (T) -> Bool) {
         do {
-            let style = try Style(name: "style", properties: [
+            let style = try Style(selector: "style", properties: [
                 StylePropertyValue(string: property, value: value)
                 ])
             Stylist.shared.apply(styleable: styleable, style: style)

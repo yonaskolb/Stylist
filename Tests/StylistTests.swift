@@ -13,6 +13,7 @@ import Yams
 
 class StylistTests: XCTestCase {
 
+    // to get around cross platform tests
     fileprivate let customViewClassName = NSStringFromClass(CustomView.self)
 
     override func setUp() {

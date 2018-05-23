@@ -13,6 +13,9 @@ import Yams
 
 class ThemeDecodingTests: XCTestCase {
 
+    // to get around cross platform tests
+    fileprivate let className = NSStringFromClass(ThemeDecodingTests.self)
+
     func testVariableSubstitution() throws {
         let string = """
         variables:
@@ -114,11 +117,11 @@ class ThemeDecodingTests: XCTestCase {
             SelectorComponent(classType: UIButton.self, style: "red"),
             ])
 
-        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests"), [
+        XCTAssertEqual(try SelectorComponent.components(from: "\(className)"), [
             SelectorComponent(classType: ThemeDecodingTests.self, style: nil),
             ])
 
-        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests.red"), [
+        XCTAssertEqual(try SelectorComponent.components(from: "\(className).red"), [
             SelectorComponent(classType: ThemeDecodingTests.self, style: "red"),
             ])
 
@@ -127,7 +130,7 @@ class ThemeDecodingTests: XCTestCase {
             SelectorComponent(classType: nil, style: "primary"),
             ])
 
-        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests.red UIButton"), [
+        XCTAssertEqual(try SelectorComponent.components(from: "\(className).red UIButton"), [
             SelectorComponent(classType: ThemeDecodingTests.self, style: "red"),
             SelectorComponent(classType: UIButton.self, style: nil),
             ])

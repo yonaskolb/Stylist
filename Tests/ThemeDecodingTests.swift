@@ -80,10 +80,32 @@ class ThemeDecodingTests: XCTestCase {
     }
 
     func testStyleSelectorDecoding() throws {
-        XCTAssertEqual(try SelectorComponent.components(from: "UIButton"), [SelectorComponent(classType: UIButton.self, style: nil)])
-        XCTAssertEqual(try SelectorComponent.components(from: "UIButton.red"), [SelectorComponent(classType: UIButton.self, style: "red")])
-        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests"), [SelectorComponent(classType: ThemeDecodingTests.self, style: nil)])
-        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests.red"), [SelectorComponent(classType: ThemeDecodingTests.self, style: "red")])
+
+        XCTAssertEqual(try SelectorComponent.components(from: "UIButton"), [
+            SelectorComponent(classType: UIButton.self, style: nil),
+            ])
+
+        XCTAssertEqual(try SelectorComponent.components(from: "UIButton.red"), [
+            SelectorComponent(classType: UIButton.self, style: "red"),
+            ])
+
+        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests"), [
+            SelectorComponent(classType: ThemeDecodingTests.self, style: nil),
+            ])
+
+        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests.red"), [
+            SelectorComponent(classType: ThemeDecodingTests.self, style: "red"),
+            ])
+
+        XCTAssertEqual(try SelectorComponent.components(from: "UIButton primary"), [
+            SelectorComponent(classType: UIButton.self, style: nil),
+            SelectorComponent(classType: nil, style: "primary"),
+            ])
+
+        XCTAssertEqual(try SelectorComponent.components(from: "Stylist-iOS_Tests.ThemeDecodingTests.red UIButton"), [
+            SelectorComponent(classType: ThemeDecodingTests.self, style: "red"),
+            SelectorComponent(classType: UIButton.self, style: nil),
+            ])
     }
 
     func testStyleContextDecoding() throws {

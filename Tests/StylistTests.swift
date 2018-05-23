@@ -13,6 +13,8 @@ import Yams
 
 class StylistTests: XCTestCase {
 
+    fileprivate let customViewClassName = NSStringFromClass(CustomView.self)
+
     override func setUp() {
         super.setUp()
         Stylist.shared.clear()
@@ -136,10 +138,10 @@ class StylistTests: XCTestCase {
             try Style(selector: "UIView", properties: [
                 StylePropertyValue(name: "alpha", value: 0.5)
                 ]),
-            try Style(selector: NSStringFromClass(CustomView.self), properties: [
+            try Style(selector: customViewClassName, properties: [
                 StylePropertyValue(name: "backgroundColor", value: "green")
                 ]),
-            try Style(selector: "\(NSStringFromClass(CustomView.self)).blueBack", properties: [
+            try Style(selector: "\(customViewClassName).blueBack", properties: [
                 StylePropertyValue(name: "backgroundColor", value: "blue")
                 ]),
             ])
@@ -169,6 +171,43 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(button.backgroundColor, .blue)
         XCTAssertEqual(view.backgroundColor, nil)
         XCTAssertEqual(customView.backgroundColor, .blue)
+    }
+
+    func testStyleSelectorFiltering() throws {
+
+        func styleable(_ styleable: Styleable, has selector: String) -> Bool {
+            let style = try! Style(selector: selector, properties: [])
+            return style.applies(to: styleable)
+        }
+
+        let container = UIStackView()
+        container.style = "container"
+        let child = UIView()
+        child.style = "child"
+        let customView = CustomView()
+        customView.style = "custom"
+        container.addSubview(customView)
+        customView.addSubview(child)
+
+        XCTAssertEqual(styleable(child, has: "container child"), true)
+        XCTAssertEqual(styleable(child, has: "container custom child"), true)
+        XCTAssertEqual(styleable(child, has: "UIStackView.container custom child"), true)
+        XCTAssertEqual(styleable(child, has: "container UIView.custom child"), true)
+        XCTAssertEqual(styleable(child, has: "container \(customViewClassName).custom child"), true)
+        XCTAssertEqual(styleable(child, has: "container \(customViewClassName) child"), true)
+        XCTAssertEqual(styleable(child, has: "UIStackView \(customViewClassName).custom UIView.child"), true)
+        XCTAssertEqual(styleable(child, has: "\(customViewClassName).custom child"), true)
+        XCTAssertEqual(styleable(child, has: "\(customViewClassName) child"), true)
+
+        XCTAssertEqual(styleable(child, has: "invalid child"), false)
+        XCTAssertEqual(styleable(child, has: "invalid custom child"), false)
+        XCTAssertEqual(styleable(child, has: "UIButton.container custom child"), false)
+        XCTAssertEqual(styleable(child, has: "container UIStackView.custom child"), false)
+        XCTAssertEqual(styleable(child, has: "container \(customViewClassName).invalid child"), false)
+        XCTAssertEqual(styleable(child, has: "invalid \(customViewClassName) child"), false)
+        XCTAssertEqual(styleable(child, has: "UIStackView \(customViewClassName).custom UIView.invalid"), false)
+        XCTAssertEqual(styleable(child, has: "\(customViewClassName).custom invalid"), false)
+        XCTAssertEqual(styleable(child, has: "\(customViewClassName).invalid child"), false)
     }
 
     func testAddingCustomProperties() throws {

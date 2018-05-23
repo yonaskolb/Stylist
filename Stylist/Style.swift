@@ -34,16 +34,12 @@ public class Style: Equatable {
     }
 
     func applies(to styleable: Styleable) -> Bool {
-        return applies(components: components, to: styleable)
-    }
-
-    private func applies(components: [SelectorComponent], to styleable: Styleable) -> Bool {
-        var components = components
+        var components = self.components
         if let component = components.popLast() {
-            if applies(component: component, to: styleable) {
+            if matches(component: component, to: styleable) {
                 if !components.isEmpty {
                     if let view = styleable as? UIView {
-                        return appliesToViewHeirachy(view: view, components: components)
+                        return matches(view: view, components: components)
                     } else {
                         print("heirachical selector applied to non UIView")
                     }
@@ -57,11 +53,23 @@ public class Style: Equatable {
         return false
     }
 
-    private func appliesToViewHeirachy(view: UIView, components: [SelectorComponent]) -> Bool {
+    private func matches(component: SelectorComponent, to styleable: Styleable) -> Bool {
+        if let classType = component.classType,
+            let object = styleable as? NSObject,
+            !(object.isKind(of: classType)) {
+            return false
+        }
+        if let style = component.style, !styleable.styles.contains(style) {
+            return false
+        }
+        return true
+    }
+
+    private func matches(view: UIView, components: [SelectorComponent]) -> Bool {
         var components = components
         if let component = components.popLast() {
             if let superView = getSuperView(view: view, component: component) {
-                return appliesToViewHeirachy(view: superView, components: components)
+                return matches(view: superView, components: components)
             } else {
                 return false
             }
@@ -74,23 +82,11 @@ public class Style: Equatable {
         guard let superview = view.superview else {
             return nil
         }
-        if applies(component: component, to: superview) {
+        if matches(component: component, to: superview) {
             return superview
         } else {
             return getSuperView(view: superview, component: component)
         }
-    }
-
-    private func applies(component: SelectorComponent, to styleable: Styleable) -> Bool {
-        if let classType = component.classType,
-            let object = styleable as? NSObject,
-            !(object.isKind(of: classType)) {
-            return false
-        }
-        if let style = component.style, !styleable.styles.contains(style) {
-            return false
-        }
-        return true
     }
 }
 

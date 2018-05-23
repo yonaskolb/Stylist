@@ -218,6 +218,7 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(styleable(child, has: "container \(customViewClassName).custom child"), true)
         XCTAssertEqual(styleable(child, has: "container \(customViewClassName) child"), true)
         XCTAssertEqual(styleable(child, has: "UIStackView \(customViewClassName).custom UIView.child"), true)
+        XCTAssertEqual(styleable(child, has: "UIStackView child"), true)
         XCTAssertEqual(styleable(child, has: "\(customViewClassName).custom child"), true)
         XCTAssertEqual(styleable(child, has: "\(customViewClassName) child"), true)
 

@@ -37,17 +37,11 @@ public class Stylist {
         properties.append(property)
     }
 
-    func clear() {
+    public func clear() {
         styleables = []
         themes = [:]
         properties = []
         addDefaultProperties()
-    }
-
-    func addStyleable(_ styleable: Styleable) {
-        if !styleables.contains(where: { $0.value === styleable}) {
-            styleables.append(WeakContainer(styleable))
-        }
     }
 
     func getValidProperties(name: String, view: Any) -> [StyleProperty] {
@@ -63,10 +57,10 @@ public class Stylist {
                         if let view = styleable as? UIView, let parent = view.superview {
                             parent.layoutIfNeeded()
                         }
-                        self.apply(styleable: styleable, style: style)
+                        self.apply(style: style, to: styleable)
                     }
                 } else {
-                    apply(styleable: styleable, style: style)
+                    apply(style: style, to: styleable)
                 }
         }
 
@@ -83,7 +77,7 @@ public class Stylist {
         }
     }
 
-    func apply(styleable: Any, style: Style) {
+    func apply(style: Style, to styleable: Any) {
         for styleProperty in style.properties {
 
             guard styleProperty.context.styleContext.targets(styleable: styleable) else { continue }
@@ -98,7 +92,7 @@ public class Stylist {
             }
         }
         if let view = styleable as? View, let parent = view.superview, let parentStyle = style.parentStyle {
-            apply(styleable: parent, style: parentStyle)
+            apply(style: parentStyle, to: parent)
         }
     }
 
@@ -106,11 +100,13 @@ public class Stylist {
     ///
     /// - Parameter styleable: The class to style. eg a UIView
     public func style(_ styleable: Styleable) {
-        addStyleable(styleable)
+        if !styleables.contains(where: { $0.value === styleable}) {
+            styleables.append(WeakContainer(styleable))
+        }
         for theme in themes.values {
             for style in theme.styles {
                 guard style.applies(to: styleable) else { continue }
-                apply(styleable: styleable, style: style)
+                apply(style: style, to: styleable)
             }
         }
     }

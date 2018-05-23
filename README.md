@@ -112,26 +112,29 @@ styles:
 Each style may also have a `styles` array that is an array of other inherited styles, who's properties will also be applied.
 
 ### Setting a Style
+Class styles will be applied to UIViews when they are added to a superview.
+
 To set a custom style on a UIView, simply set it's `style` property:
 
 ```swift
 myView.style = "myStyle"
 ```
 
-A style can also be set in Interface Builder in the identity inspector.
+> You can also set a `styles` array that will apply multiple styles in order.
+
+A style can also be set in Interface Builder in the identity inspector using runtime attributes.
 
 <img src="Resources/IB_set_style.png" width="260">
 
-> You can also set a `styles` array that will apply multiple styles in order.
-
 ## 🖍 Style Properties
 Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](Docs/StyleProperties.MD).
-Each style can also reference an array of other styles that will be merged in order
 
 ## 🔥 Hot Reloading
-You can choose to watch a file, which means that whenever that file is changed the styles are reloaded. These changes can also be animated!
+You can choose to watch a Theme files which means that whenever that file is changed the styles are reloaded. These changes can also be animated!
 
-This can be very useful while developing, as you can make changes to your styles on the fly without recompiling and see the results animate in instantly! To watch a file simply call `watch` on stylist and pass in a URL to a local file on disk or a remote url:
+Themes can live at a remote url allowing you to even update styles remotely.
+
+Hotloading can also be very useful while developing, as you can make changes to your styles on the fly without recompiling and see the results animate in instantly! To watch a file simply call `watch` on stylist and pass in a URL to a local file on disk or a remote url:
 
 ```swift
 Stylist.shared.watch(url: fileOrRemoteURL, animateChanges: true) { error in

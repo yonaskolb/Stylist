@@ -60,8 +60,14 @@ styles:
 #### Cocoapods
 Add the following to your `podfile`
 
+```sh
+pod 'Stylist'
 ```
-pod 'Stylist', :git=> 'https://github.com/yonaskolb/Stylist'
+
+#### Carthage
+Add the following to your `Cartfile`
+```sh
+github "yonaskolb/Stylist"
 ```
 
 ## 🎨 Theme

@@ -119,6 +119,7 @@ myView.style = "myStyle"
 ```
 
 A style can also be set in Interface Builder in the identity inspector.
+
 <img src="Resources/IB_set_style.png" width="260">
 
 > You can also set a `styles` array that will apply multiple styles in order.

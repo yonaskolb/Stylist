@@ -27,7 +27,7 @@ class ViewPropertiesTests: XCTestCase {
             let style = try Style(selector: "style", properties: [
                 StylePropertyValue(string: property, value: value)
                 ])
-            Stylist.shared.apply(styleable: styleable, style: style)
+            Stylist.shared.apply(style: style, to: styleable)
             if !compare(styleable) {
                 XCTFail("Did not set property \(property) using \(value)", file: file, line: line)
             }

@@ -28,7 +28,7 @@ class StylistTests: XCTestCase {
                 ])
 
         let view = UIView()
-        stylist.apply(styleable: view, style: style)
+        stylist.apply(style: style, to: view)
         XCTAssertEqual(view.backgroundColor, .blue)
     }
 
@@ -83,7 +83,7 @@ class StylistTests: XCTestCase {
         let superview = UIView()
         superview.addSubview(view)
 
-        Stylist.shared.apply(styleable: view, style: style)
+        Stylist.shared.apply(style: style, to: view)
 
         XCTAssertEqual(view.backgroundColor, .blue)
         XCTAssertEqual(superview.backgroundColor, nil)
@@ -111,7 +111,7 @@ class StylistTests: XCTestCase {
             StylePropertyValue(name: "backgroundColor", value: "green", context: PropertyContext(styleContext: .init(horizontalSizeClass: .compact))),
             StylePropertyValue(name: "backgroundColor", value: "red", context: PropertyContext(styleContext: .init(horizontalSizeClass: .regular)))
             ])
-        Stylist.shared.apply(styleable: view, style: style)
+        Stylist.shared.apply(style: style, to: view)
 
         XCTAssertEqual(view.backgroundColor, .green)
     }
@@ -242,7 +242,7 @@ class StylistTests: XCTestCase {
         Stylist.shared.addProperty(property)
         let customView = CustomView()
         let style = try Style(selector: "custom", properties: [StylePropertyValue(name: "property", value: "hello")])
-        Stylist.shared.apply(styleable: customView, style: style)
+        Stylist.shared.apply(style: style, to: customView)
 
         XCTAssertEqual(customView.customProperty, "hello")
     }

@@ -92,7 +92,7 @@ Stylist.shared.addTheme(theme, name: "mainTheme")
 
 ## 🖌 Style
 
-Styles are defined using one or more selectors. Selectors can be a class or a style or both. Custom classes must be prefixed by the module name. 
+Styles are defined using one or more selectors. Selectors can be a class or a style or both. Custom classes must be prefixed by the module name. Styles must start with a lowercase.
 
 - `UIButton` all UIButtons
 - `MyApp.MyView` all MyView classes in the MyApp Module

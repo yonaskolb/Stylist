@@ -129,15 +129,16 @@ Many UIKit views and bar buttons have built in properties that you can set. Thes
 Each style can also reference an array of other styles that will be merged in order
 
 ## 🔥 Hot Reloading
-You can choose to watch a file, which means that whever that file is changed the styles are reloaded. The file can be a local file on disk or a remote file.
-This can be very useful while developing, as you can make changes on your device without recompiling and see the results instantly! To watch a file simply call `watch` on stylist and pass in a URL:
+You can choose to watch a file, which means that whenever that file is changed the styles are reloaded. These changes can also be animated!
+
+This can be very useful while developing, as you can make changes to your styles on the fly without recompiling and see the results animate in instantly! To watch a file simply call `watch` on stylist and pass in a URL to a local file on disk or a remote url:
 
 ```swift
 Stylist.shared.watch(url: fileOrRemoteURL, animateChanges: true) { error in
-  print("An error occured while loading or parsing the file")
+  print("An error occured while loading or parsing the file: \(error)")
 }
 ```
-If an error occurs at any time the `parsingError` callback will be called with a `ThemeError`, which will tell you exactly what went wrong including any formatting errors on invalid references. This means you can save an invalid theme without worrying that things will blow up.
+If an error occurs at any time the `parsingError` callback will be called with a `ThemeError`, which will tell you exactly what went wrong including any formatting errors or invalid references. This means you can accidentally save an invalid theme without worrying that things will blow up.
 
 To stop watching the file, you can call `stop()` on the `FileWatcher` that is returned.
 

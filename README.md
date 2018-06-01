@@ -116,23 +116,22 @@ Each style may also have a `styles` array that is an array of other inherited st
 ### Setting a Style
 Class styles will be applied to UIViews when they are added to a superview.
 
-To set a custom style on a UIView, simply set it's `style` property:
+To set a custom style on a UIView, simply set its `style` property. You can set multiple styles by comma separating them.
 
 #### Programatically
 
 ```swift
 myView.style = "myStyle"
+otherView.style = "myStyle,otherStyle"
 ```
-
-You can also set a `styles` array that will apply multiple styles in order.
 
 #### Interface Builder
 
-A style can be set in Interface Builder in the identity inspector using runtime attributes.
+Styles can be set in Interface Builder in the identity inspector using runtime attributes.
 
 <img src="Resources/IB_set_style.png" width="260">
 
-If you subclass `StyleableView` you can also set the style in the property inspector
+If you subclass `StyleableView` you can more easily set styles in the property inspector
 
 <img src="Resources/IB_styleable_view.png" width="260">
 

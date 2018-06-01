@@ -116,15 +116,23 @@ Class styles will be applied to UIViews when they are added to a superview.
 
 To set a custom style on a UIView, simply set it's `style` property:
 
+#### Programatically
+
 ```swift
 myView.style = "myStyle"
 ```
 
-> You can also set a `styles` array that will apply multiple styles in order.
+You can also set a `styles` array that will apply multiple styles in order.
 
-A style can also be set in Interface Builder in the identity inspector using runtime attributes.
+#### Interface Builder
+
+A style can be set in Interface Builder in the identity inspector using runtime attributes.
 
 <img src="Resources/IB_set_style.png" width="260">
+
+If you subclass `StyleableView` you can also set the style in the property inspector
+
+<img src="Resources/IB_styleable_view.png" width="260">
 
 ## 🖍 Style Properties
 Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](Docs/StyleProperties.MD).

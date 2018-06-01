@@ -49,6 +49,8 @@
 		CC49676620B2B22800055C60 /* PropertyContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC49676420B2B22800055C60 /* PropertyContext.swift */; };
 		CC49676820B3E6A400055C60 /* ViewPropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC49676720B3E6A400055C60 /* ViewPropertyTests.swift */; };
 		CC49676920B3E6A400055C60 /* ViewPropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC49676720B3E6A400055C60 /* ViewPropertyTests.swift */; };
+		CC4C826A20C0DA9E00702050 /* StyleableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C826920C0DA9E00702050 /* StyleableView.swift */; };
+		CC4C826B20C0DA9E00702050 /* StyleableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4C826920C0DA9E00702050 /* StyleableView.swift */; };
 		CC64F6FE1F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
 		CC64F7011F48FEC100A5972F /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */; };
 		CC64F7031F49DFA900A5972F /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64F7021F49DFA900A5972F /* Properties.swift */; };
@@ -166,6 +168,7 @@
 		CC49676120B2B21A00055C60 /* StyleContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleContext.swift; sourceTree = "<group>"; };
 		CC49676420B2B22800055C60 /* PropertyContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyContext.swift; sourceTree = "<group>"; };
 		CC49676720B3E6A400055C60 /* ViewPropertyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPropertyTests.swift; sourceTree = "<group>"; };
+		CC4C826920C0DA9E00702050 /* StyleableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleableView.swift; sourceTree = "<group>"; };
 		CC64F6FD1F48FEC100A5972F /* LayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAnchor.swift; sourceTree = "<group>"; };
 		CC64F7021F49DFA900A5972F /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 		CC64F7071F49EC0500A5972F /* StyleValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleValue.swift; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 				CC49675E20B2B1D600055C60 /* StylePropertyValue.swift */,
 				CC49676420B2B22800055C60 /* PropertyContext.swift */,
 				CCCB788B20B426D400ADDA8F /* UIViewSwizzle.swift */,
+				CC4C826920C0DA9E00702050 /* StyleableView.swift */,
 			);
 			path = Stylist;
 			sourceTree = "<group>";
@@ -737,6 +741,7 @@
 			files = (
 				CC64F7081F49EC0500A5972F /* StyleValue.swift in Sources */,
 				CC68ECDD1F485B240063AE1F /* Image.swift in Sources */,
+				CC4C826A20C0DA9E00702050 /* StyleableView.swift in Sources */,
 				CC2385261F47911200FB0073 /* Styleable.swift in Sources */,
 				CC49676220B2B21A00055C60 /* StyleContext.swift in Sources */,
 				CC23852B1F47962D00FB0073 /* Theme.swift in Sources */,
@@ -774,6 +779,7 @@
 			files = (
 				CC64F70B1F49EC0500A5972F /* StyleValue.swift in Sources */,
 				CC68ECE01F485B240063AE1F /* Image.swift in Sources */,
+				CC4C826B20C0DA9E00702050 /* StyleableView.swift in Sources */,
 				CC2385291F47911200FB0073 /* Styleable.swift in Sources */,
 				CC49676320B2B21A00055C60 /* StyleContext.swift in Sources */,
 				CC23852E1F47962D00FB0073 /* Theme.swift in Sources */,

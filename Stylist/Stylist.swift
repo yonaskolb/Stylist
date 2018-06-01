@@ -144,6 +144,7 @@ public class Stylist {
             fileWatcher = FileWatcher.Remote(url: url)
         }
 
+        var hasLoaded = false
         let stylist = self
         do {
             try fileWatcher.start { result in
@@ -154,7 +155,8 @@ public class Stylist {
                     do {
                         let theme = try Theme(data: data)
                         self.themes[url.path] = theme
-                        stylist.apply(theme: theme, animateChanges: animateChanges)
+                        stylist.apply(theme: theme, animateChanges: animateChanges && hasLoaded)
+                        hasLoaded = true
                     } catch let error as ThemeError {
                         parsingError(error)
                     } catch {

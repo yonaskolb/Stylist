@@ -25,6 +25,15 @@ extension Styleable {
     func applyStyles() {
         Stylist.shared.style(self)
     }
+
+    public var style: String? {
+        get {
+            return styles.first
+        }
+        set {
+            styles = newValue != nil ? [newValue!] : []
+        }
+    }
 }
 
 extension View: Styleable {
@@ -44,14 +53,6 @@ extension View: Styleable {
         }
     }
 
-    @IBInspectable public var style: String? {
-        get {
-            return styles.first
-        }
-        set {
-            styles = newValue != nil ? [newValue!] : []
-        }
-    }
 }
 
 #if os(iOS) || os(tvOS)
@@ -72,13 +73,5 @@ extension View: Styleable {
             }
         }
 
-        @IBInspectable public var style: String? {
-            get {
-                return styles.first
-            }
-            set {
-                styles = newValue != nil ? [newValue!] : []
-            }
-        }
     }
 #endif

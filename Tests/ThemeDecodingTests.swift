@@ -210,5 +210,15 @@ class ThemeDecodingTests: XCTestCase {
             try themeString(style: "Module.Invalid", property: "color: red")
         }
     }
+
+    func testStyleSpecificityIndex() throws {
+        let styles = [
+            try Style(selector: "UIView.custom primary", properties: []),
+            try Style(selector: "UIView primary", properties: []),
+            try Style(selector: "UIView", properties: []),
+        ]
+        let theme = Theme(variables: [:], styles: styles)
+        XCTAssertEqual(theme.styles, styles.reversed())
+    }
     
 }

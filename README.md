@@ -109,6 +109,8 @@ styles:
     font: title3
 ```
 
+Styles will be applied in order of specificity, so the more specific a style is (more selectors), the later it will be applied.
+
 Each style may also have a `styles` array that is an array of other inherited styles, who's properties will also be applied.
 
 ### Setting a Style

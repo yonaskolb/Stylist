@@ -15,10 +15,11 @@ public class StyleableView: UIView {
     @IBInspectable
     public var style: String? {
         get {
-            return styles.first
+            return styles.isEmpty ? nil : styles.joined(separator: ",")
         }
         set {
-            styles = newValue != nil ? [newValue!] : []
+            styles = newValue?.split(separator: ",")
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
         }
     }
 }

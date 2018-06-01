@@ -94,22 +94,42 @@ class StylistTests: XCTestCase {
 
     func testSettingStyles() {
         let view = UIView()
+
         view.style = "test"
         XCTAssertEqual(view.style, "test")
         XCTAssertEqual(view.styles, ["test"])
+
         view.styles = ["one", "two"]
         XCTAssertEqual(view.styles, ["one", "two"])
-        XCTAssertEqual(view.style, "one")
+        XCTAssertEqual(view.style, "one,two")
+
+        view.styles = []
+        XCTAssertEqual(view.style, nil)
+        XCTAssertEqual(view.styles, [])
+
+        view.style = "test, one,two"
+        XCTAssertEqual(view.style, "test,one,two")
+        XCTAssertEqual(view.styles, ["test", "one", "two"])
     }
 
     func testSettingStylesOnStyleableView() {
         let view = StyleableView()
+
         view.style = "test"
         XCTAssertEqual(view.style, "test")
         XCTAssertEqual(view.styles, ["test"])
+
         view.styles = ["one", "two"]
         XCTAssertEqual(view.styles, ["one", "two"])
-        XCTAssertEqual(view.style, "one")
+        XCTAssertEqual(view.style, "one,two")
+
+        view.styles = []
+        XCTAssertEqual(view.style, nil)
+        XCTAssertEqual(view.styles, [])
+
+        view.style = "test, one,two"
+        XCTAssertEqual(view.style, "test,one,two")
+        XCTAssertEqual(view.styles, ["test", "one", "two"])
     }
 
     func testFilteringSizeClasses() throws {

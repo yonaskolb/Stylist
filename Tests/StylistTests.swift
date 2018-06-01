@@ -258,6 +258,23 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(customView.customProperty, "hello")
     }
 
+    func testStyleSpecificity() throws {
+        let theme = Theme(styles: [
+            try Style(selector: "UIButton.primary", properties: [
+                StylePropertyValue(name: "backgroundColor", value: "blue")
+                ]),
+            try Style(selector: "primary", properties: [
+                StylePropertyValue(name: "backgroundColor", value: "red")
+                ])
+            ])
+
+        let view = UIButton()
+        view.style = "primary"
+        Stylist.shared.apply(theme: theme)
+
+        XCTAssertEqual(view.backgroundColor, .blue)
+    }
+
     //TODO: test loading files
 
     //TODO: test watching files

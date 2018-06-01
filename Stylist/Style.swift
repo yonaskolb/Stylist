@@ -88,6 +88,12 @@ public class Style: Equatable {
             return getSuperView(view: superview, component: component)
         }
     }
+
+    var specificityIndex: Int {
+        return components.reduce(0) { index, component in
+            index + (component.classType != nil ? 1 : 0) + (component.style != nil ? 1 : 0)
+        }
+    }
 }
 
 struct SelectorComponent: Equatable {

@@ -16,7 +16,7 @@ public struct Theme: Equatable {
 
     public init(variables: [String: Any] = [:], styles: [Style] = []) {
         self.variables = variables
-        self.styles = styles
+        self.styles = styles.sorted { $0.specificityIndex < $1.specificityIndex }
     }
 
     public static func == (lhs: Theme, rhs: Theme) -> Bool {
@@ -111,7 +111,7 @@ extension Theme {
                 styles.append(style)
             }
         }
-        self.styles = styles
+        self.styles = styles.sorted { $0.specificityIndex < $1.specificityIndex }
         self.variables = variables
     }
 }

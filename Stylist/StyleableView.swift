@@ -13,13 +13,12 @@ import UIKit
 public class StyleableView: UIView {
 
     @IBInspectable
-    public var style: String? {
+    public override var style: String? {
         get {
-            return styles.isEmpty ? nil : styles.joined(separator: ",")
+            return super.style
         }
         set {
-            styles = newValue?.split(separator: ",")
-                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
+            super.style = newValue
         }
     }
 }

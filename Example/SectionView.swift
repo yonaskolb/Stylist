@@ -9,6 +9,16 @@
 import Foundation
 import UIKit
 
+@IBDesignable
 class SectionView: UIStackView {
 
+    @IBInspectable
+    public override var style: String? {
+        get {
+            return super.style
+        }
+        set {
+            super.style = newValue
+        }
+    }
 }

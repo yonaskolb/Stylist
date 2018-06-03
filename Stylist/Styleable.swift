@@ -26,14 +26,13 @@ extension Styleable {
         Stylist.shared.style(self)
     }
 
-    public var style: String? {
-        get {
-            return styles.isEmpty ? nil : styles.joined(separator: ",")
-        }
-        set {
-            styles = newValue?.split(separator: ",")
-                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
-        }
+    fileprivate func setStyle(_ style: String?) {
+        styles = style?.split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
+    }
+
+    fileprivate func getStyle() -> String? {
+        return styles.isEmpty ? nil : styles.joined(separator: ",")
     }
 }
 
@@ -54,6 +53,16 @@ extension View: Styleable {
         }
     }
 
+    @IBInspectable
+    open var style: String? {
+        get {
+            return getStyle()
+        }
+        set {
+            setStyle(newValue)
+        }
+    }
+
 }
 
 #if os(iOS) || os(tvOS)
@@ -71,6 +80,16 @@ extension View: Styleable {
                 objc_setAssociatedObject(self, &AssociatedKeys.Styles,
                                          newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 applyStyles()
+            }
+        }
+
+        @IBInspectable
+        open var style: String? {
+            get {
+                return getStyle()
+            }
+            set {
+                setStyle(newValue)
             }
         }
 

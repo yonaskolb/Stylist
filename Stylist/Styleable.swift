@@ -9,11 +9,11 @@
 import Foundation
 
 #if os(iOS) || os(tvOS)
-    import UIKit
-    public typealias View = UIView
+import UIKit
+public typealias View = UIView
 #elseif os(macOS)
-    import Cocoa
-    public typealias View = NSView
+import Cocoa
+public typealias View = NSView
 #endif
 
 public protocol Styleable: class {
@@ -26,18 +26,17 @@ extension Styleable {
         Stylist.shared.style(self)
     }
 
-    public var style: String? {
-        get {
-            return styles.isEmpty ? nil : styles.joined(separator: ",")
-        }
-        set {
-            styles = newValue?.split(separator: ",")
-                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
-        }
+    fileprivate func setStyle(_ style: String?) {
+        styles = style?.split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
+    }
+
+    fileprivate func getStyle() -> String? {
+        return styles.isEmpty ? nil : styles.joined(separator: ",")
     }
 }
 
-extension View: Styleable {
+extension UIView: Styleable {
 
     struct AssociatedKeys {
         static var Styles = "stylist_styles"
@@ -54,25 +53,72 @@ extension View: Styleable {
         }
     }
 
+    @IBInspectable
+    open var style: String? {
+        get {
+            return getStyle()
+        }
+        set {
+            setStyle(newValue)
+        }
+    }
+
 }
 
-#if os(iOS) || os(tvOS)
-    extension UIBarItem: Styleable {
+extension UIViewController: Styleable {
 
-        struct AssociatedKeys {
-            static var Styles = "stylist_styles"
-        }
-
-        public var styles: [String] {
-            get {
-                return objc_getAssociatedObject(self, &AssociatedKeys.Styles) as? [String] ?? []
-            }
-            set {
-                objc_setAssociatedObject(self, &AssociatedKeys.Styles,
-                                         newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                applyStyles()
-            }
-        }
-
+    struct AssociatedKeys {
+        static var Styles = "stylist_styles"
     }
-#endif
+
+    public var styles: [String] {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.Styles) as? [String] ?? []
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.Styles,
+                                     newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            applyStyles()
+        }
+    }
+
+    @IBInspectable
+    open var style: String? {
+        get {
+            return getStyle()
+        }
+        set {
+            setStyle(newValue)
+        }
+    }
+
+}
+
+extension UIBarItem: Styleable {
+
+    struct AssociatedKeys {
+        static var Styles = "stylist_styles"
+    }
+
+    public var styles: [String] {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.Styles) as? [String] ?? []
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.Styles,
+                                     newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            applyStyles()
+        }
+    }
+
+    @IBInspectable
+    open var style: String? {
+        get {
+            return getStyle()
+        }
+        set {
+            setStyle(newValue)
+        }
+    }
+
+}

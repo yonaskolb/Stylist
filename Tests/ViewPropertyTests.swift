@@ -24,9 +24,9 @@ class ViewPropertiesTests: XCTestCase {
 
     func testProperty<T>(_ styleable: T, property: String, value: Any, file: StaticString = #file, line: UInt = #line, _ compare: (T) -> Bool) {
         do {
-            let style = try Style(selector: "style", properties: [
-                StylePropertyValue(string: property, value: value)
-                ])
+            let style = try Style(properties: [
+                StylePropertyValue(string: property, value: value),
+            ])
             Stylist.shared.apply(style: style, to: styleable)
             if !compare(styleable) {
                 XCTFail("Did not set property \(property) using \(value)", file: file, line: line)
@@ -92,7 +92,7 @@ class ViewPropertiesTests: XCTestCase {
         }
 
         testViewProperty(property: "frame", value: "10,12,13,14") {
-            $0.frame == CGRect(origin: CGPoint(x: 10, y: 12), size:  CGSize(width: 13, height: 14))
+            $0.frame == CGRect(origin: CGPoint(x: 10, y: 12), size: CGSize(width: 13, height: 14))
         }
     }
 
@@ -192,7 +192,7 @@ class ViewPropertiesTests: XCTestCase {
 
         testProperty(UIButton(), property: "textColor:highlighted", value: "red") {
             $0.titleColor(for: .normal) == UIButton().titleColor(for: .normal) &&
-            $0.titleColor(for: .highlighted) == .red
+                $0.titleColor(for: .highlighted) == .red
         }
 
         testProperty(UIButton(), property: "titleColor:highlighted", value: "red") {
@@ -205,5 +205,5 @@ class ViewPropertiesTests: XCTestCase {
         }
     }
 
-    //TODO: test other default properties
+    // TODO: test other default properties
 }

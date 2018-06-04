@@ -12,9 +12,9 @@ import Yams
 public struct Theme: Equatable {
 
     public let variables: [String: Any]
-    public let styles: [Style]
+    public let styles: [StyleSelector]
 
-    public init(variables: [String: Any] = [:], styles: [Style] = []) {
+    public init(variables: [String: Any] = [:], styles: [StyleSelector] = []) {
         self.variables = variables
         self.styles = styles.sorted { $0.specificityIndex < $1.specificityIndex }
     }
@@ -50,7 +50,7 @@ extension Theme {
     }
 
     public init(dictionary: [String: Any]) throws {
-        var styles: [Style] = []
+        var styles: [StyleSelector] = []
         var variables: [String: Any] = dictionary["variables"] as? [String: Any] ?? [:]
         let stylesDictionary = (dictionary["styles"] as? [String: Any]) ?? [:]
 
@@ -68,14 +68,19 @@ extension Theme {
                             throw ThemeError.invalidStyleReference(style: key, reference: style)
                         }
                     }
+                    styleDictionary["styles"] = nil
                 }
 
                 func parseStyle(dictionary: [String: Any]) throws -> Style {
 
                     var properties: [StylePropertyValue] = []
+                    var subStyles: [String: Style] = [:]
 
                     for (propertyName, value) in dictionary {
-                        if propertyName == "styles" || propertyName == "parent" {
+
+                        if let subDictionary = value as? [String: Any] {
+                            let style = try parseStyle(dictionary: subDictionary)
+                            subStyles[propertyName] = style
                             continue
                         }
 
@@ -101,14 +106,12 @@ extension Theme {
                         let propertyValue = try resolveVariable(value)
                         properties.append(try StylePropertyValue(string: propertyName, value: propertyValue))
                     }
-                    var parentStyle: Style?
-                    if let parentDictionary = dictionary["parent"] as? [String: Any] {
-                        parentStyle = try parseStyle(dictionary: parentDictionary)
-                    }
-                    return try Style(selector: key, properties: properties, parentStyle: parentStyle)
+                   
+                    return try Style(properties: properties, subStyles: subStyles)
                 }
                 let style = try parseStyle(dictionary: styleDictionary)
-                styles.append(style)
+                let styleSelector = try StyleSelector(selector: key, style: style)
+                styles.append(styleSelector)
             }
         }
         self.styles = styles.sorted { $0.specificityIndex < $1.specificityIndex }

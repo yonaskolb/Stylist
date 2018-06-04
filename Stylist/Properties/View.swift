@@ -1,22 +1,70 @@
 //
-//  Properties.swift
+//  View.swift
 //  Stylist
 //
-//  Created by Yonas Kolb on 20/8/17.
-//  Copyright © 2017 Stylist. All rights reserved.
+//  Created by Yonas Kolb on 4/6/18.
+//  Copyright © 2018 Stylist. All rights reserved.
 //
 
 import Foundation
 
 #if os(iOS) || os(tvOS)
-    import UIKit
+import UIKit
 #elseif os(macOS)
-    import Cocoa
+import Cocoa
 #endif
 
-struct StyleProperties {
+extension UIResponder {
 
-    static let view: [StyleProperty] = {
+    var viewController: UIViewController? {
+        return next as? UIViewController ?? next?.viewController
+    }
+}
+
+extension View {
+
+    static let styleObjects: [StyleObject] = {
+
+        var objects: [StyleObject] = []
+
+        func add<ViewType, StyleableType: Styleable>(_ name: String, _ styleable: @escaping (ViewType) -> StyleableType?) {
+            objects.append(StyleObject(name: name, styleable: styleable))
+        }
+
+        add("superview") { (view: UIView) in
+            view.superview
+        }
+
+        add("parent") { (view: UIView) in
+            view.superview
+        }
+
+        add("next") { (view: UIView) -> UIView? in
+            guard let superview = view.superview,
+                let index = superview.subviews.index(of: view),
+                index + 1 < superview.subviews.count else {
+                return nil
+            }
+            return superview.subviews[index + 1]
+        }
+
+        add("previous") { (view: UIView) -> UIView? in
+            guard let superview = view.superview,
+                let index = superview.subviews.index(of: view),
+                index - 1 > 0 else {
+                    return nil
+            }
+            return superview.subviews[index - 1]
+        }
+
+        add("viewController") { (view: UIView) in
+            view.viewController
+        }
+
+        return objects
+    }()
+
+    static let styleProperties: [StyleProperty] = {
 
         var properties: [StyleProperty] = []
 
@@ -239,6 +287,17 @@ struct StyleProperties {
             view.text = value.value
         }
 
+        // UISwitch
+        #if os(iOS)
+        add("onTintColor") { (view: UISwitch, value: PropertyValue<Color>) in
+            view.onTintColor = value.value
+        }
+
+        add("thumbTintColor") { (view: UISwitch, value: PropertyValue<Color>) in
+            view.thumbTintColor = value.value
+        }
+        #endif
+
         // UIProgressBar
         add("progressTintColor") { (view: UIProgressView, value: PropertyValue<Color>) in
             view.progressTintColor = value.value
@@ -253,15 +312,58 @@ struct StyleProperties {
             view.barTintColor = value.value
         }
 
+        add("titleColor") { (view: UINavigationBar, value: PropertyValue<Color>) in
+            var attributes = view.titleTextAttributes ?? [:]
+            attributes[.foregroundColor] = value.value
+            view.titleTextAttributes = attributes
+        }
+
+        add("titleFont") { (view: UINavigationBar, value: PropertyValue<Font>) in
+            var attributes = view.titleTextAttributes ?? [:]
+            attributes[.font] = value.value
+            view.titleTextAttributes = attributes
+        }
+
+        add("titleTextAttributes") { (view: UINavigationBar, value: PropertyValue<TextAttributes>) in
+            view.titleTextAttributes = value.value.attributes
+        }
+
         add("translucent") { (view: UINavigationBar, value: PropertyValue<Bool>) in
             view.isTranslucent = value.value
         }
 
         #if os(iOS)
 
-            add("barStyle") { (view: UINavigationBar, value: PropertyValue<UIBarStyle>) in
-                view.barStyle = value.value
+        if #available(iOSApplicationExtension 11.0, *) {
+            add("largeTitleColor") { (view: UINavigationBar, value: PropertyValue<Color>) in
+                var attributes = view.largeTitleTextAttributes ?? [:]
+                attributes[.foregroundColor] = value.value
+                view.largeTitleTextAttributes = attributes
             }
+
+            add("largeTitleFont") { (view: UINavigationBar, value: PropertyValue<Font>) in
+                var attributes = view.largeTitleTextAttributes ?? [:]
+                attributes[.font] = value.value
+                view.largeTitleTextAttributes = attributes
+            }
+
+            add("prefersLargeTitles") { (view: UINavigationBar, value: PropertyValue<Bool>) in
+
+                view.prefersLargeTitles = value.value
+            }
+        }
+
+        add("barStyle") { (view: UINavigationBar, value: PropertyValue<UIBarStyle>) in
+            view.barStyle = value.value
+        }
+
+        add("backIndicatorImage") { (view: UINavigationBar, value: PropertyValue<UIImage>) in
+            view.backIndicatorImage = value.value
+        }
+
+        add("backIndicatorTransitionMaskImage") { (view: UINavigationBar, value: PropertyValue<UIImage>) in
+            view.backIndicatorTransitionMaskImage = value.value
+        }
         #endif
 
         add("shadowImage") { (view: UINavigationBar, value: PropertyValue<UIImage>) in
@@ -271,6 +373,45 @@ struct StyleProperties {
         add("backgroundImage") { (view: UINavigationBar, value: PropertyValue<UIImage>) in
             view.setBackgroundImage(value.value, for: value.context.barMetrics)
         }
+
+        // UITabBar
+        add("translucent") { (view: UITabBar, value: PropertyValue<Bool>) in
+            view.isTranslucent = value.value
+        }
+
+        add("barTintColor") { (view: UITabBar, value: PropertyValue<Color>) in
+            view.barTintColor = value.value
+        }
+
+        add("shadowImage") { (view: UITabBar, value: PropertyValue<UIImage>) in
+            view.shadowImage = value.value
+        }
+
+        add("backgroundImage") { (view: UITabBar, value: PropertyValue<UIImage>) in
+            view.backgroundImage = value.value
+        }
+
+        add("selectionIndicatorImage") { (view: UITabBar, value: PropertyValue<UIImage>) in
+            view.selectionIndicatorImage = value.value
+        }
+
+        #if os(iOS)
+
+        add("barStyle") { (view: UITabBar, value: PropertyValue<UIBarStyle>) in
+            view.barStyle = value.value
+        }
+
+        add("itemPositioning") { (view: UITabBar, value: PropertyValue<UITabBarItemPositioning>) in
+            view.itemPositioning = value.value
+        }
+
+        if #available(iOSApplicationExtension 10.0, *) {
+            add("unselectedItemTintColor") { (view: UITabBar, value: PropertyValue<Color>) in
+                view.unselectedItemTintColor = value.value
+            }
+        }
+        #endif
+
 
         // UISearchBar
         add("backgroundImage") { (view: UISearchBar, value: PropertyValue<UIImage>) in
@@ -289,34 +430,13 @@ struct StyleProperties {
         add("distribution") { (view: UIStackView, value: PropertyValue<UIStackViewDistribution>) in
             view.distribution = value.value
         }
-
+        
         add("axis") { (view: UIStackView, value: PropertyValue<UILayoutConstraintAxis>) in
             view.axis = value.value
         }
 
         add("relativeMargins") { (view: UIStackView, value: PropertyValue<Bool>) in
             view.isLayoutMarginsRelativeArrangement = value.value
-        }
-
-        return properties
-    }()
-
-    static let barItem: [StyleProperty] = {
-
-        var properties: [StyleProperty] = []
-
-        func add<ViewType, PropertyType>(_ name: String, _ style: @escaping (ViewType, PropertyValue<PropertyType>) -> Void) {
-            properties.append(StyleProperty(name: name, style: style))
-        }
-
-        // UIBarItem
-        add("image") { (view: UIBarItem, value: PropertyValue<Image>) in
-            view.image = value.value
-        }
-
-        // UIBarButtonItem
-        add("tintColor") { (view: UIBarButtonItem, value: PropertyValue<Color>) in
-            view.tintColor = value.value
         }
 
         return properties

@@ -24,3 +24,28 @@ styles:
     contentEdgeInsets: 20,15
     contentEdgeInsets:highlighted: 22,12
     backgroundImage: buttonBack
+  Example.ExampleViewController:
+    largeTitleDisplayMode: automatic
+  UINavigationBar:
+    prefersLargeTitles: true
+    backgroundColor: red
+    translucent: false
+    barTintColor: red
+    tintColor: white
+    largeTitleColor: white
+  UISwitch:
+    onTintColor: red
+  UITabBar:
+    tintColor: red
+  mainStack:
+    spacing: 12
+    layoutMargins: 8,20
+    relativeMargins: true
+    alignment: fill
+  mainStack UIStackView:
+    spacing: 8
+    alignment: center
+    distribution: fill
+  mainStack UITextField:
+    backgroundColor: white
+    textColor: black

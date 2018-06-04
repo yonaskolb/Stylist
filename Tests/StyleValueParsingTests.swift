@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import Stylist
-import XCTest
 import Yams
 
 class StyleValueParsingTests: XCTestCase {
@@ -76,7 +75,7 @@ class StyleValueParsingTests: XCTestCase {
 
         assertStyleValueParsingNil(Int.self, "invalid")
         assertStyleValueParsingNil(Double.self, "invalid")
-        assertStyleValueParsingNil(Double.self,"")
+        assertStyleValueParsingNil(Double.self, "")
     }
 
     func testBooleanParsing() throws {
@@ -193,21 +192,21 @@ class StyleValueParsingTests: XCTestCase {
         assertStyleValueParsing(AspectRatioAnchor(ratio: 1), 1)
         assertStyleValueParsing(AspectRatioAnchor(ratio: 0.5), "0.5")
         assertStyleValueParsing(AspectRatioAnchor(ratio: 0.5), "1/2")
-        assertStyleValueParsing(AspectRatioAnchor(ratio: 16/9), "16/9")
+        assertStyleValueParsing(AspectRatioAnchor(ratio: 16 / 9), "16/9")
 
         assertStyleValueParsingNil(AspectRatioAnchor.self, "invalid")
     }
 
     #if os(iOS)
-    func testUIBarStyleParsing() throws {
-        assertStyleValueParsing(UIBarStyle.black, "black")
-        assertStyleValueParsing(UIBarStyle.default, "default")
-        assertStyleValueParsing(UIBarStyle.blackTranslucent, "blackTranslucent")
+        func testUIBarStyleParsing() throws {
+            assertStyleValueParsing(UIBarStyle.black, "black")
+            assertStyleValueParsing(UIBarStyle.default, "default")
+            assertStyleValueParsing(UIBarStyle.blackTranslucent, "blackTranslucent")
 
-        assertStyleValueParsing(UIBarStyle.blackTranslucent, "black translucent")
-        assertStyleValueParsing(UIBarStyle.blackTranslucent, "blacktranslucent")
+            assertStyleValueParsing(UIBarStyle.blackTranslucent, "black translucent")
+            assertStyleValueParsing(UIBarStyle.blackTranslucent, "blacktranslucent")
 
-        assertStyleValueParsingNil(UIViewContentMode.self, "invalid")
-    }
+            assertStyleValueParsingNil(UIViewContentMode.self, "invalid")
+        }
     #endif
 }

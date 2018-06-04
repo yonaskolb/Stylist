@@ -1,9 +1,9 @@
 # Style Properties
-- [Types](#types)
-- [Queries](#queries)
-- [Properties](#properties)
+- [Types](#types): The types of values you can specify
+- [Context](#context): Restrict how properties are applied
+- [Properties](#properties): Built in properties
 
-## Types
+# Types
 ### Color
 Colors can be specified in hex or name along with an optional alpha
 
@@ -58,6 +58,8 @@ Many other UIKit types are parsable too:
 - UIStackViewDistribution
 - UILayoutConstraintAxis
 - UIBarStyle
+- UINavigationItem.LargeTitleDisplayMod
+- UITabBarItemPositioning
 - CGPoint
 	- x, y: `10,10` 
 - CGRect
@@ -65,12 +67,14 @@ Many other UIKit types are parsable too:
 - CGSize
 	- square: `5`
 	- width, height: `10,20`
+- UIOffset:
+	- horizontal, vertical: `10,10` 
 - UIEdgeInsets
 	- all edges: `5`
 	- leftRight, topBottom: `5,10`
 	- top, left, bottom, right: `10,5,5,5`
 
-## Queries
+# Context
 There are a few ways to limit the scope of a property similar to media queries in CSS
 
 ### State
@@ -127,10 +131,13 @@ font(h:regular): MyFont:32
 
 All these contexts can be combined together
 ```yaml
-color:highlighted(h:regular, v:compact, device:pad): MyFont:32
+font:highlighted(h:regular, v:compact, device:pad): MyFont:32
 ```
 
-## Properties
+# Properties
+- UIViewController
+	- largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode
+	- largeTitleDisplayMode: Bool 
 - UIView
 	- backgroundColor: Color
 	- tintColor: Color
@@ -147,9 +154,6 @@ color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- visible: Bool (opposite of isHidden)
 	- hidden: Bool (isHidden)
 	- layoutMargins: UIEdgeInsets
-	- widthAnchor: LayoutAnchor
-	- heightAnchor: LayoutAnchor
-	- aspectRatioAnchor: Double or a division (`0.5` or `1/2`)
 - UIView constraints
 	- widthAnchor: LayoutAnchor
 	- heightAnchor: LayoutAnchor
@@ -167,6 +171,9 @@ color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- contentEdgeInsets: UIEdgeInsets
 	- textColor|titleColor: Color
 	- font|titleFont: Font
+- UISwitch:
+	- onTintColor: Color
+	- thumbTintColor: Color
 - UILabel
 	- font: Font
 	- textColor: Color
@@ -188,6 +195,22 @@ color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- barStyle: UIBarStyle
 	- shadowImage: Image
 	- backgroundImage: Image
+	- titleColor: Color
+	- titleFont: Font
+	- largeTitleColor: Color
+	- largeTitleFont: Font
+	- prefersLargeTitles: Bool
+	- backIndicatorImage: Image
+	- backIndicatorTransitionMaskImage: Image
+- UITabBar:
+	- barStyle: UIBarStyle
+	- translucent: Bool (isTranslucent)
+	- barTintColor: Color
+	- shadowImage: Image
+	- backgroundImage: Image
+	- selectionIndicatorImage: Image
+	- itemPositioning: UITabBarItemPositioning
+	- unselectedItemTintColor: Color
 - UISearchBar
 	- backgroundImage: Image
 - UIStackView
@@ -200,13 +223,3 @@ color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- image: Image
 - UIBarButtonItem
 	- tintColor: Color
-
-#### Parent
-Any style applied to a view can also reference a parent property. This lets you quickly change something in a parent which is useful for testing. 
-For example if a button is in a stackView you could easily change the stackviews spacing:
-
-```yaml
-myButton:
-  parent:
-    spacing: 30
-```

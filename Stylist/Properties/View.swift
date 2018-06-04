@@ -259,6 +259,10 @@ extension View {
             view.text = value.value
         }
 
+        add("textAlignment") { (view: UILabel, value: PropertyValue<NSTextAlignment>) in
+            view.textAlignment = value.value
+        }
+
         // UITextView
 
         add("textColor") { (view: UITextView, value: PropertyValue<Color>) in
@@ -273,6 +277,10 @@ extension View {
             view.text = value.value
         }
 
+        add("textAlignment") { (view: UITextView, value: PropertyValue<NSTextAlignment>) in
+            view.textAlignment = value.value
+        }
+
         // UITextField
 
         add("textColor") { (view: UITextField, value: PropertyValue<Color>) in
@@ -285,6 +293,10 @@ extension View {
 
         add("text") { (view: UITextField, value: PropertyValue<String>) in
             view.text = value.value
+        }
+
+        add("textAlignment") { (view: UITextField, value: PropertyValue<NSTextAlignment>) in
+            view.textAlignment = value.value
         }
 
         // UISwitch
@@ -411,7 +423,6 @@ extension View {
             }
         }
         #endif
-
 
         // UISearchBar
         add("backgroundImage") { (view: UISearchBar, value: PropertyValue<UIImage>) in

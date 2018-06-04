@@ -220,6 +220,21 @@ extension UITabBarItemPositioning: StyleValue {
     }
 }
 
+extension NSTextAlignment: StyleValue {
+
+    public static func parse(value: Any) -> NSTextAlignment? {
+        guard let string = value as? String else { return nil }
+        switch string {
+        case "left": return .left
+        case "center": return .center
+        case "right": return .right
+        case "natural": return .natural
+        case "justified": return .justified
+        default: return nil
+        }
+    }
+}
+
 struct TextAttributes: StyleValue {
 
     let attributes: [NSAttributedStringKey: Any]

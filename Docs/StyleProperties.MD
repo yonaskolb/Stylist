@@ -62,6 +62,7 @@ Many other UIKit types are parsable too:
 - UIBarStyle
 - UINavigationItem.LargeTitleDisplayMod
 - UITabBarItemPositioning
+- NSTextAlignment
 - CGPoint
 	- x, y: `10,10` 
 - CGRect
@@ -180,14 +181,17 @@ font:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- font: Font
 	- textColor: Color
 	- text: String
+	- textAlignment: NSTextAlignment
 - UITextView
 	- font: Font
 	- textColor: Color
 	- text: String
+	- textAlignment: NSTextAlignment
 - UITextField
 	- font: Font
 	- textColor: Color
 	- text: String
+	- textAlignment: NSTextAlignment
 - UIProgressBar
 	- progressTintColor: Color
 	- trackTintColor: Color

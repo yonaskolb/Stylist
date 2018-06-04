@@ -8,6 +8,7 @@
 - Made `UIView`, `UIBarItem` and `UIViewController` styles editable in the IB property inspector
 - Added support for specifying multiple styles in IB by comma separating them #6
 - Added more styleable properties
+- Added support for named colors from Asset Catalog #7
 
 #### Changed
 - Styles are applied sorted by specificity #5

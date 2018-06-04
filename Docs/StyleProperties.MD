@@ -11,8 +11,9 @@ Colors can be specified in hex or name along with an optional alpha
 	- 3 (RGB)
 	- 6 (RRGGBB)
 	- 8 (RRGGBBAA) with the last 2 controlling alpha
-- **Name**: The name of a built in UIColor name
-- **Alpha**: If a color is suffixed with `:` and then a float from 0 to 1, an alpha is applied to the color.
+- **Inbuilt color**: The name of a built in UIColor name
+- **Named**: The name of a color in an Asset Catalog
+- **Alpha**: If any of the above types is suffixed with `:` and then a float from 0 to 1, an alpha is applied to the color.
 
 These are all valid colors:
 
@@ -22,6 +23,7 @@ These are all valid colors:
 - `DD2222:0.1`
 - `white:0.5`
 - `darkGray`
+- `myColor`
 
 ### Font
 Fonts can be specified by font family, text style, system size, or system style. Size can be set by appending `:fontSize`

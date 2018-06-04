@@ -30,6 +30,12 @@ extension Color: StyleValue {
             colorString = parts[0]
             alpha = CGFloat.parse(value: parts[1])
         }
+
+        // named color
+        if #available(iOSApplicationExtension 11.0, tvOSApplicationExtension 11.0, *),
+            let color = Color(named: colorString) {
+                return color
+        }
         switch colorString.lowercased().replacingOccurrences(of: " ", with: "") {
         case "red": color = .red
         case "blue": color = .blue

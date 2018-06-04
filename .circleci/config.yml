@@ -5,5 +5,9 @@ jobs:
       xcode: "9.3.0"
     steps:
       - checkout
-      - run: xcodebuild test -workspace Stylist.xcworkspace -scheme Stylist-iOS -sdk iphonesimulator -destination "name=iPhone 8" | xcpretty
-      - run: xcodebuild test -workspace Stylist.xcworkspace -scheme Stylist-tvOS -sdk appletvsimulator -destination "name=Apple TV 4K" | xcpretty
+      - run: 
+          name: iOS Test
+          command: xcodebuild test -workspace Stylist.xcworkspace -scheme Stylist-iOS -sdk iphonesimulator -destination "name=iPhone 8" | xcpretty
+      - run: 
+          name: tvOS Test
+          command: xcodebuild test -workspace Stylist.xcworkspace -scheme Stylist-tvOS -sdk appletvsimulator -destination "name=Apple TV 4K" | xcpretty

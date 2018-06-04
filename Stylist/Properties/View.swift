@@ -51,7 +51,7 @@ extension View {
         add("previous") { (view: UIView) -> UIView? in
             guard let superview = view.superview,
                 let index = superview.subviews.index(of: view),
-                index - 1 > 0 else {
+                index - 1 >= 0 else {
                     return nil
             }
             return superview.subviews[index - 1]

@@ -1,5 +1,5 @@
 //
-//  StyleableProperty.swift
+//  StyleObject.swift
 //  Stylist
 //
 //  Created by Yonas Kolb on 4/6/18.

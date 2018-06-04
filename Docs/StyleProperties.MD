@@ -1,10 +1,9 @@
 # Style Properties
-- [Types](#types)
-- [Queries](#queries)
-- [Objects](#objects)
-- [Properties](#properties)
+- [Types](#types): The types of values you can specify
+- [Context](#context): Restrict how properties are applied
+- [Properties](#properties): Built in properties
 
-## Types
+# Types
 ### Color
 Colors can be specified in hex or name along with an optional alpha
 
@@ -75,7 +74,7 @@ Many other UIKit types are parsable too:
 	- leftRight, topBottom: `5,10`
 	- top, left, bottom, right: `10,5,5,5`
 
-## Queries
+# Context
 There are a few ways to limit the scope of a property similar to media queries in CSS
 
 ### State
@@ -132,35 +131,10 @@ font(h:regular): MyFont:32
 
 All these contexts can be combined together
 ```yaml
-color:highlighted(h:regular, v:compact, device:pad): MyFont:32
+font:highlighted(h:regular, v:compact, device:pad): MyFont:32
 ```
 
-## Objects
-Styles can reference a sub object and then style that with it's own properties. These are really useful for testing
-
-- UIView
-	- `superview`: The views superview
-	- `next`: The next sibling view
-	- `previous`: The previous sibing view
-	- `viewController`: The view controller the view belongs to
-- UIViewController
-	- `view`: The root view
-	- `parent`: The parent view controller
-	- `navigationController`: The UINavigationController this is contained in
-	- `tabBarController`: The UITabBarController this is contained in
-	- `tabBar`: The UITabBar for this view controller. Can be accessed on any child viewController
-	- `navigationBar`: The UINavigationBar for this view controller. Can be accessed on any child viewController
-
-```yaml
-styles:
-  UIViewController.primary:
-    view:
-	  backgroundColor: orange
-	tabBar:
-	  barTintColor: red
-```
-
-## Properties
+# Properties
 - UIViewController
 	- largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode
 	- largeTitleDisplayMode: Bool 

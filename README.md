@@ -127,11 +127,7 @@ otherView.style = "myStyle,otherStyle"
 
 #### Interface Builder
 
-Styles can be set in Interface Builder in the identity inspector using runtime attributes.
-
-<img src="Resources/IB_set_style.png" width="260">
-
-If you subclass `StyleableView` you can more easily set styles in the property inspector
+Styles can be set in Interface Builder in the property inspector
 
 <img src="Resources/IB_styleable_view.png" width="260">
 

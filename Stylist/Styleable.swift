@@ -9,11 +9,11 @@
 import Foundation
 
 #if os(iOS) || os(tvOS)
-    import UIKit
-    public typealias View = UIView
+import UIKit
+public typealias View = UIView
 #elseif os(macOS)
-    import Cocoa
-    public typealias View = NSView
+import Cocoa
+public typealias View = NSView
 #endif
 
 public protocol Styleable: class {
@@ -36,7 +36,7 @@ extension Styleable {
     }
 }
 
-extension View: Styleable {
+extension UIView: Styleable {
 
     struct AssociatedKeys {
         static var Styles = "stylist_styles"
@@ -65,33 +65,31 @@ extension View: Styleable {
 
 }
 
-#if os(iOS) || os(tvOS)
-    extension UIBarItem: Styleable {
+extension UIBarItem: Styleable {
 
-        struct AssociatedKeys {
-            static var Styles = "stylist_styles"
-        }
-
-        public var styles: [String] {
-            get {
-                return objc_getAssociatedObject(self, &AssociatedKeys.Styles) as? [String] ?? []
-            }
-            set {
-                objc_setAssociatedObject(self, &AssociatedKeys.Styles,
-                                         newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                applyStyles()
-            }
-        }
-
-        @IBInspectable
-        open var style: String? {
-            get {
-                return getStyle()
-            }
-            set {
-                setStyle(newValue)
-            }
-        }
-
+    struct AssociatedKeys {
+        static var Styles = "stylist_styles"
     }
-#endif
+
+    public var styles: [String] {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.Styles) as? [String] ?? []
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.Styles,
+                                     newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            applyStyles()
+        }
+    }
+
+    @IBInspectable
+    open var style: String? {
+        get {
+            return getStyle()
+        }
+        set {
+            setStyle(newValue)
+        }
+    }
+
+}

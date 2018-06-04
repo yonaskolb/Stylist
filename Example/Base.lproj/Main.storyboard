@@ -34,7 +34,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="style" value="header"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="NGZ-sm-8kS" customClass="StyleableView" customModule="Stylist">
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="NGZ-sm-8kS">
                                         <rect key="frame" x="0.0" y="20.5" width="343" height="200"/>
                                         <color key="backgroundColor" red="0.96862745289999996" green="0.78039217000000005" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <userDefinedRuntimeAttributes>

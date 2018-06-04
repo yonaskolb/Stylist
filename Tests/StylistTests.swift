@@ -15,6 +15,7 @@ class StylistTests: XCTestCase {
 
     // to get around cross platform tests
     fileprivate let customViewClassName = NSStringFromClass(CustomView.self)
+    fileprivate let customViewControllerClassName = NSStringFromClass(CustomViewController.self)
 
     override func setUp() {
         super.setUp()
@@ -24,9 +25,9 @@ class StylistTests: XCTestCase {
     func testApplyStyle() throws {
         let stylist = Stylist()
 
-        let style = try Style(selector: "blueBack", properties: [
-                StylePropertyValue(name: "backgroundColor", value: "blue")
-                ])
+        let style = try Style(properties: [
+            StylePropertyValue(name: "backgroundColor", value: "blue"),
+        ])
 
         let view = UIView()
         stylist.apply(style: style, to: view)
@@ -36,14 +37,13 @@ class StylistTests: XCTestCase {
     func testSetStylesWithCustomStylist() throws {
         let stylist = Stylist()
 
-        let theme = Theme(styles: [
-                try Style(selector: "blueBack", properties: [
-                    StylePropertyValue(name: "backgroundColor", value: "blue")
-                    ]),
-                try Style(selector: "rounded", properties: [
-                    StylePropertyValue(name: "cornerRadius", value: 10)
-                    ])
-            ])
+        let theme = try Theme(string: """
+        styles:
+            blueBack:
+                backgroundColor: blue
+            rounded:
+                cornerRadius: 10
+        """)
 
         stylist.addTheme(theme, name: "theme")
         XCTAssertEqual(stylist.themes["theme"], theme)
@@ -54,66 +54,57 @@ class StylistTests: XCTestCase {
 
         XCTAssertEqual(view.backgroundColor, .blue)
         XCTAssertEqual(view.layer.cornerRadius, 10)
-        
-        let secondTheme = Theme(styles: [
-            try Style(selector: "blueBack", properties: [
-                StylePropertyValue(name: "backgroundColor", value: "red")
-                ]),
-            try Style(selector: "rounded", properties: [
-                StylePropertyValue(name: "cornerRadius", value: 5)
-                ])
-            ])
+
+        let secondTheme = try Theme(string: """
+        styles:
+            blueBack:
+                backgroundColor: red
+            rounded:
+                cornerRadius: 5
+        """)
 
         stylist.addTheme(secondTheme, name: "theme")
-        
+
         XCTAssertEqual(view.backgroundColor, .red)
         XCTAssertEqual(view.layer.cornerRadius, 5)
     }
 
     func testParentStyles() throws {
 
-        let parentStyle = try Style(selector: "rounded", properties: [
-            StylePropertyValue(name: "cornerRadius", value: 10)
-            ])
+        let theme = try Theme(string: """
+        styles:
+            custom:
+                backgroundColor: blue
+                parent:
+                    cornerRadius: 10
+                viewController:
+                    view:
+                        tintColor: red
+                    navigationBar:
+                        tintColor: orange
+        """)
 
-        let style = try Style(selector: "blueBack", properties: [
-                StylePropertyValue(name: "backgroundColor", value: "blue")
-                ], parentStyle: parentStyle)
-
+        let viewController = UIViewController()
+        let navigationViewController = UINavigationController(rootViewController: viewController)
         let view = UIView()
         let superview = UIView()
         superview.addSubview(view)
+        viewController.view.addSubview(superview)
 
-        Stylist.shared.apply(style: style, to: view)
+        view.style = "custom"
+        Stylist.shared.apply(theme: theme)
 
         XCTAssertEqual(view.backgroundColor, .blue)
         XCTAssertEqual(superview.backgroundColor, nil)
         XCTAssertEqual(superview.layer.cornerRadius, 10)
         XCTAssertEqual(view.layer.cornerRadius, 0)
+        XCTAssertEqual(viewController.view.tintColor, .red)
+        XCTAssertEqual(viewController.navigationController?.navigationBar.tintColor, .orange)
+        XCTAssertEqual(navigationViewController.navigationBar.tintColor, .orange)
     }
 
     func testSettingStyles() {
         let view = UIView()
-
-        view.style = "test"
-        XCTAssertEqual(view.style, "test")
-        XCTAssertEqual(view.styles, ["test"])
-
-        view.styles = ["one", "two"]
-        XCTAssertEqual(view.styles, ["one", "two"])
-        XCTAssertEqual(view.style, "one,two")
-
-        view.styles = []
-        XCTAssertEqual(view.style, nil)
-        XCTAssertEqual(view.styles, [])
-
-        view.style = "test, one,two"
-        XCTAssertEqual(view.style, "test,one,two")
-        XCTAssertEqual(view.styles, ["test", "one", "two"])
-    }
-
-    func testSettingStylesOnStyleableView() {
-        let view = StyleableView()
 
         view.style = "test"
         XCTAssertEqual(view.style, "test")
@@ -138,25 +129,24 @@ class StylistTests: XCTestCase {
         let traitCollection = UITraitCollection(horizontalSizeClass: .compact)
         TraitViewController.addTraits([traitCollection], to: view)
 
-        let style = try Style(selector: "style", properties: [
+        let style = try Style(properties: [
             StylePropertyValue(name: "backgroundColor", value: "green", context: PropertyContext(styleContext: .init(horizontalSizeClass: .compact))),
-            StylePropertyValue(name: "backgroundColor", value: "red", context: PropertyContext(styleContext: .init(horizontalSizeClass: .regular)))
-            ])
+            StylePropertyValue(name: "backgroundColor", value: "red", context: PropertyContext(styleContext: .init(horizontalSizeClass: .regular))),
+        ])
         Stylist.shared.apply(style: style, to: view)
 
         XCTAssertEqual(view.backgroundColor, .green)
     }
 
     func testSetStyles() throws {
-
-        let theme = Theme(styles: [
-            try Style(selector: "blueBack", properties: [
-                StylePropertyValue(name: "backgroundColor", value: "blue")
-                ]),
-            try Style(selector: "rounded", properties: [
-                StylePropertyValue(name: "cornerRadius", value: 10)
-                ])
-            ])
+        
+        let theme = try Theme(string: """
+        styles:
+            blueBack:
+                backgroundColor: blue
+            rounded:
+                cornerRadius: 10
+        """)
 
         Stylist.shared.addTheme(theme, name: "theme")
         let view = UIView()
@@ -166,13 +156,13 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(view.layer.cornerRadius, 10)
 
         let secondTheme = Theme(styles: [
-            try Style(selector: "blueBack", properties: [
-                StylePropertyValue(name: "backgroundColor", value: "red")
-                ]),
-            try Style(selector: "rounded", properties: [
-                StylePropertyValue(name: "cornerRadius", value: 5)
-                ])
-            ])
+            try StyleSelector(selector: "blueBack", style: Style(properties: [
+                StylePropertyValue(name: "backgroundColor", value: "red"),
+            ])),
+            try StyleSelector(selector: "rounded", style: Style(properties: [
+                StylePropertyValue(name: "cornerRadius", value: 5),
+            ])),
+        ])
 
         Stylist.shared.addTheme(secondTheme, name: "theme")
 
@@ -181,23 +171,21 @@ class StylistTests: XCTestCase {
     }
 
     func testSetClassStyles() throws {
-        let theme = Theme(styles: [
-            try Style(selector: "UIButton.blueBack", properties: [
-                StylePropertyValue(name: "backgroundColor", value: "blue")
-                ]),
-            try Style(selector: "UIButton", properties: [
-                StylePropertyValue(name: "cornerRadius", value: 10)
-                ]),
-            try Style(selector: "UIView", properties: [
-                StylePropertyValue(name: "alpha", value: 0.5)
-                ]),
-            try Style(selector: customViewClassName, properties: [
-                StylePropertyValue(name: "backgroundColor", value: "green")
-                ]),
-            try Style(selector: "\(customViewClassName).blueBack", properties: [
-                StylePropertyValue(name: "backgroundColor", value: "blue")
-                ]),
-            ])
+
+        let theme = try Theme(string: """
+        styles:
+            UIButton.blueBack:
+                backgroundColor: blue
+            UIButton:
+                cornerRadius: 10
+            UIView:
+                alpha: 0.5
+            \(customViewClassName):
+                backgroundColor: green
+            \(customViewClassName).blueBack:
+                backgroundColor: blue
+        """)
+
         let container = UIView()
         let button = UIButton()
         let view = UIView()
@@ -229,9 +217,13 @@ class StylistTests: XCTestCase {
     func testStyleSelectorFiltering() throws {
 
         func styleable(_ styleable: Styleable, has selector: String) -> Bool {
-            let style = try! Style(selector: selector, properties: [])
+            let style = try! StyleSelector(selector: selector, style: Style(properties: []))
             return style.applies(to: styleable)
         }
+
+        let viewController = CustomViewController()
+        viewController.style = "controller"
+        let navigationViewController = UINavigationController(rootViewController: viewController)
 
         let container = UIStackView()
         container.style = "container"
@@ -241,7 +233,26 @@ class StylistTests: XCTestCase {
         customView.style = "custom"
         container.addSubview(customView)
         customView.addSubview(child)
+        viewController.view.addSubview(container)
 
+        // confirm view hierachy
+        XCTAssertEqual(child.superview, customView)
+        XCTAssertEqual(child.next, customView)
+
+        XCTAssertEqual(customView.superview, container)
+        XCTAssertEqual(customView.next, container)
+
+        XCTAssertEqual(container.superview, viewController.view)
+        XCTAssertEqual(container.next, viewController.view)
+
+        XCTAssertEqual(viewController.view.superview, nil)
+        XCTAssertEqual(viewController.view.next, viewController)
+
+        XCTAssertEqual(viewController.parent, navigationViewController)
+        XCTAssertEqual(viewController.next, nil)
+
+
+        // confirm postives matches
         XCTAssertEqual(styleable(child, has: "container child"), true)
         XCTAssertEqual(styleable(child, has: "container custom child"), true)
         XCTAssertEqual(styleable(child, has: "UIStackView.container custom child"), true)
@@ -253,6 +264,19 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(styleable(child, has: "\(customViewClassName).custom child"), true)
         XCTAssertEqual(styleable(child, has: "\(customViewClassName) child"), true)
 
+        XCTAssertEqual(styleable(child, has: "UINavigationController child"), true)
+        XCTAssertEqual(styleable(child, has: "UIViewController child"), true)
+        XCTAssertEqual(styleable(child, has: "UIViewController.controller child"), true)
+        XCTAssertEqual(styleable(child, has: "UINavigationController \(customViewControllerClassName) container child"), true)
+        XCTAssertEqual(styleable(child, has: "UINavigationController .controller child"), true)
+        XCTAssertEqual(styleable(child, has: "\(customViewControllerClassName).controller child"), true)
+
+        XCTAssertEqual(styleable(navigationViewController, has: "UINavigationController"), true)
+        XCTAssertEqual(styleable(viewController, has: "\(customViewControllerClassName)"), true)
+        XCTAssertEqual(styleable(viewController, has: "UINavigationController \(customViewControllerClassName)"), true)
+        XCTAssertEqual(styleable(viewController, has: "UINavigationController \(customViewControllerClassName).controller"), true)
+
+        // confirm negative matches
         XCTAssertEqual(styleable(child, has: "invalid child"), false)
         XCTAssertEqual(styleable(child, has: "invalid custom child"), false)
         XCTAssertEqual(styleable(child, has: "UIButton.container custom child"), false)
@@ -262,6 +286,8 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(styleable(child, has: "UIStackView \(customViewClassName).custom UIView.invalid"), false)
         XCTAssertEqual(styleable(child, has: "\(customViewClassName).custom invalid"), false)
         XCTAssertEqual(styleable(child, has: "\(customViewClassName).invalid child"), false)
+        XCTAssertEqual(styleable(child, has: "\(customViewControllerClassName).invalid child"), false)
+        XCTAssertEqual(styleable(child, has: "UINavigationController UINavigationController child"), false)
     }
 
     func testAddingCustomProperties() throws {
@@ -272,21 +298,21 @@ class StylistTests: XCTestCase {
 
         Stylist.shared.addProperty(property)
         let customView = CustomView()
-        let style = try Style(selector: "custom", properties: [StylePropertyValue(name: "property", value: "hello")])
+        let style = try Style(properties: [StylePropertyValue(name: "property", value: "hello")])
         Stylist.shared.apply(style: style, to: customView)
 
         XCTAssertEqual(customView.customProperty, "hello")
     }
 
     func testStyleSpecificity() throws {
-        let theme = Theme(styles: [
-            try Style(selector: "UIButton.primary", properties: [
-                StylePropertyValue(name: "backgroundColor", value: "blue")
-                ]),
-            try Style(selector: "primary", properties: [
-                StylePropertyValue(name: "backgroundColor", value: "red")
-                ])
-            ])
+
+        let theme = try Theme(string: """
+        styles:
+            UIButton.primary:
+                backgroundColor: blue
+            primary:
+                backgroundColor: red
+        """)
 
         let view = UIButton()
         view.style = "primary"
@@ -295,17 +321,22 @@ class StylistTests: XCTestCase {
         XCTAssertEqual(view.backgroundColor, .blue)
     }
 
-    //TODO: test loading files
+    // TODO: test loading files
 
-    //TODO: test watching files
+    // TODO: test watching files
 
-    //TODO: test custom Styleable
+    // TODO: test custom Styleable
 
-    //TODO: test UIBarItem
+    // TODO: test UIBarItem
 
 }
 
 class CustomView: UIView {
+
+    var customProperty: String = ""
+}
+
+class CustomViewController: UIViewController {
 
     var customProperty: String = ""
 }
@@ -339,4 +370,3 @@ class TraitViewController: UIViewController {
         return UITraitCollection(traitsFrom: traits)
     }
 }
-

@@ -70,6 +70,27 @@ extension CGRect: StyleValue {
     }
 }
 
+extension UIOffset: StyleValue {
+
+    public static func parse(value: Any) -> UIOffset? {
+        var floats: [CGFloat]?
+        if let float = CGFloat.parse(value: value) {
+            return UIOffset(horizontal: float, vertical: float)
+        } else if let string = value as? String {
+            let edgeStrings = string.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+            floats = edgeStrings.compactMap { CGFloat.parse(value: $0) }
+        } else if let array = value as? [Any] {
+            floats = array.compactMap { CGFloat.parse(value: $0) }
+        }
+        if let floats = floats {
+            if floats.count == 2 {
+                return UIOffset(horizontal: floats[0], vertical: floats[1])
+            }
+        }
+        return nil
+    }
+}
+
 extension UIEdgeInsets: StyleValue {
 
     public static func parse(value: Any) -> UIEdgeInsets? {
@@ -186,7 +207,54 @@ extension UILayoutConstraintAxis: StyleValue {
     }
 }
 
+extension UITabBarItemPositioning: StyleValue {
+
+    public static func parse(value: Any) -> UITabBarItemPositioning? {
+        guard let string = value as? String else { return nil }
+        switch string {
+        case "automatic": return .automatic
+        case "fill": return .fill
+        case "centered": return .centered
+        default: return nil
+        }
+    }
+}
+
+struct TextAttributes: StyleValue {
+
+    let attributes: [NSAttributedStringKey: Any]
+
+    public static func parse(value: Any) -> TextAttributes? {
+        guard let dictionary = value as? [String: Any] else {
+            return nil
+        }
+        var attributes: [NSAttributedStringKey: Any] = [:]
+        if let value = dictionary["color"].flatMap(Color.parse) ??
+            dictionary["foregroundColor"].flatMap(Color.parse) ??
+            dictionary["textColor"].flatMap(Color.parse){
+            attributes[.foregroundColor] = value
+        }
+        if let value = dictionary["font"].flatMap(Font.parse) {
+            attributes[.font] = value
+        }
+        return TextAttributes(attributes: attributes)
+    }
+}
+
 #if os(iOS)
+
+extension UIStatusBarStyle: StyleValue {
+
+    public static func parse(value: Any) -> UIStatusBarStyle? {
+        guard let string = value as? String else { return nil }
+        switch string.lowercased().replacingOccurrences(of: " ", with: "") {
+        case "default", "light", "darkContent": return .default
+        case "lightContent", "dark": return .lightContent
+        default: return nil
+        }
+    }
+}
+
 extension UIBarStyle: StyleValue {
 
     public static func parse(value: Any) -> UIBarStyle? {
@@ -195,6 +263,19 @@ extension UIBarStyle: StyleValue {
         case "black": return .black
         case "blacktranslucent": return .blackTranslucent
         case "default": return .default
+        default: return nil
+        }
+    }
+}
+
+extension UINavigationItem.LargeTitleDisplayMode: StyleValue {
+
+    public static func parse(value: Any) -> UINavigationItem.LargeTitleDisplayMode? {
+        guard let string = value as? String else { return nil }
+        switch string.lowercased().replacingOccurrences(of: " ", with: "") {
+        case "automatic": return .automatic
+        case "always": return .always
+        case "never": return .never
         default: return nil
         }
     }

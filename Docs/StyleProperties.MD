@@ -1,6 +1,7 @@
 # Style Properties
 - [Types](#types)
 - [Queries](#queries)
+- [Objects](#objects)
 - [Properties](#properties)
 
 ## Types
@@ -58,6 +59,8 @@ Many other UIKit types are parsable too:
 - UIStackViewDistribution
 - UILayoutConstraintAxis
 - UIBarStyle
+- UINavigationItem.LargeTitleDisplayMod
+- UITabBarItemPositioning
 - CGPoint
 	- x, y: `10,10` 
 - CGRect
@@ -65,6 +68,8 @@ Many other UIKit types are parsable too:
 - CGSize
 	- square: `5`
 	- width, height: `10,20`
+- UIOffset:
+	- horizontal, vertical: `10,10` 
 - UIEdgeInsets
 	- all edges: `5`
 	- leftRight, topBottom: `5,10`
@@ -130,7 +135,35 @@ All these contexts can be combined together
 color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 ```
 
+## Objects
+Styles can reference a sub object and then style that with it's own properties. These are really useful for testing
+
+- UIView
+	- `superview`: The views superview
+	- `next`: The next sibling view
+	- `previous`: The previous sibing view
+	- `viewController`: The view controller the view belongs to
+- UIViewController
+	- `view`: The root view
+	- `parent`: The parent view controller
+	- `navigationController`: The UINavigationController this is contained in
+	- `tabBarController`: The UITabBarController this is contained in
+	- `tabBar`: The UITabBar for this view controller. Can be accessed on any child viewController
+	- `navigationBar`: The UINavigationBar for this view controller. Can be accessed on any child viewController
+
+```yaml
+styles:
+  UIViewController.primary:
+    view:
+	  backgroundColor: orange
+	tabBar:
+	  barTintColor: red
+```
+
 ## Properties
+- UIViewController
+	- largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode
+	- largeTitleDisplayMode: Bool 
 - UIView
 	- backgroundColor: Color
 	- tintColor: Color
@@ -147,9 +180,6 @@ color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- visible: Bool (opposite of isHidden)
 	- hidden: Bool (isHidden)
 	- layoutMargins: UIEdgeInsets
-	- widthAnchor: LayoutAnchor
-	- heightAnchor: LayoutAnchor
-	- aspectRatioAnchor: Double or a division (`0.5` or `1/2`)
 - UIView constraints
 	- widthAnchor: LayoutAnchor
 	- heightAnchor: LayoutAnchor
@@ -167,6 +197,9 @@ color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- contentEdgeInsets: UIEdgeInsets
 	- textColor|titleColor: Color
 	- font|titleFont: Font
+- UISwitch:
+	- onTintColor: Color
+	- thumbTintColor: Color
 - UILabel
 	- font: Font
 	- textColor: Color
@@ -188,6 +221,22 @@ color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- barStyle: UIBarStyle
 	- shadowImage: Image
 	- backgroundImage: Image
+	- titleColor: Color
+	- titleFont: Font
+	- largeTitleColor: Color
+	- largeTitleFont: Font
+	- prefersLargeTitles: Bool
+	- backIndicatorImage: Image
+	- backIndicatorTransitionMaskImage: Image
+- UITabBar:
+	- barStyle: UIBarStyle
+	- translucent: Bool (isTranslucent)
+	- barTintColor: Color
+	- shadowImage: Image
+	- backgroundImage: Image
+	- selectionIndicatorImage: Image
+	- itemPositioning: UITabBarItemPositioning
+	- unselectedItemTintColor: Color
 - UISearchBar
 	- backgroundImage: Image
 - UIStackView
@@ -200,13 +249,3 @@ color:highlighted(h:regular, v:compact, device:pad): MyFont:32
 	- image: Image
 - UIBarButtonItem
 	- tintColor: Color
-
-#### Parent
-Any style applied to a view can also reference a parent property. This lets you quickly change something in a parent which is useful for testing. 
-For example if a button is in a stackView you could easily change the stackviews spacing:
-
-```yaml
-myButton:
-  parent:
-    spacing: 30
-```

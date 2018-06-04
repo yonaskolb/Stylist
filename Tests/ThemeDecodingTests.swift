@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import Stylist
-import XCTest
 import Yams
 
 class ThemeDecodingTests: XCTestCase {
@@ -30,10 +29,14 @@ class ThemeDecodingTests: XCTestCase {
         let expectedTheme = Theme(
             variables: ["primaryColor": "blue"],
             styles: [
-                try Style(selector: "header", properties: [
-                    StylePropertyValue(name: "textColor", value: "blue:0.5")
+                try StyleSelector(
+                    selector: "header",
+                    style: Style(properties: [
+                        StylePropertyValue(name: "textColor", value: "blue:0.5"),
                     ])
-            ])
+                ),
+            ]
+        )
         XCTAssertEqual(theme, expectedTheme)
     }
 
@@ -51,14 +54,51 @@ class ThemeDecodingTests: XCTestCase {
 
         let expectedTheme = Theme(
             styles: [
-                try Style(selector: "header", properties: [
+                try StyleSelector(selector: "header", style: Style(properties: [
                     StylePropertyValue(name: "textColor", value: "blue"),
                     StylePropertyValue(name: "tintColor", value: "red"),
-                    ]),
-                try Style(selector: "primary", properties: [
+                ])),
+                try StyleSelector(selector: "primary", style: Style(properties: [
                     StylePropertyValue(name: "tintColor", value: "red"),
-                    ])
-            ])
+                ])),
+            ]
+        )
+        XCTAssertEqual(theme, expectedTheme)
+    }
+
+    func testSubStyles() throws {
+        let string = """
+        styles:
+          primary:
+            tintColor: red
+            parent:
+                tintColor: blue
+                next:
+                    tintColor: yellow
+        """
+
+        let theme = try Theme(string: string)
+
+        let expectedTheme = Theme(
+            styles: [
+                try StyleSelector(
+                    selector: "primary",
+                    style: Style(
+                        properties: [
+                            StylePropertyValue(name: "tintColor", value: "red"),
+                        ],
+                        subStyles: [
+                            "parent": Style(
+                                properties: [StylePropertyValue(name: "tintColor", value: "blue")],
+                                subStyles: [
+                                    "next": Style(properties: [StylePropertyValue(name: "tintColor", value: "yellow")]),
+                                ]
+                            ),
+                        ]
+                    )
+                ),
+            ]
+        )
         XCTAssertEqual(theme, expectedTheme)
     }
 
@@ -76,12 +116,15 @@ class ThemeDecodingTests: XCTestCase {
         let expectedTheme = Theme(
             variables: ["primaryColor": "blue"],
             styles: [
-                try Style(selector: "header", properties: [
-                    StylePropertyValue(name: "textColor",
-                                       value: "blue:0.5",
-                                       context: PropertyContext(styleContext: .init(device: .pad), controlState: .selected))
-                    ])
-            ])
+                try StyleSelector(selector: "header", style: Style(properties: [
+                    StylePropertyValue(
+                        name: "textColor",
+                        value: "blue:0.5",
+                        context: PropertyContext(styleContext: .init(device: .pad), controlState: .selected)
+                    ),
+                ])),
+            ]
+        )
         XCTAssertEqual(theme, expectedTheme)
     }
 
@@ -94,15 +137,21 @@ class ThemeDecodingTests: XCTestCase {
         ]
 
         let expectedValues = [
-            StylePropertyValue(name: "textColor",
-                               value: "red",
-                               context: PropertyContext(styleContext: .init(device: .pad), controlState: .selected)),
-            StylePropertyValue(name: "textColor",
-                               value: "blue",
-                               context: PropertyContext(styleContext: .init(device: .phone, horizontalSizeClass: .regular), barMetrics: .compact)),
-            StylePropertyValue(name: "textColor",
-                               value: "blue",
-                               context: PropertyContext(styleContext: .init(verticalSizeClass: .compact))),
+            StylePropertyValue(
+                name: "textColor",
+                value: "red",
+                context: PropertyContext(styleContext: .init(device: .pad), controlState: .selected)
+            ),
+            StylePropertyValue(
+                name: "textColor",
+                value: "blue",
+                context: PropertyContext(styleContext: .init(device: .phone, horizontalSizeClass: .regular), barMetrics: .compact)
+            ),
+            StylePropertyValue(
+                name: "textColor",
+                value: "blue",
+                context: PropertyContext(styleContext: .init(verticalSizeClass: .compact))
+            ),
         ]
         XCTAssertEqual(values, expectedValues)
     }
@@ -111,29 +160,29 @@ class ThemeDecodingTests: XCTestCase {
 
         XCTAssertEqual(try SelectorComponent.components(from: "UIButton"), [
             SelectorComponent(classType: UIButton.self, style: nil),
-            ])
+        ])
 
         XCTAssertEqual(try SelectorComponent.components(from: "UIButton.red"), [
             SelectorComponent(classType: UIButton.self, style: "red"),
-            ])
+        ])
 
         XCTAssertEqual(try SelectorComponent.components(from: "\(className)"), [
             SelectorComponent(classType: ThemeDecodingTests.self, style: nil),
-            ])
+        ])
 
         XCTAssertEqual(try SelectorComponent.components(from: "\(className).red"), [
             SelectorComponent(classType: ThemeDecodingTests.self, style: "red"),
-            ])
+        ])
 
         XCTAssertEqual(try SelectorComponent.components(from: "UIButton primary"), [
             SelectorComponent(classType: UIButton.self, style: nil),
             SelectorComponent(classType: nil, style: "primary"),
-            ])
+        ])
 
         XCTAssertEqual(try SelectorComponent.components(from: "\(className).red UIButton"), [
             SelectorComponent(classType: ThemeDecodingTests.self, style: "red"),
             SelectorComponent(classType: UIButton.self, style: nil),
-            ])
+        ])
     }
 
     func testStyleContextDecoding() throws {
@@ -179,7 +228,7 @@ class ThemeDecodingTests: XCTestCase {
         }
 
         expectError(ThemeError.invalidStyleReference(style: "testStyle", reference: "invalid")) {
-           try themeString(property: "styles: [invalid]")
+            try themeString(property: "styles: [invalid]")
         }
 
         expectError(ThemeError.invalidPropertyState(name: "color", state: "invalid")) {
@@ -213,12 +262,12 @@ class ThemeDecodingTests: XCTestCase {
 
     func testStyleSpecificityIndex() throws {
         let styles = [
-            try Style(selector: "UIView.custom primary", properties: []),
-            try Style(selector: "UIView primary", properties: []),
-            try Style(selector: "UIView", properties: []),
+            try StyleSelector(selector: "UIView.custom primary", style: Style(properties: [])),
+            try StyleSelector(selector: "UIView primary", style: Style(properties: [])),
+            try StyleSelector(selector: "UIView", style: Style(properties: [])),
         ]
         let theme = Theme(variables: [:], styles: styles)
         XCTAssertEqual(theme.styles, styles.reversed())
     }
-    
+
 }

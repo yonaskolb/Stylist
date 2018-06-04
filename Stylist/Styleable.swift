@@ -65,6 +65,35 @@ extension UIView: Styleable {
 
 }
 
+extension UIViewController: Styleable {
+
+    struct AssociatedKeys {
+        static var Styles = "stylist_styles"
+    }
+
+    public var styles: [String] {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.Styles) as? [String] ?? []
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.Styles,
+                                     newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            applyStyles()
+        }
+    }
+
+    @IBInspectable
+    open var style: String? {
+        get {
+            return getStyle()
+        }
+        set {
+            setStyle(newValue)
+        }
+    }
+
+}
+
 extension UIBarItem: Styleable {
 
     struct AssociatedKeys {

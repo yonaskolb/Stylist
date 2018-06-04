@@ -60,10 +60,10 @@ styles:
 ```
 - [⬇️ Installing](#installing)
 - [🎨 Theme](#theme)
-  - [Selectors](#selectors)
+  - [Style Selectors](#style-selectors)
   - [Included Styles](#included-styles)
   - [View hierarchy styles](#view-hierarchy-styles)
-  - [Property Context](#property-context)
+  - [Style Context](#style-context)
 - [🖌 Setting a Style](#setting-a-style)
 - [🔥 Hot Reloading](#hot-reloading)
 - [🖍 Style Properties](#style-properties)
@@ -114,7 +114,7 @@ styles:
     color: $primaryColor
 ```
 
-#### Selectors
+### Style Selectors
 Styles are defined using one or more selectors. Selectors can be a class or a style name or both. Custom classes must be prefixed by the module name. Style names must start with a lowercase.
 
 For example:
@@ -136,7 +136,7 @@ styles:
 
 Styles will be applied in order of specificity, so the more specific a style is (more selectors), the later it will be applied.
 
-#### Included Styles
+### Included Styles
 
 Each style may also have a `styles` array that is an array of other inherited styles, who's properties will also be applied.
 
@@ -149,7 +149,7 @@ styles:
     backgroundColor: EEEEEE
 ```
 
-#### View hierarchy styles
+### View hierarchy styles
 
 Styles can reference the view hierarchy and then style that with its own properties. This is really useful for testing or accessing parts of the view hierarchy easily (`UIViewController.view` for example)
 
@@ -177,8 +177,8 @@ styles:
       tintColor: red
 ```
 
-### Property Context
-Style properties can be restricted to a certain context, for example a certain control state or trait collection. This is similar to how CSS media queries work. See [Property Context](Docs/StyleProperties.MD#context) for more info
+### Style Context
+Style properties can be restricted to a certain context, for example a certain control state or trait collection. This is similar to how CSS media queries work. See [Context](Docs/StyleProperties.MD#context) for more info
 
 ```yml
 styles:

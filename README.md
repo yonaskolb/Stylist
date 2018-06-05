@@ -60,39 +60,44 @@ styles:
     tintColor: $primaryColor
 ```
 - [⬇️ Installing](#installing)
+- [⚒ Usage](#usage)
+  - [Loading a Theme](#loading-a-theme)
+  - [Setting a Style](#setting-a-style)
+  - [Hot Reloading](#hot-reloading)
 - [🎨 Theme](#theme)
   - [Style Selectors](#style-selectors)
   - [Included Styles](#included-styles)
   - [View hierarchy styles](#view-hierarchy-styles)
   - [Style Context](#style-context)
-- [🖌 Setting a Style](#setting-a-style)
-- [🔥 Hot Reloading](#hot-reloading)
-- [🖍 Style Properties](#style-properties)
+- [🖌 Style Properties](#style-properties)
 - [⚙️ Custom Properties](#custom-properties)
 - [⚙️ Custom Styleable class](#custom-styleable-class)
 
 ## ⬇️ Installing
 
-#### Cocoapods
+### Cocoapods
 Add the following to your `podfile`
 
 ```sh
 pod 'Stylist'
 ```
 
-#### Carthage
+### Carthage
 Add the following to your `Cartfile`
 ```sh
 github "yonaskolb/Stylist"
 ```
 
-## 🎨 Theme
-A **Theme** file has a list of `variables` and a list of `styles`.
-Variables can be referenced in styles using `$variableName`.
+## ⚒ Usage
 
-Styles are defined by [selector](#selectors), and are a map of [properties](Docs/StyleProperties.MD#properties) to [values](Docs/StyleProperties.MD#types)
+Make sure to import Stylist
 
-To load a Theme simply call:
+```swift
+import Stylist
+```
+
+### Loading a Theme
+To load a Theme use:
 
 ```swift
 Stylist.shared.load(path: pathToFile)
@@ -106,6 +111,50 @@ You can also load a Theme manually and then add it by name, allowing you to swap
 let theme = try Theme(path: pathToTheme)
 Stylist.shared.addTheme(theme, name: "mainTheme")
 ```
+
+### Setting a Style
+Class styles will be applied to `UIView` when they are added to a superview, and to `UIViewController` when `viewDidLoad()` is called.
+
+To set a custom style on a Styleable class, simply set its `style` property. You can set multiple styles by comma separating them.
+
+#### Programmatically
+
+```swift
+myView.style = "myStyle"
+otherView.style = "myStyle,otherStyle"
+```
+
+#### Interface Builder
+
+Styles can be set in Interface Builder in the property inspector
+
+<img src="Resources/IB_styleable_view.png" width="247">
+
+### Hot Reloading
+You can choose to watch a Theme files which means that whenever that file is changed the styles are reloaded. These changes can also be animated!
+
+Themes can live at a remote url allowing you to update styles remotely.
+
+Hotloading can be very useful while developing, as you can make changes to your styles on the fly without recompiling and see the results animate in instantly! To watch a file simply call `watch` on stylist and pass in a URL to a local file on disk or a remote url:
+
+```swift
+Stylist.shared.watch(url: fileOrRemoteURL, animateChanges: true) { error in
+  print("An error occurred while loading or parsing the file: \(error)")
+}
+```
+If an error occurs at any time the `parsingError` callback will be called with a `ThemeError`, which will tell you exactly what went wrong including any formatting errors or invalid references. This means if you accidentally save an invalid theme you don't have to worry that your app will blow up.
+
+To stop watching the file, you can call `stop()` on the `FileWatcher` that is returned.
+
+> Note that if a style property was present and you then remove it, Stylist cannot revert the change so that property will remain in the previous state.
+
+## 🎨 Theme
+
+A Theme file has a list of `variables` and a list of `styles`.
+Variables can be referenced in styles using `$variableName`.
+
+Styles are defined by [selector](#selectors), and are a map of [properties](Docs/StyleProperties.MD#properties) to [values](Docs/StyleProperties.MD#types)
+
 
 ```yml
 variables:
@@ -193,42 +242,6 @@ styles:
     font(device:iphone): $headingFont:16
     font(device:ipad): $headingFont:22
 ```
-
-## 🖌 Setting a Style
-Class styles will be applied to `UIView` when they are added to a superview, and to `UIViewController` when `viewDidLoad()` is called.
-
-To set a custom style on a UIView, simply set its `style` property. You can set multiple styles by comma separating them.
-
-#### Programmatically
-
-```swift
-myView.style = "myStyle"
-otherView.style = "myStyle,otherStyle"
-```
-
-#### Interface Builder
-
-Styles can be set in Interface Builder in the property inspector
-
-<img src="Resources/IB_styleable_view.png" width="247">
-
-## 🔥 Hot Reloading
-You can choose to watch a Theme files which means that whenever that file is changed the styles are reloaded. These changes can also be animated!
-
-Themes can live at a remote url allowing you to even update styles remotely.
-
-Hotloading can also be very useful while developing, as you can make changes to your styles on the fly without recompiling and see the results animate in instantly! To watch a file simply call `watch` on stylist and pass in a URL to a local file on disk or a remote url:
-
-```swift
-Stylist.shared.watch(url: fileOrRemoteURL, animateChanges: true) { error in
-  print("An error occurred while loading or parsing the file: \(error)")
-}
-```
-If an error occurs at any time the `parsingError` callback will be called with a `ThemeError`, which will tell you exactly what went wrong including any formatting errors or invalid references. This means you can accidentally save an invalid theme without worrying that things will blow up.
-
-To stop watching the file, you can call `stop()` on the `FileWatcher` that is returned.
-
-Note that if a style property was present and you then remove it, Stylist cannot revert the change so that property will remain in the previous state.
 
 ## 🖍 Style Properties
 Many UIKit views and bar buttons have built in properties that you can set. These can be viewed in [Style Properties](Docs/StyleProperties.MD).

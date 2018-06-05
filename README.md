@@ -1,6 +1,7 @@
 #  Stylist 🎨
 
 [![Build Status](https://img.shields.io/circleci/project/github/yonaskolb/Stylist.svg?style=for-the-badge)](https://circleci.com/gh/yonaskolb/Stylist)
+![Platforms](https://img.shields.io/cocoapods/p/Stylist.svg?style=for-the-badge)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=for-the-badge)](https://github.com/Carthage/Carthage) [![CocoaPods version](https://img.shields.io/cocoapods/v/Stylist.svg?style=for-the-badge)](https://cocoapods.org/pods/Stylist)
 [![license](https://img.shields.io/github/license/yonaskolb/Stylist.svg?style=for-the-badge)](https://github.com/yonaskolb/Stylist/blob/master/LICENSE)
 

@@ -13,7 +13,7 @@
 #### Changed
 - Styles are applied sorted by specificity #5
 
-[Commits](https://github.com/yonaskolb/XcodeGen/compare/0.1...0.2)
+[Commits](https://github.com/yonaskolb/XcodeGen/compare/0.1.0...0.2.0)
 
 ## 0.1.0
 First official release

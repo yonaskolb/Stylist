@@ -46,11 +46,13 @@ class ThemeDecodingTests: XCTestCase {
           main:
             styles: [primary]
             color: green
+            prop: red
           primary:
             tintColor: red
           header:
             styles: [main]
             textColor: blue
+            prop: orange
         """
 
         let theme = try Theme(string: string)
@@ -59,11 +61,13 @@ class ThemeDecodingTests: XCTestCase {
             styles: [
                 try StyleSelector(selector: "header", style: Style(properties: [
                     StylePropertyValue(name: "color", value: "green"),
+                    StylePropertyValue(name: "prop", value: "orange"),
                     StylePropertyValue(name: "textColor", value: "blue"),
                     StylePropertyValue(name: "tintColor", value: "red"),
                     ])),
                 try StyleSelector(selector: "main", style: Style(properties: [
                     StylePropertyValue(name: "color", value: "green"),
+                    StylePropertyValue(name: "prop", value: "red"),
                     StylePropertyValue(name: "tintColor", value: "red"),
                     ])),
                 try StyleSelector(selector: "primary", style: Style(properties: [

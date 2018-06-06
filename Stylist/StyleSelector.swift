@@ -13,7 +13,7 @@ import UIKit
 import Cocoa
 #endif
 
-public class StyleSelector: Equatable {
+public class StyleSelector: Equatable, CustomStringConvertible {
     public let selector: String
     let components: [SelectorComponent]
     let style: Style
@@ -22,6 +22,10 @@ public class StyleSelector: Equatable {
         self.selector = selector
         self.components = try SelectorComponent.components(from: selector)
         self.style = style
+    }
+
+    public var description: String {
+        return selector
     }
 
     public static func == (lhs: StyleSelector, rhs: StyleSelector) -> Bool {
@@ -98,6 +102,17 @@ public class StyleSelector: Equatable {
     var specificityIndex: Int {
         return components.reduce(0) { index, component in
             index + (component.classType != nil ? 1 : 0) + (component.style != nil ? 1 : 0)
+        }
+    }
+}
+
+extension StyleSelector: Comparable {
+
+    public static func < (lhs: StyleSelector, rhs: StyleSelector) -> Bool {
+        if lhs.specificityIndex == rhs.specificityIndex {
+            return lhs.selector < rhs.selector
+        } else {
+            return lhs.specificityIndex < rhs.specificityIndex
         }
     }
 }

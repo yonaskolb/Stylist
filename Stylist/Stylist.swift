@@ -18,7 +18,14 @@ public class Stylist {
     var properties: [StyleProperty] = []
     var objects: [StyleObject] = []
 
-    public var themes: [String: Theme] = [:]
+    public var themes: [String: Theme] = [:] {
+        didSet {
+            // combine all theme styles and sort by specificity
+            styles = themes.values.reduce([]) { $0 + $1.styles }.sorted()
+        }
+    }
+
+    private var styles: [StyleSelector] = []
 
     init() {
         addDefaultProperties()
@@ -72,7 +79,7 @@ public class Stylist {
     }
 
     func apply(theme: Theme, animateChanges: Bool = false) {
-        for style in theme.styles {
+        for style in theme.styles.sorted() {
             apply(style: style, animateChanges: animateChanges)
 
             for property in style.style.properties {
@@ -116,11 +123,9 @@ public class Stylist {
         if !styleables.contains(where: { $0.value === styleable}) {
             styleables.append(WeakContainer(styleable))
         }
-        for theme in themes.values {
-            for style in theme.styles {
-                guard style.applies(to: styleable) else { continue }
-                apply(style: style.style, to: styleable)
-            }
+        for style in styles {
+            guard style.applies(to: styleable) else { continue }
+            apply(style: style.style, to: styleable)
         }
     }
 

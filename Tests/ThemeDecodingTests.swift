@@ -57,10 +57,10 @@ class ThemeDecodingTests: XCTestCase {
                 try StyleSelector(selector: "header", style: Style(properties: [
                     StylePropertyValue(name: "textColor", value: "blue"),
                     StylePropertyValue(name: "tintColor", value: "red"),
-                ])),
+                    ])),
                 try StyleSelector(selector: "primary", style: Style(properties: [
                     StylePropertyValue(name: "tintColor", value: "red"),
-                ])),
+                    ])),
             ]
         )
         XCTAssertEqual(theme, expectedTheme)

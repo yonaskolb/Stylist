@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Stylist"
-  s.version      = "0.1.0"
+  s.version      = "0.2.0"
   s.swift_version = "4.1"
   s.summary      = "Define UI styles in a hot-loadable external yaml or json file"
   s.homepage     = "http://github.com/yonaskolb/Stylist"

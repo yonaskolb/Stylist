@@ -52,69 +52,59 @@ extension Theme {
     public init(dictionary: [String: Any]) throws {
         var styles: [StyleSelector] = []
         var variables: [String: Any] = dictionary["variables"] as? [String: Any] ?? [:]
-        let stylesDictionary = (dictionary["styles"] as? [String: Any]) ?? [:]
+        var stylesDictionary = (dictionary["styles"] as? [String: Any]) ?? [:]
 
-        for (key, value) in stylesDictionary {
-            if var styleDictionary = value as? [String: Any] {
-                if let styles = styleDictionary["styles"] as? [String] {
-                    for style in styles {
-                        if let sharedStyle = stylesDictionary[style] as? [String: Any] {
-                            for (styleKey, styleValue) in sharedStyle {
-                                if styleDictionary[styleKey] == nil {
-                                    styleDictionary[styleKey] = styleValue
-                                }
-                            }
-                        } else {
-                            throw ThemeError.invalidStyleReference(style: key, reference: style)
-                        }
-                    }
-                    styleDictionary["styles"] = nil
-                }
+        var visitedStyles: Set<String> = []
 
-                func parseStyle(dictionary: [String: Any]) throws -> Style {
-
-                    var properties: [StylePropertyValue] = []
-                    var subStyles: [String: Style] = [:]
-
-                    for (propertyName, value) in dictionary {
-
-                        if let subDictionary = value as? [String: Any] {
-                            let style = try parseStyle(dictionary: subDictionary)
-                            subStyles[propertyName] = style
-                            continue
-                        }
-
-                        func resolveVariable(_ value: Any) throws -> Any {
-                            var propertyValue = value
-                            if let string = propertyValue as? String, string.hasPrefix("$") {
-                                var variableName = string.trimmingCharacters(in: CharacterSet(charactersIn: "$"))
-                                let parts = variableName.components(separatedBy: ":")
-                                if parts.count > 1 {
-                                    variableName = parts[0]
-                                }
-                                guard let variable = variables[variableName] else {
-                                    throw ThemeError.invalidVariable(name: propertyName, variable: variableName)
-                                }
-                                propertyValue = variable
-                                if parts.count > 1 {
-                                    propertyValue = "\(propertyValue):" + Array(parts.dropFirst()).joined(separator: ":")
-                                }
-                            }
-                            return propertyValue
-                        }
-
-                        let propertyValue = try resolveVariable(value)
-                        properties.append(try StylePropertyValue(string: propertyName, value: propertyValue))
-                    }
-                   
-                    return try Style(properties: properties, subStyles: subStyles)
-                }
-                let style = try parseStyle(dictionary: styleDictionary)
-                let styleSelector = try StyleSelector(selector: key, style: style)
-                styles.append(styleSelector)
+        func getResolvedStyle(_ style: String, from parentStyle: String) throws -> [String: Any] {
+            guard !visitedStyles.contains(style) else {
+                throw ThemeError.styleReferenceCycle(references: visitedStyles)
             }
+            visitedStyles.insert(style)
+
+            guard var styleDictionary = stylesDictionary[style] as? [String: Any] else {
+                throw ThemeError.invalidStyleReference(style: parentStyle, reference: style)
+            }
+            if let styles = styleDictionary["styles"] as? [String] {
+                for subStyleName in styles {
+                    let subStyle = try getResolvedStyle(subStyleName, from: style)
+                    for (styleKey, styleValue) in subStyle {
+                        if styleDictionary[styleKey] == nil {
+                            styleDictionary[styleKey] = styleValue
+                        }
+                    }
+                }
+            }
+            styleDictionary["styles"] = nil
+
+            for (key, value) in styleDictionary {
+
+                if let string = value as? String, string.hasPrefix("$") {
+                    var variableName = string.trimmingCharacters(in: CharacterSet(charactersIn: "$"))
+                    let parts = variableName.components(separatedBy: ":")
+                    if parts.count > 1 {
+                        variableName = parts[0]
+                    }
+                    guard let variable = variables[variableName] else {
+                        throw ThemeError.invalidVariable(name: key, variable: variableName)
+                    }
+                    var variableValue = variable
+                    if parts.count > 1 {
+                        variableValue = "\(variableValue):" + Array(parts.dropFirst()).joined(separator: ":")
+                    }
+
+                    styleDictionary[key] = variableValue
+                }
+            }
+            return styleDictionary
         }
-        self.styles = styles.sorted()
+
         self.variables = variables
+        self.styles = try stylesDictionary.keys.map { selector in
+            visitedStyles = []
+            let resolvedStyleDictionary = try getResolvedStyle(selector, from: "")
+            let style = try Style(dictionary: resolvedStyleDictionary)
+            return try StyleSelector(selector: selector, style: style)
+        }.sorted()
     }
 }

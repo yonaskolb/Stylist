@@ -43,10 +43,13 @@ class ThemeDecodingTests: XCTestCase {
     func testStyleInheriting() throws {
         let string = """
         styles:
+          main:
+            styles: [primary]
+            color: green
           primary:
             tintColor: red
           header:
-            styles: [primary]
+            styles: [main]
             textColor: blue
         """
 
@@ -55,7 +58,12 @@ class ThemeDecodingTests: XCTestCase {
         let expectedTheme = Theme(
             styles: [
                 try StyleSelector(selector: "header", style: Style(properties: [
+                    StylePropertyValue(name: "color", value: "green"),
                     StylePropertyValue(name: "textColor", value: "blue"),
+                    StylePropertyValue(name: "tintColor", value: "red"),
+                    ])),
+                try StyleSelector(selector: "main", style: Style(properties: [
+                    StylePropertyValue(name: "color", value: "green"),
                     StylePropertyValue(name: "tintColor", value: "red"),
                     ])),
                 try StyleSelector(selector: "primary", style: Style(properties: [
@@ -207,8 +215,8 @@ class ThemeDecodingTests: XCTestCase {
 
     func testThemeDecodingErrors() throws {
 
-        func themeString(style: String = "testStyle", property: String? = nil) throws {
-            var theme = ""
+        func parseTheme(theme: String = "", style: String = "testStyle", property: String? = nil) throws {
+            var theme = theme
             if let property = property {
                 theme += "\nstyles:\n  \(style):\n    \(property)"
             }
@@ -224,39 +232,49 @@ class ThemeDecodingTests: XCTestCase {
         }
 
         expectError(ThemeError.invalidVariable(name: "prop", variable: "variable")) {
-            try themeString(property: "prop: $variable")
+            try parseTheme(property: "prop: $variable")
         }
 
         expectError(ThemeError.invalidStyleReference(style: "testStyle", reference: "invalid")) {
-            try themeString(property: "styles: [invalid]")
+            try parseTheme(property: "styles: [invalid]")
         }
 
         expectError(ThemeError.invalidPropertyState(name: "color", state: "invalid")) {
-            try themeString(property: "color:invalid: red")
+            try parseTheme(property: "color:invalid: red")
         }
 
         expectError(ThemeError.invalidDevice(name: "color", device: "invalid")) {
-            try themeString(property: "color(device:invalid): red")
+            try parseTheme(property: "color(device:invalid): red")
         }
 
         expectError(ThemeError.invalidStyleContext("color(invalid)")) {
-            try themeString(property: "color(invalid): red")
+            try parseTheme(property: "color(invalid): red")
         }
 
         expectError(ThemeError.invalidStyleContext("color(invalid:ipad)")) {
-            try themeString(property: "color(invalid:ipad): red")
+            try parseTheme(property: "color(invalid:ipad): red")
         }
 
         expectError(ThemeError.invalidStyleSelector("InvalidClass")) {
-            try themeString(style: "InvalidClass", property: "color: red")
+            try parseTheme(style: "InvalidClass", property: "color: red")
         }
 
         expectError(ThemeError.invalidStyleSelector("Module.class.style.invalid")) {
-            try themeString(style: "Module.class.style.invalid", property: "color: red")
+            try parseTheme(style: "Module.class.style.invalid", property: "color: red")
         }
 
         expectError(ThemeError.invalidStyleSelector("Module.Invalid")) {
-            try themeString(style: "Module.Invalid", property: "color: red")
+            try parseTheme(style: "Module.Invalid", property: "color: red")
+        }
+
+        expectError(ThemeError.styleReferenceCycle(references: ["one", "two"])) {
+            try parseTheme(theme: """
+                styles:
+                    one:
+                        styles: [two]
+                    two:
+                        styles: [one]
+                """)
         }
     }
 

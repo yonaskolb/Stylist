@@ -66,7 +66,7 @@ styles:
   - [Hot Reloading](#hot-reloading)
 - [🎨 Theme](#theme)
   - [Style Selectors](#style-selectors)
-  - [Included Styles](#included-styles)
+  - [Styles References](#style-references)
   - [View hierarchy styles](#view-hierarchy-styles)
   - [Style Context](#style-context)
 - [🖌 Style Properties](#style-properties)
@@ -186,9 +186,9 @@ styles:
 
 Styles will be applied in order of specificity, so the more specific a style is (more selectors), the later it will be applied.
 
-### Included Styles
+### Style references
 
-Each style may also have a `styles` array that is an array of other inherited styles, who's properties will also be applied.
+Each style may also have a `styles` array that is an array of other inherited styles, who's properties will also be applied without overwriting anything.
 
 ```yml
 styles:

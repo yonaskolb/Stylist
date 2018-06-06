@@ -346,7 +346,7 @@ extension View {
 
         #if os(iOS)
 
-        if #available(iOSApplicationExtension 11.0, *) {
+        if #available(iOS 11.0, *) {
             add("largeTitleColor") { (view: UINavigationBar, value: PropertyValue<Color>) in
                 var attributes = view.largeTitleTextAttributes ?? [:]
                 attributes[.foregroundColor] = value.value
@@ -417,7 +417,7 @@ extension View {
             view.itemPositioning = value.value
         }
 
-        if #available(iOSApplicationExtension 10.0, *) {
+        if #available(iOS 10.0, *) {
             add("unselectedItemTintColor") { (view: UITabBar, value: PropertyValue<Color>) in
                 view.unselectedItemTintColor = value.value
             }

@@ -39,7 +39,7 @@ extension UIBarItem {
         }
 
         #if os(iOS)
-        if #available(iOSApplicationExtension 10.0, *) {
+        if #available(iOS 10.0, *) {
             add("badgeColor") { (view: UITabBarItem, value: PropertyValue<Color>) in
                 view.badgeColor = value.value
 

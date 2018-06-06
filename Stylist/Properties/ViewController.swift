@@ -66,7 +66,7 @@ extension UIViewController {
         }
 
         #if os(iOS)
-        if #available(iOSApplicationExtension 11.0, *) {
+        if #available(iOS 11.0, *) {
 
             add("largeTitleDisplayMode") { (viewController: UIViewController, value: PropertyValue<UINavigationItem.LargeTitleDisplayMode>) in
                 viewController.navigationItem.largeTitleDisplayMode = value.value

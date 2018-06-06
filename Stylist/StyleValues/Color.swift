@@ -32,7 +32,7 @@ extension Color: StyleValue {
         }
 
         // named color
-        if #available(iOSApplicationExtension 11.0, tvOSApplicationExtension 11.0, *),
+        if #available(iOS 11.0, tvOSApplicationExtension 11.0, *),
             let color = Color(named: colorString) {
                 return color
         }

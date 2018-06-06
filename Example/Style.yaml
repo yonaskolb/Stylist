@@ -1,14 +1,60 @@
+
 variables:
-  primaryFont: Arial:30
+  h1: Arial:title1
+  primaryColor: C23A45
 styles:
+  UIButton.button:
+    backgroundColor: EEE
+    cornerRadius: 6
+    contentEdgeInsets: 8,6
+    borderColor: $primaryColor:0.2
+    borderWidth: 1
+  UIButton.primary:
+    font: title 1
+    titleColor: white
+    backgroundImage: buttonBack
+    backgroundColor: none
+    contentEdgeInsets: [1,15]
+    contentEdgeInsets:highlighted: [22,12]
+  Example.ExampleViewController:
+    largeTitleDisplayMode: always
+  UINavigationBar:
+    prefersLargeTitles: true
+    barStyle: black
+    translucent: false
+    barTintColor: $primaryColor
+    tintColor: white
+    titleColor: white
+    largeTitleColor: white
   UIButton:
-    font: "systemThin:20"
+    titleColor: $primaryColor
+  UISwitch:
+    onTintColor: $primaryColor
+  UITabBar:
+    tintColor: $primaryColor
+  mainStack:
+    spacing: 12
+    layoutMargins: 8,20
+    relativeMargins: true
+    alignment: fill
+  mainStack UIStackView:
+    spacing: 8
+    alignment: center
+    distribution: fill
+  mainStack UILabel.label:
+    font: systemBold:20
+  mainStack UITextField:
+    backgroundColor: white
+    textColor: black
+  Example.ExampleViewController .heading:
+    font: h1
+
   Example.SectionView:
     axis: vertical
     alignment: leading
   header:
     textColor: red
-    font: $primaryFont
+    font: $h1
   customView:
     backgroundColor(h:regular): yellow
     backgroundColor(h:compact): blue
@@ -21,31 +67,4 @@ styles:
     textColor: white
     backgroundColor: clear
     cornerRadius: 5
-    contentEdgeInsets: 20,15
-    contentEdgeInsets:highlighted: 22,12
     backgroundImage: buttonBack
-  Example.ExampleViewController:
-    largeTitleDisplayMode: automatic
-  UINavigationBar:
-    prefersLargeTitles: true
-    backgroundColor: red
-    translucent: false
-    barTintColor: red
-    tintColor: white
-    largeTitleColor: white
-  UISwitch:
-    onTintColor: red
-  UITabBar:
-    tintColor: red
-  mainStack:
-    spacing: 12
-    layoutMargins: 8,20
-    relativeMargins: true
-    alignment: fill
-  mainStack UIStackView:
-    spacing: 8
-    alignment: center
-    distribution: fill
-  mainStack UITextField:
-    backgroundColor: white
-    textColor: black

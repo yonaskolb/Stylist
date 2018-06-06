@@ -263,8 +263,8 @@ extension UIStatusBarStyle: StyleValue {
     public static func parse(value: Any) -> UIStatusBarStyle? {
         guard let string = value as? String else { return nil }
         switch string.lowercased().replacingOccurrences(of: " ", with: "") {
-        case "default", "light", "darkContent": return .default
-        case "lightContent", "dark": return .lightContent
+        case "default", "light", "darkcontent": return .default
+        case "lightcontent", "dark": return .lightContent
         default: return nil
         }
     }
@@ -275,9 +275,8 @@ extension UIBarStyle: StyleValue {
     public static func parse(value: Any) -> UIBarStyle? {
         guard let string = value as? String else { return nil }
         switch string.lowercased().replacingOccurrences(of: " ", with: "") {
-        case "black": return .black
-        case "blacktranslucent": return .blackTranslucent
-        case "default": return .default
+        case "black", "dark", "lightcontent": return .black
+        case "default", "light", "white", "darkcontent": return .default
         default: return nil
         }
     }

@@ -10,9 +10,9 @@
         },
         "cap-insets" : {
           "bottom" : 14,
-          "top" : 15,
+          "top" : 16,
           "right" : 14,
-          "left" : 13
+          "left" : 16
         }
       },
       "idiom" : "universal",

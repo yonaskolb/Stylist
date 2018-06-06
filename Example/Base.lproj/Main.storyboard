@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nJx-o6-jL7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nJx-o6-jL7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="gQu-kp-5vm" customClass="SectionView" customModule="Example" customModuleProvider="target">
-                                <rect key="frame" x="16" y="124" width="343" height="280.5"/>
+                                <rect key="frame" x="16" y="124" width="343" height="281.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ex-1A-Hkd">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
@@ -42,14 +41,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0A-Hg-F2N">
-                                        <rect key="frame" x="0.0" y="220.5" width="121" height="30"/>
+                                        <rect key="frame" x="0.0" y="220.5" width="121" height="31"/>
                                         <state key="normal" title="Custom button" backgroundImage="buttonBack"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="style" value="myButton"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMq-JO-j38">
-                                        <rect key="frame" x="0.0" y="250.5" width="46" height="30"/>
+                                        <rect key="frame" x="0.0" y="251.5" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
                                     </button>
                                 </subviews>
@@ -94,11 +93,11 @@
             </objects>
             <point key="canvasLocation" x="-486" y="152"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Styles-->
         <scene sceneID="eqX-5u-Hfy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AS9-tX-8eQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="MDl-3k-kEi"/>
+                    <tabBarItem key="tabBarItem" title="Styles" image="paintBrush" id="MDl-3k-kEi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Xhq-VP-9h4">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -125,26 +124,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lgW-qe-TPi">
-                                <rect key="frame" x="16" y="116" width="343" height="81.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lgW-qe-TPi">
+                                <rect key="frame" x="16" y="136" width="343" height="135.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Components" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tj4-dI-AWW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a very simple example of some styles" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tj4-dI-AWW">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="style" value="heading"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EDJ-NM-qDl">
-                                        <rect key="frame" x="0.0" y="20.5" width="343" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EDJ-NM-qDl">
+                                        <rect key="frame" x="0.0" y="28.5" width="343" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jp1-5D-oxY">
                                                 <rect key="frame" x="0.0" y="5" width="51" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="style" value="label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="button" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qnf-RJ-JLR">
-                                                <rect key="frame" x="51" y="0.0" width="246" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="style" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qnf-RJ-JLR">
+                                                <rect key="frame" x="59" y="0.0" width="236" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -153,25 +158,31 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfv-vB-Zfe">
-                                                <rect key="frame" x="297" y="0.0" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="style" value="button"/>
-                                                </userDefinedRuntimeAttributes>
+                                                <rect key="frame" x="303" y="0.0" width="40" height="30"/>
+                                                <state key="normal" title="Apply"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Dvf-Fu-5cZ" eventType="touchUpInside" id="kze-DJ-eyg"/>
+                                                </connections>
                                             </button>
                                         </subviews>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="style" value="subStack"/>
+                                        </userDefinedRuntimeAttributes>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iBM-UB-uzq">
-                                        <rect key="frame" x="0.0" y="50.5" width="343" height="31"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iBM-UB-uzq">
+                                        <rect key="frame" x="0.0" y="66.5" width="343" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WN1-fe-og5">
                                                 <rect key="frame" x="0.0" y="5.5" width="51.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="style" value="label"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="switch" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ino-WE-oWq">
-                                                <rect key="frame" x="51.5" y="0.5" width="242.5" height="30"/>
+                                                <rect key="frame" x="59.5" y="0.5" width="226.5" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -183,7 +194,17 @@
                                                 <rect key="frame" x="294" y="0.0" width="51" height="31"/>
                                             </switch>
                                         </subviews>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="style" value="subStack"/>
+                                        </userDefinedRuntimeAttributes>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAe-sq-Rkj">
+                                        <rect key="frame" x="0.0" y="105.5" width="343" height="30"/>
+                                        <state key="normal" title="Primary Button"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="style" value="primary"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="style" value="mainStack"/>
@@ -194,12 +215,19 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="lgW-qe-TPi" secondAttribute="trailing" id="eoB-sw-d8F"/>
                             <constraint firstItem="lgW-qe-TPi" firstAttribute="leading" secondItem="grO-W6-jzt" secondAttribute="leadingMargin" id="jHG-K1-cfl"/>
-                            <constraint firstItem="lgW-qe-TPi" firstAttribute="top" secondItem="hap-id-IL6" secondAttribute="bottom" id="wXV-3E-Rwt"/>
+                            <constraint firstItem="lgW-qe-TPi" firstAttribute="top" secondItem="hap-id-IL6" secondAttribute="bottom" constant="20" id="wXV-3E-Rwt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Example" id="ORP-CB-gDX"/>
+                    <navigationItem key="navigationItem" title="Example" id="ORP-CB-gDX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jPW-OR-hmc">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="style" value="add"/>
+                            </userDefinedRuntimeAttributes>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="button" destination="Mfv-vB-Zfe" id="vLm-ut-06i"/>
+                        <outlet property="buttonStyle" destination="Qnf-RJ-JLR" id="FmT-9n-IBf"/>
                         <outlet property="switch" destination="X6j-KT-Hfp" id="gXT-7W-eoA"/>
                     </connections>
                 </viewController>
@@ -207,11 +235,11 @@
             </objects>
             <point key="canvasLocation" x="1068" y="922"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Example-->
         <scene sceneID="kho-Ze-2zH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xzp-mu-1cy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="jqU-xQ-Hb8"/>
+                    <tabBarItem key="tabBarItem" title="Example" image="pallet" id="jqU-xQ-Hb8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="VKE-Hd-aVt">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -228,6 +256,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="buttonBack" width="28" height="30"/>
+        <image name="buttonBack" width="31" height="31"/>
+        <image name="paintBrush" width="25" height="25"/>
+        <image name="pallet" width="25" height="25"/>
     </resources>
 </document>

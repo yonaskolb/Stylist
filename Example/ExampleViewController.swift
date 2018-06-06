@@ -13,6 +13,10 @@ import Stylist
 class ExampleViewController: UIViewController {
     @IBOutlet weak var button: UIButton!
 
+    @IBAction func buttonPressed(_ sender: Any) {
+        button.style = buttonStyle.text
+    }
+    @IBOutlet weak var buttonStyle: UITextField!
     @IBAction func buttonStyleChanged(_ sender: UITextField) {
         button.style = sender.text
     }

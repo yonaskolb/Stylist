@@ -201,10 +201,10 @@ class StyleValueParsingTests: XCTestCase {
         func testUIBarStyleParsing() throws {
             assertStyleValueParsing(UIBarStyle.black, "black")
             assertStyleValueParsing(UIBarStyle.default, "default")
-            assertStyleValueParsing(UIBarStyle.blackTranslucent, "blackTranslucent")
+            assertStyleValueParsing(UIBarStyle.black, "blackTranslucent")
 
-            assertStyleValueParsing(UIBarStyle.blackTranslucent, "black translucent")
-            assertStyleValueParsing(UIBarStyle.blackTranslucent, "blacktranslucent")
+            assertStyleValueParsing(UIBarStyle.black, "black translucent")
+            assertStyleValueParsing(UIBarStyle.black, "blacktranslucent")
 
             assertStyleValueParsingNil(UIViewContentMode.self, "invalid")
         }

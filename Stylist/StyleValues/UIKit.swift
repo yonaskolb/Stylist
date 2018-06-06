@@ -275,8 +275,17 @@ extension UIBarStyle: StyleValue {
     public static func parse(value: Any) -> UIBarStyle? {
         guard let string = value as? String else { return nil }
         switch string.lowercased().replacingOccurrences(of: " ", with: "") {
-        case "black", "dark", "lightcontent": return .black
-        case "default", "light", "white", "darkcontent": return .default
+        case "black",
+             "dark",
+             "lightcontent",
+             "blacktranslucent",
+             "blackopaque":
+            return .black
+        case "default",
+             "light",
+             "white",
+             "darkcontent":
+            return .default
         default: return nil
         }
     }

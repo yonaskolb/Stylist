@@ -1,0 +1,3 @@
+github "jpsim/Yams" "nn-dylib-versions"
+github "krzysztofzablocki/KZFileWatchers" ~> 1.0.5
+

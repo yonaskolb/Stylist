@@ -1,4 +1,13 @@
 
+#### Master
+
+## 0.2.1
+
+#### Fixed
+- Fixed Carthage installations #9 thanks @drekka
+
+[Commits](https://github.com/yonaskolb/XcodeGen/compare/0.2.0...0.2.1)
+
 ## 0.2.0
 
 #### Added

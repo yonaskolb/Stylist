@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/yonaskolb/Stylist.git", :tag => s.version.to_s }
   s.source_files  = "Stylist/**/*.swift"
   s.frameworks  = "Foundation"
-  s.dependency 'Yams', '~> 1.0.0'
+  s.dependency 'Yams', '~> 1.0.1'
   s.dependency 'KZFileWatchers', '~> 1.0.5'
 end

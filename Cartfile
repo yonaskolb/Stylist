@@ -1,3 +1,3 @@
-github "jpsim/Yams" "master"
+github "jpsim/Yams" ~> 1.0.1
 github "krzysztofzablocki/KZFileWatchers" ~> 1.0.5
 

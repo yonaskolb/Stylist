@@ -1,20 +1,20 @@
 PODS:
   - KZFileWatchers (1.0.5)
-  - Yams (1.0.0)
+  - Yams (1.0.1)
 
 DEPENDENCIES:
   - KZFileWatchers
   - Yams
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - KZFileWatchers
     - Yams
 
 SPEC CHECKSUMS:
   KZFileWatchers: cdb033e4120fbe61c8e0f4df3613d5894741653d
-  Yams: a01cdee527b3a82a3e192255b34ad5aacdf96b8c
+  Yams: 572f625a8b719b73e0b57fd313c680f3e2161fe9
 
 PODFILE CHECKSUM: 504b21f22b32022df90485a8b5d0ecaf456cf59c
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

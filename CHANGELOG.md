@@ -1,6 +1,13 @@
 
 #### Master
 
+## 0.2.2
+
+#### Fixed
+- Updated dependencies
+
+[Commits](https://github.com/yonaskolb/XcodeGen/compare/0.2.1...0.2.2)
+
 ## 0.2.1
 
 #### Fixed

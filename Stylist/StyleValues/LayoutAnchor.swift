@@ -17,25 +17,26 @@ import Foundation
 public struct LayoutAnchor: Equatable {
 
     public let constant: CGFloat
-    public let equality: NSLayoutRelation
+    public let equality: NSLayoutConstraint.Relation
 
-    public init(constant: CGFloat, equality: NSLayoutRelation = .equal) {
+    public init(constant: CGFloat, equality: NSLayoutConstraint.Relation = .equal) {
         self.constant = constant
         self.equality = equality
     }
 }
 
-extension NSLayoutRelation {
+extension NSLayoutConstraint.Relation {
 
     var symbol: String {
         switch self {
         case .equal: return "=="
         case .greaterThanOrEqual: return ">="
         case .lessThanOrEqual: return "<="
+        @unknown default: return ""
         }
     }
 
-    static var all: [NSLayoutRelation] = [.equal, .greaterThanOrEqual, .lessThanOrEqual]
+    static var all: [NSLayoutConstraint.Relation] = [.equal, .greaterThanOrEqual, .lessThanOrEqual]
 }
 
 extension LayoutAnchor: StyleValue {
@@ -45,8 +46,8 @@ extension LayoutAnchor: StyleValue {
             return LayoutAnchor(constant: constant)
         } else if let string = value as? String {
             var parsedString = string
-            var equality: NSLayoutRelation = .equal
-            for possibleEquality in NSLayoutRelation.all {
+            var equality: NSLayoutConstraint.Relation = .equal
+            for possibleEquality in NSLayoutConstraint.Relation.all {
                 if parsedString.hasPrefix(possibleEquality.symbol) {
                     equality = possibleEquality
                     parsedString = parsedString.replacingOccurrences(of: possibleEquality.symbol, with: "").trimmingCharacters(in: .whitespaces)

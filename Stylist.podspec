@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "Stylist"
   s.version      = "0.2.2"
-  s.swift_version = "4.1"
+  s.swift_version = "5.0"
   s.summary      = "Define UI styles in a hot-loadable external yaml or json file"
   s.homepage     = "http://github.com/yonaskolb/Stylist"
   s.license      = { :type => "MIT", :file => "LICENSE" }
@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/yonaskolb/Stylist.git", :tag => s.version.to_s }
   s.source_files  = "Stylist/**/*.swift"
   s.frameworks  = "Foundation"
-  s.dependency 'Yams', '~> 1.0.1'
-  s.dependency 'KZFileWatchers', '~> 1.0.5'
+  s.dependency 'Yams', '~> 2.0.0'
+  s.dependency 'KZFileWatchers', '~> 1.0.6'
 end

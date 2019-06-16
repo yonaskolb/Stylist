@@ -27,7 +27,7 @@ extension Font: StyleValue {
         } else if let string = value as? String {
             let parts = string.components(separatedBy: ":")
             if parts.count == 1 {
-                if let textStyle = UIFontTextStyle(name: string) {
+                if let textStyle = UIFont.TextStyle(name: string) {
                     return UIFont.preferredFont(forTextStyle: textStyle)
                 } else if let int = Int(string) {
                     return UIFont.systemFont(ofSize: CGFloat(int))
@@ -72,7 +72,7 @@ extension Font: StyleValue {
                             return UIFont.systemFont(ofSize: fontSize, weight: weight)
                         }
                     }
-                } else if let textStyle = UIFontTextStyle(name: parts[1]) {
+                } else if let textStyle = UIFont.TextStyle(name: parts[1]) {
                     let fontSize = UIFont.preferredFont(forTextStyle: textStyle).pointSize
                     if let font = UIFont(name: name, size: fontSize) {
                         return font
@@ -84,7 +84,7 @@ extension Font: StyleValue {
     }
 }
 
-private extension UIFontTextStyle {
+private extension UIFont.TextStyle {
 
     init?(name: String) {
         switch name.replacingOccurrences(of: " ", with: "").lowercased() {

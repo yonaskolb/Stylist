@@ -518,7 +518,7 @@
 					52D6D97B1BEFF229002C0205 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = U7E5MQU624;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 					};
 					52D6D9851BEFF229002C0205 = {
 						CreatedOnToolsVersion = 7.1;
@@ -531,7 +531,7 @@
 					CC23850D1F478E8A00FB0073 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = U7E5MQU624;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					DD75028C1C690C7A006590AF = {
@@ -542,7 +542,7 @@
 			};
 			buildConfigurationList = 52D6D9761BEFF229002C0205 /* Build configuration list for PBXProject "Stylist" */;
 			compatibilityVersion = "Xcode 6.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -629,7 +629,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KZFileWatchers-iOS/KZFileWatchers.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams-iOS/Yams.framework",
 			);
@@ -640,7 +640,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9335FB236F4D3AEDCCD4B0C4 /* [CP] Embed Pods Frameworks */ = {
@@ -649,7 +649,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KZFileWatchers-tvOS/KZFileWatchers.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams-tvOS/Yams.framework",
 			);
@@ -660,7 +660,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A1A4B316FF76CDFA4DE5F103 /* [CP] Check Pods Manifest.lock */ = {
@@ -705,7 +705,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KZFileWatchers-iOS/KZFileWatchers.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams-iOS/Yams.framework",
 			);
@@ -716,7 +716,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F1644C8BE1E84C9737B3B7A3 /* [CP] Check Pods Manifest.lock */ = {
@@ -943,7 +943,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -995,7 +995,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;

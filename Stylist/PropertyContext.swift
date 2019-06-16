@@ -12,17 +12,17 @@ import UIKit
 public struct PropertyContext: Equatable {
 
     public let styleContext: StyleContext
-    public let controlState: UIControlState
+    public let controlState: UIControl.State
     public let barMetrics: UIBarMetrics
 
-    public init(styleContext: StyleContext = StyleContext(), controlState: UIControlState = .normal, barMetrics: UIBarMetrics = .default) {
+    public init(styleContext: StyleContext = StyleContext(), controlState: UIControl.State = .normal, barMetrics: UIBarMetrics = .default) {
         self.styleContext = styleContext
         self.controlState = controlState
         self.barMetrics = barMetrics
     }
 }
 
-extension UIControlState {
+extension UIControl.State {
 
     init?(name: String) {
         switch name {

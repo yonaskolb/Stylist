@@ -115,9 +115,9 @@ extension UIEdgeInsets: StyleValue {
     }
 }
 
-extension UIViewContentMode: StyleValue {
+extension UIView.ContentMode: StyleValue {
 
-    public static func parse(value: Any) -> UIViewContentMode? {
+    public static func parse(value: Any) -> UIView.ContentMode? {
         guard let string = value as? String else {
             return nil
         }
@@ -162,9 +162,9 @@ extension CGSize: StyleValue {
     }
 }
 
-extension UIStackViewAlignment: StyleValue {
+extension UIStackView.Alignment: StyleValue {
 
-    public static func parse(value: Any) -> UIStackViewAlignment? {
+    public static func parse(value: Any) -> UIStackView.Alignment? {
         guard let string = value as? String else { return nil }
         switch string.lowercased().replacingOccurrences(of: " ", with: "") {
         case "fill": return .fill
@@ -180,9 +180,9 @@ extension UIStackViewAlignment: StyleValue {
     }
 }
 
-extension UIStackViewDistribution: StyleValue {
+extension UIStackView.Distribution: StyleValue {
 
-    public static func parse(value: Any) -> UIStackViewDistribution? {
+    public static func parse(value: Any) -> UIStackView.Distribution? {
         guard let string = value as? String else { return nil }
         switch string.lowercased().replacingOccurrences(of: " ", with: "") {
         case "fill": return .fill
@@ -195,9 +195,9 @@ extension UIStackViewDistribution: StyleValue {
     }
 }
 
-extension UILayoutConstraintAxis: StyleValue {
+extension NSLayoutConstraint.Axis: StyleValue {
 
-    public static func parse(value: Any) -> UILayoutConstraintAxis? {
+    public static func parse(value: Any) -> NSLayoutConstraint.Axis? {
         guard let string = value as? String else { return nil }
         switch string.lowercased().replacingOccurrences(of: " ", with: "") {
         case "vertical": return .vertical
@@ -207,9 +207,9 @@ extension UILayoutConstraintAxis: StyleValue {
     }
 }
 
-extension UITabBarItemPositioning: StyleValue {
+extension UITabBar.ItemPositioning: StyleValue {
 
-    public static func parse(value: Any) -> UITabBarItemPositioning? {
+    public static func parse(value: Any) -> UITabBar.ItemPositioning? {
         guard let string = value as? String else { return nil }
         switch string {
         case "automatic": return .automatic
@@ -237,13 +237,13 @@ extension NSTextAlignment: StyleValue {
 
 struct TextAttributes: StyleValue {
 
-    let attributes: [NSAttributedStringKey: Any]
+    let attributes: [NSAttributedString.Key: Any]
 
     public static func parse(value: Any) -> TextAttributes? {
         guard let dictionary = value as? [String: Any] else {
             return nil
         }
-        var attributes: [NSAttributedStringKey: Any] = [:]
+        var attributes: [NSAttributedString.Key: Any] = [:]
         if let value = dictionary["color"].flatMap(Color.parse) ??
             dictionary["foregroundColor"].flatMap(Color.parse) ??
             dictionary["textColor"].flatMap(Color.parse){

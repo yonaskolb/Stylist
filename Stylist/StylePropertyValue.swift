@@ -24,7 +24,7 @@ struct StylePropertyValue: Equatable {
 
         var (propertyName, styleContext) = try StyleContext.getContext(string: string)
 
-        var controlState: UIControlState = .normal
+        var controlState: UIControl.State = .normal
         var barMetrics: UIBarMetrics = .default
 
         let nameParts = propertyName.components(separatedBy: ":")
@@ -32,7 +32,7 @@ struct StylePropertyValue: Equatable {
 
         if nameParts.count == 2 {
             let string = nameParts[1]
-            if let parsedControlState = UIControlState(name: string) {
+            if let parsedControlState = UIControl.State(name: string) {
                 controlState = parsedControlState
             } else if let parsedBarMetrics = UIBarMetrics(name: string) {
                 barMetrics = parsedBarMetrics

@@ -629,7 +629,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KZFileWatchers-iOS/KZFileWatchers.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams-iOS/Yams.framework",
 			);
@@ -640,7 +640,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9335FB236F4D3AEDCCD4B0C4 /* [CP] Embed Pods Frameworks */ = {
@@ -649,7 +649,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KZFileWatchers-tvOS/KZFileWatchers.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams-tvOS/Yams.framework",
 			);
@@ -660,7 +660,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stylist-tvOS Tests/Pods-Stylist-tvOS Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A1A4B316FF76CDFA4DE5F103 /* [CP] Check Pods Manifest.lock */ = {
@@ -705,7 +705,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KZFileWatchers-iOS/KZFileWatchers.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams-iOS/Yams.framework",
 			);
@@ -716,7 +716,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stylist-iOS Tests/Pods-Stylist-iOS Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F1644C8BE1E84C9737B3B7A3 /* [CP] Check Pods Manifest.lock */ = {

@@ -91,60 +91,60 @@ class StyleValueParsingTests: XCTestCase {
     }
 
     func testContentModeParsing() throws {
-        assertStyleValueParsing(UIViewContentMode.bottom, "bottom")
-        assertStyleValueParsing(UIViewContentMode.bottomLeft, "bottomLeft")
-        assertStyleValueParsing(UIViewContentMode.bottomRight, "bottomRight")
-        assertStyleValueParsing(UIViewContentMode.center, "center")
-        assertStyleValueParsing(UIViewContentMode.left, "left")
-        assertStyleValueParsing(UIViewContentMode.redraw, "redraw")
-        assertStyleValueParsing(UIViewContentMode.right, "right")
-        assertStyleValueParsing(UIViewContentMode.scaleAspectFill, "scaleAspectFill")
-        assertStyleValueParsing(UIViewContentMode.scaleAspectFit, "scaleAspectFit")
-        assertStyleValueParsing(UIViewContentMode.scaleToFill, "scaleToFill")
-        assertStyleValueParsing(UIViewContentMode.top, "top")
-        assertStyleValueParsing(UIViewContentMode.topLeft, "topLeft")
-        assertStyleValueParsing(UIViewContentMode.topRight, "topRight")
+        assertStyleValueParsing(UIView.ContentMode.bottom, "bottom")
+        assertStyleValueParsing(UIView.ContentMode.bottomLeft, "bottomLeft")
+        assertStyleValueParsing(UIView.ContentMode.bottomRight, "bottomRight")
+        assertStyleValueParsing(UIView.ContentMode.center, "center")
+        assertStyleValueParsing(UIView.ContentMode.left, "left")
+        assertStyleValueParsing(UIView.ContentMode.redraw, "redraw")
+        assertStyleValueParsing(UIView.ContentMode.right, "right")
+        assertStyleValueParsing(UIView.ContentMode.scaleAspectFill, "scaleAspectFill")
+        assertStyleValueParsing(UIView.ContentMode.scaleAspectFit, "scaleAspectFit")
+        assertStyleValueParsing(UIView.ContentMode.scaleToFill, "scaleToFill")
+        assertStyleValueParsing(UIView.ContentMode.top, "top")
+        assertStyleValueParsing(UIView.ContentMode.topLeft, "topLeft")
+        assertStyleValueParsing(UIView.ContentMode.topRight, "topRight")
 
-        assertStyleValueParsing(UIViewContentMode.topRight, "topright")
-        assertStyleValueParsing(UIViewContentMode.topRight, "top right")
+        assertStyleValueParsing(UIView.ContentMode.topRight, "topright")
+        assertStyleValueParsing(UIView.ContentMode.topRight, "top right")
 
-        assertStyleValueParsingNil(UILayoutConstraintAxis.self, "invalid")
+        assertStyleValueParsingNil(NSLayoutConstraint.Axis.self, "invalid")
     }
 
     func testUIStackViewAlignmentParsing() throws {
-        assertStyleValueParsing(UIStackViewAlignment.fill, "fill")
-        assertStyleValueParsing(UIStackViewAlignment.leading, "leading")
-        assertStyleValueParsing(UIStackViewAlignment.top, "top")
-        assertStyleValueParsing(UIStackViewAlignment.firstBaseline, "firstBaseline")
-        assertStyleValueParsing(UIStackViewAlignment.center, "center")
-        assertStyleValueParsing(UIStackViewAlignment.trailing, "trailing")
-        assertStyleValueParsing(UIStackViewAlignment.bottom, "bottom")
-        assertStyleValueParsing(UIStackViewAlignment.lastBaseline, "lastBaseline")
+        assertStyleValueParsing(UIStackView.Alignment.fill, "fill")
+        assertStyleValueParsing(UIStackView.Alignment.leading, "leading")
+        assertStyleValueParsing(UIStackView.Alignment.top, "top")
+        assertStyleValueParsing(UIStackView.Alignment.firstBaseline, "firstBaseline")
+        assertStyleValueParsing(UIStackView.Alignment.center, "center")
+        assertStyleValueParsing(UIStackView.Alignment.trailing, "trailing")
+        assertStyleValueParsing(UIStackView.Alignment.bottom, "bottom")
+        assertStyleValueParsing(UIStackView.Alignment.lastBaseline, "lastBaseline")
 
-        assertStyleValueParsing(UIStackViewAlignment.lastBaseline, "lastbaseline")
-        assertStyleValueParsing(UIStackViewAlignment.lastBaseline, "last baseline")
+        assertStyleValueParsing(UIStackView.Alignment.lastBaseline, "lastbaseline")
+        assertStyleValueParsing(UIStackView.Alignment.lastBaseline, "last baseline")
 
-        assertStyleValueParsingNil(UILayoutConstraintAxis.self, "invalid")
+        assertStyleValueParsingNil(NSLayoutConstraint.Axis.self, "invalid")
     }
 
     func testUIStackViewDistributionParsing() throws {
-        assertStyleValueParsing(UIStackViewDistribution.fill, "fill")
-        assertStyleValueParsing(UIStackViewDistribution.fillEqually, "fillEqually")
-        assertStyleValueParsing(UIStackViewDistribution.fillProportionally, "fillProportionally")
-        assertStyleValueParsing(UIStackViewDistribution.equalSpacing, "equalSpacing")
-        assertStyleValueParsing(UIStackViewDistribution.equalCentering, "equalCentering")
+        assertStyleValueParsing(UIStackView.Distribution.fill, "fill")
+        assertStyleValueParsing(UIStackView.Distribution.fillEqually, "fillEqually")
+        assertStyleValueParsing(UIStackView.Distribution.fillProportionally, "fillProportionally")
+        assertStyleValueParsing(UIStackView.Distribution.equalSpacing, "equalSpacing")
+        assertStyleValueParsing(UIStackView.Distribution.equalCentering, "equalCentering")
 
-        assertStyleValueParsing(UIStackViewDistribution.equalCentering, "equalcentering")
-        assertStyleValueParsing(UIStackViewDistribution.equalCentering, "equal centering")
+        assertStyleValueParsing(UIStackView.Distribution.equalCentering, "equalcentering")
+        assertStyleValueParsing(UIStackView.Distribution.equalCentering, "equal centering")
 
-        assertStyleValueParsingNil(UILayoutConstraintAxis.self, "invalid")
+        assertStyleValueParsingNil(NSLayoutConstraint.Axis.self, "invalid")
     }
 
     func testUILayoutConstraintAxisParsing() throws {
-        assertStyleValueParsing(UILayoutConstraintAxis.vertical, "vertical")
-        assertStyleValueParsing(UILayoutConstraintAxis.horizontal, "horizontal")
+        assertStyleValueParsing(NSLayoutConstraint.Axis.vertical, "vertical")
+        assertStyleValueParsing(NSLayoutConstraint.Axis.horizontal, "horizontal")
 
-        assertStyleValueParsingNil(UILayoutConstraintAxis.self, "invalid")
+        assertStyleValueParsingNil(NSLayoutConstraint.Axis.self, "invalid")
     }
 
     func testCGSizeParsing() throws {
@@ -206,7 +206,7 @@ class StyleValueParsingTests: XCTestCase {
             assertStyleValueParsing(UIBarStyle.black, "black translucent")
             assertStyleValueParsing(UIBarStyle.black, "blacktranslucent")
 
-            assertStyleValueParsingNil(UIViewContentMode.self, "invalid")
+            assertStyleValueParsingNil(UIView.ContentMode.self, "invalid")
         }
     #endif
 }

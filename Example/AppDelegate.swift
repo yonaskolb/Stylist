@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var fileWatcher: FileWatcherProtocol?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         let url = URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("Style.yaml")
         Stylist.shared.watch(url: url, animateChanges: true) { error in

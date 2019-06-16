@@ -183,11 +183,11 @@
 		176E8EF2EC8C27D4F21C9D75343A5F4A /* Constructor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constructor.swift; path = Sources/Yams/Constructor.swift; sourceTree = "<group>"; };
 		183B165A59428FDA93BCF7F948A3A0A9 /* KZFileWatchers-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KZFileWatchers-iOS-prefix.pch"; sourceTree = "<group>"; };
 		1BBA953F01E9B1ADFEC03802CCC70189 /* Yams.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Yams.h; path = Sources/Yams/Yams.h; sourceTree = "<group>"; };
-		1F667CC0E19EAF34E5A4119E2121F585 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Example.framework; path = "Pods-Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		22CE3E0F34C91D4283A62A1D441C76BC /* KZFileWatchers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KZFileWatchers.framework; path = "KZFileWatchers-tvOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F667CC0E19EAF34E5A4119E2121F585 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22CE3E0F34C91D4283A62A1D441C76BC /* KZFileWatchers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KZFileWatchers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2336C151D5E8E13877CBC2E7C1663339 /* Yams-tvOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Yams-tvOS.xcconfig"; path = "../Yams-tvOS/Yams-tvOS.xcconfig"; sourceTree = "<group>"; };
 		27E432AE9BF9E6A8D0529C0DF3DA7D83 /* Parser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Sources/Yams/Parser.swift; sourceTree = "<group>"; };
-		2A05DADBF12AB47770C05731A234E5A6 /* Pods_Stylist_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Stylist_tvOS.framework; path = "Pods-Stylist-tvOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A05DADBF12AB47770C05731A234E5A6 /* Pods_Stylist_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9E4661F474C28ED96B990855FBD757 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
 		2EB1813732FBB77CD82F5DC86A6E244E /* Pods-Stylist-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Stylist-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		2F2B829489766D68F14CC7EA8646198E /* KZFileWatchers-iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "KZFileWatchers-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -199,18 +199,18 @@
 		3746515BB748C9753FE5A351CD4EF762 /* shim.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = shim.swift; path = Sources/Yams/shim.swift; sourceTree = "<group>"; };
 		382986BB83C0775BBB9D1DB0198F89F4 /* Pods-Stylist-tvOS Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Stylist-tvOS Tests.modulemap"; sourceTree = "<group>"; };
 		3932BB71A5B810453D6EE41C0D78E82E /* KZFileWatchers-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KZFileWatchers-iOS-umbrella.h"; sourceTree = "<group>"; };
-		3960AB177EA79044B70750486BE7C2E7 /* Yams.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Yams.framework; path = "Yams-tvOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3960AB177EA79044B70750486BE7C2E7 /* Yams.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Yams.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CF9C786B48A3C7A47D144DA13FF3BC2 /* Yams-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Yams-iOS.xcconfig"; sourceTree = "<group>"; };
 		3FC6529AD279B68995A475DE2E4B2BBD /* Pods-Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-frameworks.sh"; sourceTree = "<group>"; };
-		400706AB70E2D70971DEC15E7D9890C3 /* scanner.c */ = {isa = PBXFileReference; includeInIndex = 1; name = scanner.c; path = Sources/CYaml/src/scanner.c; sourceTree = "<group>"; };
-		4482119E0471F8D820C72E98A35B3DBC /* api.c */ = {isa = PBXFileReference; includeInIndex = 1; name = api.c; path = Sources/CYaml/src/api.c; sourceTree = "<group>"; };
+		400706AB70E2D70971DEC15E7D9890C3 /* scanner.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = scanner.c; path = Sources/CYaml/src/scanner.c; sourceTree = "<group>"; };
+		4482119E0471F8D820C72E98A35B3DBC /* api.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = api.c; path = Sources/CYaml/src/api.c; sourceTree = "<group>"; };
 		463002B75F387CCD211D0386877AAEC4 /* Pods-Stylist-iOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Stylist-iOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B0447B1D885C117487C9A314B4C3BF6 /* KZFileWatchers-tvOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "KZFileWatchers-tvOS-Info.plist"; path = "../KZFileWatchers-tvOS/KZFileWatchers-tvOS-Info.plist"; sourceTree = "<group>"; };
 		4C14952D5B4042A2CA693B7B97B58AEB /* Yams-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Yams-iOS-dummy.m"; sourceTree = "<group>"; };
 		557C39863F081108DEB9001C9E22F05C /* String+Yams.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Yams.swift"; path = "Sources/Yams/String+Yams.swift"; sourceTree = "<group>"; };
 		584CE325CE6AA0BA55A180432E961A6B /* KZFileWatchers-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KZFileWatchers-iOS-dummy.m"; sourceTree = "<group>"; };
-		589DD321B0401363A918306C33C075EF /* emitter.c */ = {isa = PBXFileReference; includeInIndex = 1; name = emitter.c; path = Sources/CYaml/src/emitter.c; sourceTree = "<group>"; };
-		5A0DB69B1D994E33E718408FCE9C01A7 /* Pods_Stylist_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Stylist_iOS_Tests.framework; path = "Pods-Stylist-iOS Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		589DD321B0401363A918306C33C075EF /* emitter.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = emitter.c; path = Sources/CYaml/src/emitter.c; sourceTree = "<group>"; };
+		5A0DB69B1D994E33E718408FCE9C01A7 /* Pods_Stylist_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF8EF0E4D07CFF7847082FAD81FA33E /* Yams-iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Yams-iOS-Info.plist"; sourceTree = "<group>"; };
 		62B761AB96727113788600BA61C40078 /* Pods-Stylist-iOS Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Stylist-iOS Tests-Info.plist"; sourceTree = "<group>"; };
 		64AD7CD39D2A90EC9D0C2EEDB4B0E85B /* KZFileWatchers-tvOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "KZFileWatchers-tvOS-umbrella.h"; path = "../KZFileWatchers-tvOS/KZFileWatchers-tvOS-umbrella.h"; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 		80BAD271DD1C2D4D1F6E3A2348333CBB /* Pods-Stylist-iOS Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Stylist-iOS Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		80D50031945639C9CFCD3CBF24E18561 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		85E5F2811012E8B8D18F1548DF1998D0 /* Pods-Stylist-tvOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Stylist-tvOS-Info.plist"; sourceTree = "<group>"; };
-		862F44DAC1BBBE5EBDFFCC73BA868E29 /* Pods_Stylist_tvOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Stylist_tvOS_Tests.framework; path = "Pods-Stylist-tvOS Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		862F44DAC1BBBE5EBDFFCC73BA868E29 /* Pods_Stylist_tvOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_tvOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86D1B7949F2AF793855ED6FBED6CA61E /* Pods-Stylist-iOS Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Stylist-iOS Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		8792DD9BFC75408E5C5E5DB4EE41A78C /* Pods-Stylist-iOS Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Stylist-iOS Tests.modulemap"; sourceTree = "<group>"; };
 		885FF417B565A7F400BCE63E9C5ED1DD /* Node.Sequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Node.Sequence.swift; path = Sources/Yams/Node.Sequence.swift; sourceTree = "<group>"; };
@@ -238,9 +238,9 @@
 		976AF4451084AE75A201CF645ED24B68 /* Pods-Stylist-tvOS Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Stylist-tvOS Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		97BCC08098E187A8D26D162B00B3A042 /* Pods-Stylist-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Stylist-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9AE376C53F1EEA88FA9BA96DEAD454B3 /* Node.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Node.swift; path = Sources/Yams/Node.swift; sourceTree = "<group>"; };
-		9C24DD8E7F52F52B6E358D6E6FF710FB /* parser.c */ = {isa = PBXFileReference; includeInIndex = 1; name = parser.c; path = Sources/CYaml/src/parser.c; sourceTree = "<group>"; };
+		9C24DD8E7F52F52B6E358D6E6FF710FB /* parser.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = parser.c; path = Sources/CYaml/src/parser.c; sourceTree = "<group>"; };
 		9CF2C9F62770C8BD174AD7F26485B2ED /* Pods-Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A2F50BB6784333CD4DF4E4B5E8509888 /* Pods-Stylist-tvOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Stylist-tvOS-umbrella.h"; sourceTree = "<group>"; };
 		A6D9E0CF5BADA41FD2E46770A85F20E2 /* Pods-Stylist-tvOS Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Stylist-tvOS Tests-umbrella.h"; sourceTree = "<group>"; };
 		A84465A037394F00E663F8E378FDC30C /* Tag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = Sources/Yams/Tag.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 		ADFDCA4421645A2E8094C256FAA6A958 /* Yams-tvOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Yams-tvOS-prefix.pch"; path = "../Yams-tvOS/Yams-tvOS-prefix.pch"; sourceTree = "<group>"; };
 		B6952FEC0CF5C7BEBB9C58C87EA210AE /* Yams-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Yams-iOS.modulemap"; sourceTree = "<group>"; };
 		B712C7D27EB7CD8F8A18A3EDE52765C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		B79CDB8EBF741D8B62A2D10C6ABDB9D3 /* Pods_Stylist_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Stylist_iOS.framework; path = "Pods-Stylist-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B79CDB8EBF741D8B62A2D10C6ABDB9D3 /* Pods_Stylist_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stylist_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC54735E955FC94ED3AA02ACE62D737 /* Pods-Stylist-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Stylist-iOS-dummy.m"; sourceTree = "<group>"; };
 		BE1383B9F4471596673CB34F65B7E03B /* Pods-Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		BF678B126AFEEBB2BC3941C2AC943D64 /* Pods-Stylist-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Stylist-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 		C3E8594E26552C3CD97A65F99C234B73 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		C4EAFD578EADFAB9B9C4813329AFBD78 /* Pods-Stylist-tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Stylist-tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		C582CCFFBA772CB935EE3F7B012A81CE /* Pods-Stylist-tvOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Stylist-tvOS Tests.release.xcconfig"; sourceTree = "<group>"; };
-		CB1652620F2224FCF0F086AF306B4F1F /* KZFileWatchers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KZFileWatchers.framework; path = "KZFileWatchers-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D45D8E741AD5ABFA9DFD83E24B6DB59F /* reader.c */ = {isa = PBXFileReference; includeInIndex = 1; name = reader.c; path = Sources/CYaml/src/reader.c; sourceTree = "<group>"; };
+		CB1652620F2224FCF0F086AF306B4F1F /* KZFileWatchers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KZFileWatchers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D45D8E741AD5ABFA9DFD83E24B6DB59F /* reader.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = reader.c; path = Sources/CYaml/src/reader.c; sourceTree = "<group>"; };
 		D9F01920571AD7070C01874BEC8FEB60 /* Yams-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Yams-tvOS-dummy.m"; path = "../Yams-tvOS/Yams-tvOS-dummy.m"; sourceTree = "<group>"; };
 		DACA2294DCC3B44990B99E4132CD47B8 /* Pods-Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		DC78F4041272700AD71D33B090898534 /* KZFileWatchers-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "KZFileWatchers-tvOS-dummy.m"; path = "../KZFileWatchers-tvOS/KZFileWatchers-tvOS-dummy.m"; sourceTree = "<group>"; };
@@ -272,9 +272,9 @@
 		E61D469B36FE99A3CDD57F76815AD241 /* KZFileWatchers-tvOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = "KZFileWatchers-tvOS.modulemap"; path = "../KZFileWatchers-tvOS/KZFileWatchers-tvOS.modulemap"; sourceTree = "<group>"; };
 		E832D6C1486961520D496DAC11022740 /* Pods-Stylist-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Stylist-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E8BF6C85A6965473DE06A53BD339DF99 /* KZFileWatchers-tvOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "KZFileWatchers-tvOS.xcconfig"; path = "../KZFileWatchers-tvOS/KZFileWatchers-tvOS.xcconfig"; sourceTree = "<group>"; };
-		E8D9733B0F0C1A1323BA84F990C15521 /* Yams.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Yams.framework; path = "Yams-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8D9733B0F0C1A1323BA84F990C15521 /* Yams.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Yams.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA09EF22E0C71DEEC0926876FAFCBC1A /* Pods-Stylist-tvOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Stylist-tvOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F4E6D5CF1170B89D01BB01F0841A8A03 /* writer.c */ = {isa = PBXFileReference; includeInIndex = 1; name = writer.c; path = Sources/CYaml/src/writer.c; sourceTree = "<group>"; };
+		F4E6D5CF1170B89D01BB01F0841A8A03 /* writer.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = writer.c; path = Sources/CYaml/src/writer.c; sourceTree = "<group>"; };
 		FE488D40A5E17396F8192F24CF9F174A /* Resolver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Resolver.swift; path = Sources/Yams/Resolver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -362,7 +362,6 @@
 				0F1E41B64F4719205F660B2F73DA0CB6 /* Remote.swift */,
 				63363B3FC509D78A4D60889EAA6AEEB4 /* Support Files */,
 			);
-			name = KZFileWatchers;
 			path = KZFileWatchers;
 			sourceTree = "<group>";
 		};
@@ -593,7 +592,6 @@
 				1BBA953F01E9B1ADFEC03802CCC70189 /* Yams.h */,
 				EDE1811598F27B6A33B00629597B21BE /* Support Files */,
 			);
-			name = Yams;
 			path = Yams;
 			sourceTree = "<group>";
 		};
@@ -863,6 +861,14 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
+				TargetAttributes = {
+					5DB771C97C9BE6C70B90F8B56794ABCB = {
+						LastSwiftMigration = 1020;
+					};
+					90ED150C93067BD034D109F10E906A39 = {
+						LastSwiftMigration = 1020;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 6.3";
@@ -1630,8 +1636,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 				TVOS_DEPLOYMENT_TARGET = 10.0;

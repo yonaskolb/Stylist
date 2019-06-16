@@ -352,9 +352,9 @@ class TraitViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         self.view.addSubview(childViewController.view)
-        addChildViewController(childViewController)
-        childViewController.willMove(toParentViewController: self)
-        childViewController.didMove(toParentViewController: self)
+        addChild(childViewController)
+        childViewController.willMove(toParent: self)
+        childViewController.didMove(toParent: self)
         childViewController.view.addSubview(view)
     }
 
@@ -366,7 +366,7 @@ class TraitViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func overrideTraitCollection(forChildViewController childViewController: UIViewController) -> UITraitCollection? {
+    override func overrideTraitCollection(forChild childViewController: UIViewController) -> UITraitCollection? {
         return UITraitCollection(traitsFrom: traits)
     }
 }

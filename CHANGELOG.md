@@ -1,9 +1,18 @@
 
 #### Master
 
+## 0.3.0
+
+#### Changed
+- Updated to Swift 5
+- Updated dependencies
+- Don't calculate styles on a view if it is removed from its superview
+
+[Commits](https://github.com/yonaskolb/XcodeGen/compare/0.2.2...0.3.0)
+
 ## 0.2.2
 
-#### Fixed
+#### Changed
 - Updated dependencies
 
 [Commits](https://github.com/yonaskolb/XcodeGen/compare/0.2.1...0.2.2)

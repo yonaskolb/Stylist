@@ -1,0 +1,5 @@
+variables:
+  primaryColor: F000FF
+styles:
+  largeFont:
+    font: title 1

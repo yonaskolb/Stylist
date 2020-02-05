@@ -45,6 +45,10 @@ public class Stylist {
     public func addProperty(_ property: StyleProperty) {
         properties.append(property)
     }
+    
+    public func addProperties(_ styleProperties: [StyleProperty]) {
+        properties += styleProperties
+    }
 
     public func addObject(_ object: StyleObject) {
         objects.append(object)

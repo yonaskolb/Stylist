@@ -60,7 +60,12 @@ public class Stylist {
         properties = []
         addDefaultProperties()
     }
-
+    
+    public func resetThemesAndStyles() {
+        themes = [:]
+        styles = []
+    }
+    
     func getValidProperties(name: String, view: Any) -> [StyleProperty] {
         return properties.filter { $0.canStyle(name: name, view: view) }
     }

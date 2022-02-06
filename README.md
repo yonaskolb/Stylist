@@ -5,7 +5,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=for-the-badge)](https://github.com/Carthage/Carthage) [![CocoaPods version](https://img.shields.io/cocoapods/v/Stylist.svg?style=for-the-badge)](https://cocoapods.org/pods/Stylist)
 [![license](https://img.shields.io/github/license/yonaskolb/Stylist.svg?style=for-the-badge)](https://github.com/yonaskolb/Stylist/blob/master/LICENSE)
 
-Stylist lets you define UI styles in a hot-reloadable external yaml or json theme file
+Stylist lets you define UI styles for iOS apps in a hot-reloadable external yaml or json theme file
 
 - ✅ Define styles in **external theme files**
 - ✅ Apply styles **programmatically** or via **Interface Builder**

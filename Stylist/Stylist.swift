@@ -45,6 +45,10 @@ public class Stylist {
     public func addProperty(_ property: StyleProperty) {
         properties.append(property)
     }
+    
+    public func addProperties(_ styleProperties: [StyleProperty]) {
+        properties += styleProperties
+    }
 
     public func addObject(_ object: StyleObject) {
         objects.append(object)
@@ -56,7 +60,12 @@ public class Stylist {
         properties = []
         addDefaultProperties()
     }
-
+    
+    public func resetThemesAndStyles() {
+        themes = [:]
+        styles = []
+    }
+    
     func getValidProperties(name: String, view: Any) -> [StyleProperty] {
         return properties.filter { $0.canStyle(name: name, view: view) }
     }

@@ -34,6 +34,33 @@ extension Theme {
         try self.init(data: data)
     }
 
+    public init(paths: [String]) throws {
+
+        var mergedDictionary = ["variables": [:], "styles": [:]]
+
+        for path in paths {
+            guard let data = FileManager.default.contents(atPath: path) else {
+                throw ThemeError.notFound
+            }
+            guard let string = String(data: data, encoding: .utf8) else {
+                throw ThemeError.decodingError
+            }
+            let yaml = try Yams.load(yaml: string)
+            guard let dictionary = yaml as? [String: Any] else {
+                throw ThemeError.decodingError
+            }
+            let variables: [String: Any] = dictionary["variables"] as? [String: Any] ?? [:]
+            let stylesDictionary = (dictionary["styles"] as? [String: Any]) ?? [:]
+
+            mergedDictionary["variables"] = (mergedDictionary["variables"] as? [String: Any])?.merging(variables, uniquingKeysWith: { (current, _) in current }) ?? [:]
+
+            mergedDictionary["styles"] = (mergedDictionary["styles"] as? [String: Any])?.merging(stylesDictionary, uniquingKeysWith: { (current, _) in current }) ?? [:]
+
+        }
+
+        try self.init(dictionary: mergedDictionary)
+    }
+
     public init(data: Data) throws {
         guard let string = String(data: data, encoding: .utf8) else {
             throw ThemeError.decodingError

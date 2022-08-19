@@ -19,4 +19,5 @@ public enum ThemeError: Error, Equatable {
     case invalidSizeClass(name: String, sizeClass: String)
     case invalidStyleContext(String)
     case invalidStyleSelector(String)
+    case remoteFileWatcherNotSupported
 }

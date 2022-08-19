@@ -187,6 +187,55 @@ public class Stylist {
         }
         return fileWatcher
     }
+
+    public func localMergeWatch(urls: [URL], animateChanges: Bool = true, parsingError: @escaping (ThemeError) -> Void) -> [FileWatcherProtocol] {
+        var fileWatchers = [FileWatcherProtocol]()
+
+        var hasLoaded = false
+        func updateThemes() {
+            let stylist = self
+            do {
+                let theme = try Theme(paths: urls.map { $0.path })
+                self.themes[urls.map { $0.path }.joined()] = theme
+                stylist.apply(theme: theme, animateChanges: animateChanges && hasLoaded)
+                hasLoaded = true
+            } catch let error as ThemeError {
+                parsingError(error)
+            } catch {
+                // unknown error occured
+            }
+        }
+
+        var fileUpdatedCount = 0
+        for url in urls {
+            let fileWatcher: FileWatcherProtocol
+            if url.isFileURL {
+                fileWatcher = FileWatcher.Local(path: url.path)
+            } else {
+                parsingError(ThemeError.remoteFileWatcherNotSupported)
+                break
+            }
+
+            do {
+                try fileWatcher.start { result in
+                    switch result {
+                    case .noChanges:
+                        break
+                    case .updated:
+                        fileUpdatedCount += 1
+                        if fileUpdatedCount >= urls.count {
+                            updateThemes()
+                        }
+                    }
+                }
+            } catch {
+                parsingError(ThemeError.notFound)
+            }
+            
+            fileWatchers.append(fileWatcher)
+        }
+        return fileWatchers
+    }
 }
 
 struct WeakContainer<T: AnyObject> {
